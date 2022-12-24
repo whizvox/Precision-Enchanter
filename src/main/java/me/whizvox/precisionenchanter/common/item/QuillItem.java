@@ -24,7 +24,7 @@ public class QuillItem extends Item {
     Level level = ctx.getLevel();
     Player player = ctx.getPlayer();
     ItemStack stack = ctx.getItemInHand();
-    if (getDamage(stack) < getMaxDamage(stack) && level.getBlockEntity(ctx.getClickedPos()) instanceof SignBlockEntity sign) {
+    if ((!isDamageable(stack) || getDamage(stack) < getMaxDamage(stack)) && level.getBlockEntity(ctx.getClickedPos()) instanceof SignBlockEntity sign) {
       if (!level.isClientSide) {
         stack.hurt(1, player.getRandom(), (ServerPlayer) player);
         player.openTextEdit(sign);
