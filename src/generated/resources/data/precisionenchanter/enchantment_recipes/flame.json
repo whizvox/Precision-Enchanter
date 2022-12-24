@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:flame",
+  "ingredients": [
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:blaze_powder"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "forge:netherrack"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:flame",
+    "level": 0
+  }
+}

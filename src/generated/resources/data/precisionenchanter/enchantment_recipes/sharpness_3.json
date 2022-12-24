@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:sharpness_3",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:storage_blocks/quartz"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:storage_blocks/netherite"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:sharpness",
+    "level": 3
+  }
+}

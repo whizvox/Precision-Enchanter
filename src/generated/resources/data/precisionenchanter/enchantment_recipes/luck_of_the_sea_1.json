@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:luck_of_the_sea_1",
+  "ingredients": [
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:pufferfish"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:storage_blocks/gold"
+      }
+    },
+    {
+      "count": 6,
+      "ingredient": {
+        "tag": "forge:storage_blocks/lapis"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:luck_of_the_sea",
+    "level": 1
+  }
+}

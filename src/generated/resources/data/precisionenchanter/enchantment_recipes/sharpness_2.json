@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:sharpness_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:storage_blocks/diamond"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:sharpness",
+    "level": 2
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "precisionenchanter:fire_protection_3",
+  "ingredients": [
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:magma_cream"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:storage_blocks/copper"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "tag": "forge:storage_blocks/coal"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:fire_protection",
+    "level": 3
+  }
+}

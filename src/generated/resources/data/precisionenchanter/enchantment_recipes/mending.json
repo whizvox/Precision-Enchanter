@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:mending",
+  "ingredients": [
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:moss_block"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:respawn_anchor"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:sculk_catalyst"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:mending",
+    "level": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:punch_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:dispenser"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:slimeballs"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:punch",
+    "level": 0
+  }
+}

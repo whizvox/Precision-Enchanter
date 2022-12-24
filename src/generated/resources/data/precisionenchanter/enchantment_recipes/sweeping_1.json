@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:sweeping_1",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:wooden_sword"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:rabbit_hide"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:sweeping",
+    "level": 1
+  }
+}

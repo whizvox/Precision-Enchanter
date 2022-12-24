@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:sweeping_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:wooden_sword"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:slime_block"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:sweeping",
+    "level": 2
+  }
+}

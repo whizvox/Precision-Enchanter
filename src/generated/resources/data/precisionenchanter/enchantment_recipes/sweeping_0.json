@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:sweeping_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:wooden_sword"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:milk_bucket"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:sweeping",
+    "level": 0
+  }
+}

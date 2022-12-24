@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:bane_of_arthropods_0",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:string"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:bane_of_arthropods",
+    "level": 0
+  }
+}

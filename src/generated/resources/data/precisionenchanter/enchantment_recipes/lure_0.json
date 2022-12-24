@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:lure_0",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:glow_berries"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:dirt"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:lure",
+    "level": 0
+  }
+}

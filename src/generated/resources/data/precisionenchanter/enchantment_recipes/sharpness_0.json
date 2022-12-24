@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:sharpness_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:cobblestone"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:sharpness",
+    "level": 0
+  }
+}

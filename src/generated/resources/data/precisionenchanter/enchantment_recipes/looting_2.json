@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:looting_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      }
+    },
+    {
+      "count": 40,
+      "ingredient": {
+        "tag": "forge:storage_blocks/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:heart_of_the_sea"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:looting",
+    "level": 2
+  }
+}

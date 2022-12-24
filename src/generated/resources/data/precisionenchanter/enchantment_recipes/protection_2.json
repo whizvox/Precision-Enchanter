@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:protection_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:shield"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:storage_blocks/copper"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:obsidian"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:protection",
+    "level": 2
+  }
+}

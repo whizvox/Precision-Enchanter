@@ -1,0 +1,9 @@
+{
+  "block.precisionenchanter.enchanters_workbench": "Enchanter's Workbench",
+  "container.precisionenchanter.precision_enchantment_table": "Enchanter's Workbench",
+  "item.precisionenchanter.enchanted_quill": "Enchanted Quill",
+  "item.precisionenchanter.quill": "Quill",
+  "itemGroup.precisionenchanter.main": "Precision Enchanting",
+  "screen.enchanters_workbench.select_down": "Select next",
+  "screen.enchanters_workbench.select_up": "Select previous"
+}

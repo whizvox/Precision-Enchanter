@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:knockback_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:wooden_shovel"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:slimeballs"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:knockback",
+    "level": 0
+  }
+}

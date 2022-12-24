@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:fortune_1",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      }
+    },
+    {
+      "count": 20,
+      "ingredient": {
+        "tag": "forge:storage_blocks/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:gems/emerald"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:fortune",
+    "level": 1
+  }
+}

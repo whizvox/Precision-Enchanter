@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:loyalty_2",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:storage_blocks/redstone"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:axolotl_bucket"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:loyalty",
+    "level": 2
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:efficiency_1",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:storage_blocks/redstone"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:ice"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:efficiency",
+    "level": 1
+  }
+}

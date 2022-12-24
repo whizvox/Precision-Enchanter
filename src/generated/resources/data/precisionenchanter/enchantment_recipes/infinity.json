@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:infinity",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:chests/ender"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:totem_of_undying"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:ghast_tear"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:infinity",
+    "level": 0
+  }
+}

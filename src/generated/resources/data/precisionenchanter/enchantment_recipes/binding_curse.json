@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:binding_curse",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:slime_ball"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "minecraft:cobweb"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:poisonous_potato"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:binding_curse",
+    "level": 0
+  }
+}

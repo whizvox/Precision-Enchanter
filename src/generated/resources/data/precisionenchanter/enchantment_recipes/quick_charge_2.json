@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:quick_charge_2",
+  "ingredients": [
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:storage_blocks/redstone"
+      }
+    },
+    {
+      "count": 48,
+      "ingredient": {
+        "tag": "forge:string"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:clay"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:quick_charge",
+    "level": 2
+  }
+}

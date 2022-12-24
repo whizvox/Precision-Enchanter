@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:depth_strider_0",
+  "ingredients": [
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "minecraft:magma_block"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "minecraft:fishes"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:depth_strider",
+    "level": 0
+  }
+}

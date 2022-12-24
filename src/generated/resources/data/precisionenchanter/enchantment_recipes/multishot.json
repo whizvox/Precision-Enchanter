@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:multishot",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:chests/ender"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:spectral_arrow"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:multishot",
+    "level": 0
+  }
+}

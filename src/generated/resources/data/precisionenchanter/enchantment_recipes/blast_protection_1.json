@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:blast_protection_1",
+  "ingredients": [
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "minecraft:tnt"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:storage_blocks/copper"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:deepslate"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:blast_protection",
+    "level": 1
+  }
+}

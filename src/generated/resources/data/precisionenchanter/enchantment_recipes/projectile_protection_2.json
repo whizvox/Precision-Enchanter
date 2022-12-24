@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:projectile_protection_2",
+  "ingredients": [
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:arrow"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:storage_blocks/copper"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:obsidian"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:projectile_protection",
+    "level": 2
+  }
+}

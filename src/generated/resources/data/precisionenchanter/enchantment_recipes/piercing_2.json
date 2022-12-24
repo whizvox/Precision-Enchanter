@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:piercing_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:grindstone"
+      }
+    },
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "minecraft:phantom_membrane"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:obsidian"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:piercing",
+    "level": 2
+  }
+}

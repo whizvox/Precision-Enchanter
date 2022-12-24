@@ -1,0 +1,33 @@
+{
+  "id": "precisionenchanter:protection_3",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:shield"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:storage_blocks/copper"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "tag": "forge:storage_blocks/coal"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:protection",
+    "level": 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:frost_walker_0",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:chests/ender"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:frost_walker",
+    "level": 0
+  }
+}

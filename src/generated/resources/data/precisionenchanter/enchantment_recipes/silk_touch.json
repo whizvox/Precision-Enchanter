@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:silk_touch",
+  "ingredients": [
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:cobweb"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:gems/emerald"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:silk_touch",
+    "level": 0
+  }
+}

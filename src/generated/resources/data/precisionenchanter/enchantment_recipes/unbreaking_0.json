@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:unbreaking_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_pickaxe"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "forge:cobblestone/deepslate"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:unbreaking",
+    "level": 0
+  }
+}

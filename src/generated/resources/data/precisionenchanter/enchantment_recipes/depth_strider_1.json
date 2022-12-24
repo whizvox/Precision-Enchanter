@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:depth_strider_1",
+  "ingredients": [
+    {
+      "count": 12,
+      "ingredient": {
+        "item": "minecraft:magma_block"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:turtle_helmet"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:depth_strider",
+    "level": 1
+  }
+}

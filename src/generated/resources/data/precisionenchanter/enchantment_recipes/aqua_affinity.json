@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:aqua_affinity",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:turtle_egg"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:sea_pickle"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:aqua_affinity",
+    "level": 0
+  }
+}

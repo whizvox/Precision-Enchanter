@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:channeling",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:lightning_rod"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:dusts/glowstone"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_axe"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:channeling",
+    "level": 0
+  }
+}

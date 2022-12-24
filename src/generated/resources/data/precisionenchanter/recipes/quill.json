@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "G": {
+      "tag": "forge:glass_panes"
+    },
+    "I": {
+      "item": "minecraft:ink_sac"
+    }
+  },
+  "pattern": [
+    "F",
+    "I",
+    "G"
+  ],
+  "result": {
+    "item": "precisionenchanter:quill"
+  }
+}

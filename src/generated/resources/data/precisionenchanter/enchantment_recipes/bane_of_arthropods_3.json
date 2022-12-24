@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:bane_of_arthropods_3",
+  "ingredients": [
+    {
+      "count": 48,
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    },
+    {
+      "count": 48,
+      "ingredient": {
+        "tag": "forge:string"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:ingots/gold"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:bane_of_arthropods",
+    "level": 3
+  }
+}

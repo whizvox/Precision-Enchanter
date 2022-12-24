@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:unbreaking_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_pickaxe"
+      }
+    },
+    {
+      "count": 48,
+      "ingredient": {
+        "tag": "forge:obsidian"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:unbreaking",
+    "level": 2
+  }
+}

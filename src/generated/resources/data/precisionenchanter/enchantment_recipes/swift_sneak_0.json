@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:swift_sneak_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:leather_boots"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:feathers"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:swift_sneak",
+    "level": 0
+  }
+}

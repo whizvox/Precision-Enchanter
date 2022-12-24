@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:riptide_2",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:elytra"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:heart_of_the_sea"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:riptide",
+    "level": 2
+  }
+}

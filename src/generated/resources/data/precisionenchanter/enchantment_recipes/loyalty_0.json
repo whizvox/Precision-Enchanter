@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:loyalty_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:storage_blocks/redstone"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:salmon"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:loyalty",
+    "level": 0
+  }
+}

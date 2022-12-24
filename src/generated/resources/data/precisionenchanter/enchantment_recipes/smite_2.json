@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:smite_2",
+  "ingredients": [
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:bones"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:ingots/iron"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:smite",
+    "level": 2
+  }
+}

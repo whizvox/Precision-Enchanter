@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:fire_aspect_1",
+  "ingredients": [
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "minecraft:blaze_rod"
+      }
+    },
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "minecraft:magma_cream"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:fire_aspect",
+    "level": 1
+  }
+}

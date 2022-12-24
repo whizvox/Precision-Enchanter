@@ -1,0 +1,27 @@
+{
+  "id": "precisionenchanter:looting_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      }
+    },
+    {
+      "count": 10,
+      "ingredient": {
+        "tag": "forge:storage_blocks/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:looting",
+    "level": 0
+  }
+}

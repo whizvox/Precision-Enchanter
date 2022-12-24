@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:quick_charge_0",
+  "ingredients": [
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:string"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:quick_charge",
+    "level": 0
+  }
+}

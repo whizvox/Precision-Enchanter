@@ -1,0 +1,21 @@
+{
+  "id": "precisionenchanter:riptide_0",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:elytra"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:prismarine"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:riptide",
+    "level": 0
+  }
+}
