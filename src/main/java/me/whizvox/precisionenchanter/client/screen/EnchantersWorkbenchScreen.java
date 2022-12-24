@@ -44,8 +44,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   @Override
   protected void init() {
     super.init();
-    selectUpButton = new ChangeSelectionButton(leftPos + 157, topPos + 34, 176, 27, 13, 13, PELang.SCREEN_ENCHANTERS_WORKBENCH_SELECT_UP, 1);
-    selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_ENCHANTERS_WORKBENCH_SELECT_DOWN, -1);
+    selectUpButton = new ChangeSelectionButton(leftPos + 157, topPos + 34, 176, 27, 13, 13, PELang.SCREEN_ENCHANTERS_WORKBENCH_SELECT_PREV, 1);
+    selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_ENCHANTERS_WORKBENCH_SELECT_NEXT, -1);
     addRenderableWidget(selectUpButton);
     addRenderableWidget(selectDownButton);
     selectUpButton.visible = false;

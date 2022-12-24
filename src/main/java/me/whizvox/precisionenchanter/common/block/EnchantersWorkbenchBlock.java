@@ -2,10 +2,6 @@ package me.whizvox.precisionenchanter.common.block;
 
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
-import me.whizvox.precisionenchanter.common.network.PENetwork;
-import me.whizvox.precisionenchanter.common.network.message.SyncEnchantmentRecipesMessage;
-import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
-import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -42,7 +38,7 @@ public class EnchantersWorkbenchBlock extends Block {
   public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
     return new SimpleMenuProvider(
         (containerId, playerInv, player) -> new EnchantersWorkbenchMenu(containerId, playerInv, ContainerLevelAccess.create(level, pos)),
-        PELang.PRECISION_ENCHANTMENT_TABLE
+        PELang.ENCHANTERS_WORKBENCH
     );
   }
 
