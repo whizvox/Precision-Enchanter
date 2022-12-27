@@ -5,6 +5,7 @@ import me.whizvox.precisionenchanter.common.network.message.SyncEnchantmentsMess
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
@@ -79,6 +80,15 @@ public class PEEnchantmentHelper {
 
   private static void onPlayerLogin(final PlayerEvent.PlayerLoggedInEvent event) {
     PENetwork.sendToClient(INSTANCE.createSyncMessage(), (ServerPlayer) event.getEntity());
+  }
+
+  public static int estimateEnchantmentWorth(EnchantmentInstance instance) {
+    return instance.level * switch (instance.enchantment.getRarity()) {
+      default -> 1;
+      case UNCOMMON -> 2;
+      case RARE -> 4;
+      case VERY_RARE -> 8;
+    };
   }
 
 }

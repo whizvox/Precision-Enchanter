@@ -1,6 +1,7 @@
 package me.whizvox.precisionenchanter.common;
 
 import me.whizvox.precisionenchanter.client.screen.EnchantersWorkbenchScreen;
+import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
@@ -35,6 +36,7 @@ public class PrecisionEnchanter {
     PEMenus.register(modBus);
     PEDataGenerator.register(modBus);
     PENetwork.register();
+    EnchantmentStorageManager.register(modBus);
     modBus.addListener(this::onClientSetup);
 
     PEEnchantmentHelper.register(forgeBus);
@@ -47,7 +49,7 @@ public class PrecisionEnchanter {
 
   private void onClientSetup(final FMLClientSetupEvent event) {
     event.enqueueWork(() -> {
-      MenuScreens.register(PEMenus.PRECISION_ENCHANTMENT_TABLE.get(), EnchantersWorkbenchScreen::new);
+      MenuScreens.register(PEMenus.ENCHANTERS_WORKBENCH.get(), EnchantersWorkbenchScreen::new);
     });
   }
 

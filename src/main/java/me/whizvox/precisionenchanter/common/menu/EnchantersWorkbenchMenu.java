@@ -5,6 +5,7 @@ import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
+import me.whizvox.precisionenchanter.common.util.MenuUtil;
 import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvents;
@@ -60,7 +61,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
 
   // server
   public EnchantersWorkbenchMenu(int containerId, Inventory playerInv, ContainerLevelAccess access) {
-    super(PEMenus.PRECISION_ENCHANTMENT_TABLE.get(), containerId);
+    super(PEMenus.ENCHANTERS_WORKBENCH.get(), containerId);
     this.access = access;
     selectedRecipe = 0;
 
@@ -131,15 +132,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
       }
     }
 
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 9; j++) {
-        addSlot(new Slot(playerInv, 9 + j + i * 9, 8 + j * 18, 84 + i * 18));
-      }
-    }
-
-    for (int i = 0; i < 9; i++) {
-      addSlot(new Slot(playerInv, i, 8 + i * 18, 142));
-    }
+    MenuUtil.addPlayerInventory(playerInv, this::addSlot);
 
     matches = new ArrayList<>();
     preventResultUpdates = false;
