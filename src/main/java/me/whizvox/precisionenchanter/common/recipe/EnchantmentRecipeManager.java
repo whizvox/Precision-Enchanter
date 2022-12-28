@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
+import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.SimpleClientBoundMessage;
@@ -14,9 +16,8 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -162,54 +163,23 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   public List<Pair<EnchantmentRecipe, EnchantmentRecipe.MatchResult>> match(ItemStack stackToEnchant, Container container) {
-    // want to allow the application of enchantments onto already-enchanted item stacks, which vanilla disallows in the
-    // ItemStack#isEnchantable() method. The Item#isEnchantable(ItemStack) method does not check if the item is already
-    // enchanted, so use that instead.
-    if (stackToEnchant.isEmpty() || !stackToEnchant.getItem().isEnchantable(stackToEnchant)) {
+    IEnchantmentStorage storage = EnchantmentStorageManager.INSTANCE.findMatch(stackToEnchant);
+    if (storage == null) {
       return List.of();
     }
     List<Pair<EnchantmentRecipe, EnchantmentRecipe.MatchResult>> matchedRecipes = new ArrayList<>();
-    if (stackToEnchant.is(Items.BOOK)) {
-      recipes.values().stream()
-          .filter(recipe -> !recipe.isInvalid())
-          .forEach(recipe -> {
-            EnchantmentRecipe.MatchResult result = recipe.match(stackToEnchant, container);
+    recipes.values().stream()
+        .filter(recipe -> !recipe.isInvalid())
+        .forEach(recipe -> {
+          EnchantmentInstance instance = new EnchantmentInstance(recipe.getEnchantment(), recipe.getLevel() + 1);
+          if (storage.canApply(stackToEnchant, instance)) {
+            EnchantmentRecipe.MatchResult result = recipe.match(stackToEnchant, container, storage);
             if (result.matches()) {
               matchedRecipes.add(Pair.of(recipe, result));
             }
-          });
-    } else {
-      byEnchantment.entrySet().stream()
-          .filter(entry -> entry.getKey().canEnchant(stackToEnchant))
-          .forEach(entry -> {
-            // do this instead of ItemStack#getEnchantmentLevel(...) to account for enchanted books as well
-            int currentLevel = EnchantmentHelper.getEnchantments(stackToEnchant).getOrDefault(entry.getKey(), 0);
-            entry.getValue().entrySet().stream()
-                .filter(entry2 -> !entry2.getValue().isInvalid() && entry2.getKey() >= currentLevel)
-                .map(Map.Entry::getValue)
-                .forEach(recipe -> {
-                  EnchantmentRecipe.MatchResult result = recipe.match(stackToEnchant, container);
-                  if (result.matches()) {
-                    matchedRecipes.add(Pair.of(recipe, result));
-                  }
-                });
-          });
-    }
+          }
+        });
     return matchedRecipes;
-  }
-
-  public static ItemStack createResultStack(ItemStack stack, Enchantment enchantment, int level) {
-    ItemStack result;
-    if (stack.is(Items.BOOK)) {
-      result = new ItemStack(Items.BOOK);
-      EnchantmentHelper.setEnchantments(Map.of(enchantment, level), result);
-    } else {
-      result = stack.copy();
-      var enchantments = result.getAllEnchantments();
-      enchantments.put(enchantment, level);
-      EnchantmentHelper.setEnchantments(enchantments, result);
-    }
-    return result;
   }
 
   public static final EnchantmentRecipeManager INSTANCE = new EnchantmentRecipeManager();

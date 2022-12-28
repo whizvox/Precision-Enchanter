@@ -17,7 +17,8 @@ public class EnchantableItemEnchantmentStorage implements IEnchantmentStorage {
 
   @Override
   public boolean canApply(ItemStack stack, EnchantmentInstance instance) {
-    return instance.enchantment.canEnchant(stack);
+    return instance.enchantment.canEnchant(stack) &&
+        getEnchantments(stack).getOrDefault(instance.enchantment, 0) < instance.level;
   }
 
   @Override

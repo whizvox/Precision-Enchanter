@@ -20,6 +20,7 @@ public class PELog {
       M_SERVER = MarkerFactory.getMarker("Server");
 
   public static Marker side() {
+    // FIXME Crashes if called during mod initialization
     return DistExecutor.safeRunForDist(() -> () -> M_CLIENT, () -> () -> M_SERVER);
   }
 

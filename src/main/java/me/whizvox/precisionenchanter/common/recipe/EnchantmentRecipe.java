@@ -1,22 +1,19 @@
 package me.whizvox.precisionenchanter.common.recipe;
 
 import com.google.gson.*;
+import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
+import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.lib.PELog;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.items.ItemStackHandler;
@@ -27,8 +24,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+// TODO Change to the level being 1-indexed rather than 0-indexed
 public class EnchantmentRecipe {
 
   private final ResourceLocation id;
@@ -79,7 +76,7 @@ public class EnchantmentRecipe {
    * @param container The container with ingredients (ItemStacks)
    * @return A map of int pairs (key = slot, value = count to shrink by), or an empty map if no match was found
    */
-  public MatchResult match(ItemStack stackToEnchant, Container container) {
+  public MatchResult match(ItemStack stackToEnchant, Container container, IEnchantmentStorage storage) {
     if (isInvalid()) {
       return MatchResult.FALSE;
     }
@@ -110,43 +107,26 @@ public class EnchantmentRecipe {
       for (int i = 0; i < invCopy.getSlots(); i++) {
         resultingStacks.add(invCopy.getStackInSlot(i));
       }
-      ItemStack result;
+      EnchantmentInstance instance = new EnchantmentInstance(enchantment, level + 1);
+      ItemStack result = storage.applyEnchantment(stackToEnchant, instance);
       int rarity = switch (enchantment.getRarity()) {
         case COMMON -> 3;
         case UNCOMMON -> 5;
         case RARE -> 7;
         case VERY_RARE -> 9;
       };
-      int cost;
-      if (stackToEnchant.is(Items.BOOK)) {
-        result = new ItemStack(Items.ENCHANTED_BOOK);
-        EnchantmentHelper.setEnchantments(Map.of(enchantment, level + 1), result);
-        cost = (level + 1) * rarity;
-      } else if (stackToEnchant.is(Items.ENCHANTED_BOOK)) {
-        result = stackToEnchant.copy();
-        int currentLevel = 0;
-        ListTag enchantments = EnchantedBookItem.getEnchantments(result);
-        for (int i = 0; i < enchantments.size(); i++) {
-          CompoundTag enchantmentTag = enchantments.getCompound(i);
-          ResourceLocation name = EnchantmentHelper.getEnchantmentId(enchantmentTag);
-          if (name.equals(EnchantmentHelper.getEnchantmentId(enchantment))) {
-            currentLevel = EnchantmentHelper.getEnchantmentLevel(enchantmentTag);
-            break;
-          }
-        }
-        EnchantedBookItem.addEnchantment(result, new EnchantmentInstance(enchantment, level + 1));
-        cost = ((level + 1) - currentLevel) * rarity;
-      } else {
-        result = stackToEnchant.copy();
-        var enchantments = result.getAllEnchantments();
-        int currentLevel = enchantments.getOrDefault(enchantment, 0);
-        enchantments.put(enchantment, level + 1);
-        EnchantmentHelper.setEnchantments(enchantments, result);
-        cost = ((level + 1) - currentLevel) * rarity;
-      }
+      int cost = rarity * (instance.level - storage.getEnchantments(stackToEnchant).getOrDefault(enchantment, 0));
       return new MatchResult(true, resultingStacks, result, cost);
     }
     return MatchResult.FALSE;
+  }
+
+  public MatchResult match(ItemStack stackToEnchant, Container container) {
+    IEnchantmentStorage storage = EnchantmentStorageManager.INSTANCE.findMatch(stackToEnchant);
+    if (storage == null) {
+      return MatchResult.FALSE;
+    }
+    return match(stackToEnchant, container, storage);
   }
 
   public void toNetwork(FriendlyByteBuf buf) {

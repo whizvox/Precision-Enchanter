@@ -34,6 +34,7 @@ public class EnchantmentStorageManager {
 
   private void rebuildCaches() {
     if (modified) {
+      PELog.LOGGER.info("Rebuilding enchantment storage manager cache with {} entries", codecsQueue.size());
       codecsList.clear();
       PriorityQueue<RegisterEnchantmentStorageMessage> copy = new PriorityQueue<>(codecsQueue);
       while (!copy.isEmpty()) {
