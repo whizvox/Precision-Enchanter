@@ -222,50 +222,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
 
   @Override
   public ItemStack quickMoveStack(Player player, int slotIndex) {
-    int resultSlot = 0;
-    int inputStartSlot = 1;
-    int inputEndSlot = inputStartSlot + 5;
-    int invStart = inputEndSlot;
-    int invEnd = invStart + 27;
-    int hotbarStart = invEnd;
-    int hotbarEnd = hotbarStart + 9;
-    ItemStack origStack = ItemStack.EMPTY;
-    Slot clickedSlot = slots.get(slotIndex);
-    if (clickedSlot.hasItem()) {
-      ItemStack stack = clickedSlot.getItem();
-      origStack = stack.copy();
-      if (slotIndex == resultSlot) {
-        if (!moveItemStackTo(stack, invStart, hotbarEnd, true)) {
-          return ItemStack.EMPTY;
-        }
-        clickedSlot.onQuickCraft(stack, origStack);
-      } else if (slotIndex >= invStart && slotIndex < hotbarEnd) {
-        if (!moveItemStackTo(stack, inputStartSlot, inputEndSlot, false)) {
-          if (slotIndex < hotbarStart) {
-            if (moveItemStackTo(stack, hotbarStart, hotbarEnd, false)) {
-              return ItemStack.EMPTY;
-            }
-          } else if (!moveItemStackTo(stack, invStart, invEnd, false)) {
-            return ItemStack.EMPTY;
-          }
-        }
-      } else if (!moveItemStackTo(stack, invStart, hotbarEnd, false)) {
-        return ItemStack.EMPTY;
-      }
-      if (stack.isEmpty()) {
-        clickedSlot.set(ItemStack.EMPTY);
-      } else {
-        clickedSlot.setChanged();
-      }
-      if (origStack.getCount() == stack.getCount()) {
-        return ItemStack.EMPTY;
-      }
-      clickedSlot.onTake(player, stack);
-      if (slotIndex == resultSlot) {
-        player.drop(stack, false);
-      }
-    }
-    return origStack;
+    return MenuUtil.quickMoveStack(this, player, slotIndex, this::moveItemStackTo, 1, 5);
   }
 
   @Override

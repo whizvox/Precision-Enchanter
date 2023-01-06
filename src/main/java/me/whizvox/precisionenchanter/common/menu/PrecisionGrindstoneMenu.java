@@ -21,6 +21,7 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -207,6 +208,13 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
   @Override
   public boolean stillValid(Player player) {
     return stillValid(access, player, PEBlocks.PRECISION_GRINDSTONE.get());
+  }
+
+  @Override
+  public void removed(Player player) {
+    super.removed(player);
+    clearContainer(player, new RecipeWrapper(scrapeFromSlots));
+    clearContainer(player, new RecipeWrapper(applyOntoSlots));
   }
 
 }
