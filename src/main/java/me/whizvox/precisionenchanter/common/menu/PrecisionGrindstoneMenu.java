@@ -86,13 +86,15 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       @Override
       public void onTake(Player player, ItemStack stack) {
         access.execute((level, pos) -> {
+          ItemStack scrapeFrom = scrapeFromSlots.getStackInSlot(0);
+          ItemStack applyTo = applyOntoSlots.getStackInSlot(0);
           preventResultUpdates = true;
-          scrapedStorage.removeEnchantment(scrapeFromSlots.getStackInSlot(0), enchantments.get(selectedEnchantment).enchantment);
-          scrapedStorage.postRemoveEnchantment(scrapeFromSlots.getStackInSlot(0));
-          appliedStorage.postApplyEnchantment(applyOntoSlots.getStackInSlot(0));
+          scrapeFromSlots.setStackInSlot(0, scrapedStorage.removeEnchantment(scrapeFrom, enchantments.get(selectedEnchantment).enchantment));
+          scrapedStorage.postRemoveEnchantment(scrapeFrom);
+          appliedStorage.postApplyEnchantment(applyTo);
           preventResultUpdates = false;
           updateResult();
-          player.playNotifySound(SoundEvents.AXE_SCRAPE, SoundSource.NEUTRAL, 1.0F, 1.0F);
+          player.playNotifySound(SoundEvents.GRINDSTONE_USE, SoundSource.NEUTRAL, 1.0F, 1.0F);
         });
       }
     });
@@ -147,6 +149,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
               clearResult = false;
               scrapedStorage = scrapeFromStorage;
               appliedStorage = applyOntoStorage;
+              hasMultiple.set(enchantments.size() > 1 ? BOOL_TRUE : BOOL_FALSE);
               changeSelection(0);
             }
           }
@@ -155,6 +158,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       if (clearResult) {
         enchantmentId.set(-1);
         enchantmentLevel.set(0);
+        hasMultiple.set(BOOL_FALSE);
         resultSlots.setStackInSlot(0, ItemStack.EMPTY);
         broadcastChanges();
       }

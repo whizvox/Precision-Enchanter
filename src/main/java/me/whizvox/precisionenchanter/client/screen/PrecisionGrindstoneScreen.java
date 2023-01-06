@@ -7,6 +7,7 @@ import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.menu.PrecisionGrindstoneMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
+import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -35,8 +36,8 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
   @Override
   protected void init() {
     super.init();
-    prevButton = new ChangeSelectionButton(148, 35, 176, 0, 13, 13, PELang.SCREEN_SELECT_PREV, -1);
-    nextButton = new ChangeSelectionButton(148, 48, 176, 13, 13, 13, PELang.SCREEN_SELECT_NEXT, 1);
+    prevButton = new ChangeSelectionButton(leftPos + 148, topPos + 35, 176, 0, 13, 13, PELang.SCREEN_SELECT_PREV, -1);
+    nextButton = new ChangeSelectionButton(leftPos + 148, topPos + 48, 176, 13, 13, 13, PELang.SCREEN_SELECT_NEXT, 1);
     addRenderableWidget(prevButton);
     addRenderableWidget(nextButton);
     prevButton.visible = false;
@@ -47,7 +48,11 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
   public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
     if (!menu.enchantmentEquals(selectedEnchantment)) {
       selectedEnchantment = menu.getSelectedEnchantment();
-      selectedEnchantmentText = selectedEnchantment.enchantment.getFullname(selectedEnchantment.level);
+      if (selectedEnchantment == null) {
+        selectedEnchantmentText = null;
+      } else {
+        selectedEnchantmentText = ChatUtil.reset(selectedEnchantment.enchantment.getFullname(selectedEnchantment.level));
+      }
 
       boolean flag = menu.hasMultipleEnchantments();
       prevButton.visible = flag;
@@ -72,7 +77,7 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
     super.renderLabels(pose, mouseX, mouseY);
 
     if (selectedEnchantmentText != null) {
-      drawCenteredString(pose, font, selectedEnchantmentText, 88, 13, 0x38D600);
+      drawCenteredString(pose, font, selectedEnchantmentText, 88, 17, 0x38D600);
     }
   }
 

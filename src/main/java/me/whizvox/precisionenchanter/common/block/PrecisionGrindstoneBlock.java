@@ -1,7 +1,6 @@
 package me.whizvox.precisionenchanter.common.block;
 
 import me.whizvox.precisionenchanter.common.lib.PELang;
-import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
 import me.whizvox.precisionenchanter.common.menu.PrecisionGrindstoneMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

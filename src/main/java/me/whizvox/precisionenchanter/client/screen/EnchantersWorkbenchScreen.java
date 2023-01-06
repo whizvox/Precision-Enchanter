@@ -8,13 +8,12 @@ import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
-import net.minecraft.ChatFormatting;
+import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
@@ -61,7 +60,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
         costText = null;
       } else {
         int cost = menu.getCost();
-        selectedEnchantmentText = ((MutableComponent) currentEnchantment.enchantment.getFullname(currentEnchantment.level)).withStyle(ChatFormatting.RESET);
+        selectedEnchantmentText = ChatUtil.reset(currentEnchantment.enchantment.getFullname(currentEnchantment.level));
         costText = Component.literal(String.valueOf(cost));
         costTextXPos = 144 - (font.width(costText) / 2);
       }
