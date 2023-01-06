@@ -2,6 +2,7 @@ package me.whizvox.precisionenchanter.common.registry;
 
 import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.block.EnchantersWorkbenchBlock;
+import me.whizvox.precisionenchanter.common.block.PrecisionGrindstoneBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,5 +18,6 @@ public class PEBlocks {
   }
 
   public static final RegistryObject<EnchantersWorkbenchBlock> ENCHANTERS_WORKBENCH = BLOCKS.register("enchanters_workbench", EnchantersWorkbenchBlock::new);
+  public static final RegistryObject<PrecisionGrindstoneBlock> PRECISION_GRINDSTONE = BLOCKS.register("precision_grindstone", PrecisionGrindstoneBlock::new);
 
 }

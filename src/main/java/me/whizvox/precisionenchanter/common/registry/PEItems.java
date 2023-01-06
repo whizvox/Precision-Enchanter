@@ -50,6 +50,8 @@ public class PEItems {
   public static final RegistryObject<QuillItem> QUILL = register("quill", QuillItem::new);
   public static final RegistryObject<EnchantedQuillItem> ENCHANTED_QUILL = register("enchanted_quill", EnchantedQuillItem::new);
 
-  public static final RegistryObject<BlockItem> ENCHANTERS_WORKBENCH = registerBlockItem(PEBlocks.ENCHANTERS_WORKBENCH);
+  public static final RegistryObject<BlockItem>
+      ENCHANTERS_WORKBENCH = registerBlockItem(PEBlocks.ENCHANTERS_WORKBENCH),
+      PRECISION_GRINDSTONE = registerBlockItem(PEBlocks.PRECISION_GRINDSTONE);
 
 }

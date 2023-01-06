@@ -37,9 +37,10 @@ public class MenuUtil {
 
   }
 
-  public static ItemStack quickMoveStack(AbstractContainerMenu menu, Player player, int slotIndex, MoveItemStackToFunction func, int numResultSlots, int numInputSlots) {
-    int resultSlot = 0;
-    int inputStartSlot = resultSlot + numResultSlots;
+  public static ItemStack quickMoveStack(AbstractContainerMenu menu, Player player, int slotIndex, MoveItemStackToFunction func, int numOutputSlots, int numInputSlots) {
+    int outputSlotStart = 0;
+    int outputSlotEnd = outputSlotStart + numOutputSlots;
+    int inputStartSlot = outputSlotEnd + numOutputSlots;
     int inputEndSlot = inputStartSlot + numInputSlots;
     int invStart = inputEndSlot;
     int invEnd = invStart + 27;
@@ -50,7 +51,7 @@ public class MenuUtil {
     if (clickedSlot.hasItem()) {
       ItemStack stack = clickedSlot.getItem();
       origStack = stack.copy();
-      if (slotIndex == resultSlot) {
+      if (slotIndex >= outputSlotStart && slotIndex < outputSlotEnd) {
         if (!func.moveItemStackTo(stack, invStart, hotbarEnd, true)) {
           return ItemStack.EMPTY;
         }
@@ -77,7 +78,7 @@ public class MenuUtil {
         return ItemStack.EMPTY;
       }
       clickedSlot.onTake(player, stack);
-      if (slotIndex == resultSlot) {
+      if (slotIndex >= outputSlotStart && slotIndex < outputSlotEnd) {
         player.drop(stack, false);
       }
     }

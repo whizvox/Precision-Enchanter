@@ -35,4 +35,5 @@ public class BookEnchantmentStorage implements IEnchantmentStorage {
   public ItemStack removeEnchantment(ItemStack origStack, Enchantment enchantment) {
     return ItemStack.EMPTY;
   }
+
 }

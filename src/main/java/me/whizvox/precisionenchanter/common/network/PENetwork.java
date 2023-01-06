@@ -41,7 +41,7 @@ public class PENetwork {
     register(SimpleClientBoundMessage.HANDLER, NetworkDirection.PLAY_TO_CLIENT);
     register(SimpleServerBoundMessage.HANDLER, NetworkDirection.PLAY_TO_SERVER);
     register(SyncEnchantmentRecipesMessage.HANDLER, NetworkDirection.PLAY_TO_CLIENT);
-    register(EnchantersWorkbenchChangeSelectionMessage.HANDLER, NetworkDirection.PLAY_TO_SERVER);
+    register(PEChangeSelectionMessage.HANDLER, NetworkDirection.PLAY_TO_SERVER);
     register(SyncEnchantmentsMessage.HANDLER, NetworkDirection.PLAY_TO_CLIENT);
   }
 

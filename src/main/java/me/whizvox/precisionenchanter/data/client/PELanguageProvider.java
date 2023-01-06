@@ -19,7 +19,8 @@ public class PELanguageProvider extends LanguageProvider {
     addItem(PEItems.QUILL, "Quill");
     addItem(PEItems.ENCHANTED_QUILL, "Enchanted Quill");
     add(PELang.Keys.CREATIVE_MODE_TAB, "Precision Enchanting");
-    add(PELang.Keys.ENCHANTERS_WORKBENCH, "Enchanter's Workbench");
+    add(PELang.Keys.CONTAINER_ENCHANTERS_WORKBENCH, "Enchanter's Workbench");
+    add(PELang.Keys.CONTAINER_PRECISION_GRINDSTONE, "Precision Grindstone");
     add(PELang.Keys.SCREEN_ENCHANTERS_WORKBENCH_SELECT_NEXT, "Select next");
     add(PELang.Keys.SCREEN_ENCHANTERS_WORKBENCH_SELECT_PREV, "Select previous");
   }

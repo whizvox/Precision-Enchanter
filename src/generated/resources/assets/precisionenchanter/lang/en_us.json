@@ -1,9 +1,10 @@
 {
   "block.precisionenchanter.enchanters_workbench": "Enchanter's Workbench",
   "container.precisionenchanter.enchanters_workbench": "Enchanter's Workbench",
+  "container.precisionenchanter.precision_grindstone": "Precision Grindstone",
   "item.precisionenchanter.enchanted_quill": "Enchanted Quill",
   "item.precisionenchanter.quill": "Quill",
   "itemGroup.precisionenchanter.main": "Precision Enchanting",
-  "screen.enchanters_workbench.select_next": "Select next",
-  "screen.enchanters_workbench.select_previous": "Select previous"
+  "screen.precisionenchanter.generic.select_next": "Select next",
+  "screen.precisionenchanter.generic.select_previous": "Select previous"
 }

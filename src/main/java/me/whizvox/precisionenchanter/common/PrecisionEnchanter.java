@@ -1,6 +1,7 @@
 package me.whizvox.precisionenchanter.common;
 
 import me.whizvox.precisionenchanter.client.screen.EnchantersWorkbenchScreen;
+import me.whizvox.precisionenchanter.client.screen.PrecisionGrindstoneScreen;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
@@ -50,6 +51,7 @@ public class PrecisionEnchanter {
   private void onClientSetup(final FMLClientSetupEvent event) {
     event.enqueueWork(() -> {
       MenuScreens.register(PEMenus.ENCHANTERS_WORKBENCH.get(), EnchantersWorkbenchScreen::new);
+      MenuScreens.register(PEMenus.PRECISION_GRINDSTONE.get(), PrecisionGrindstoneScreen::new);
     });
   }
 

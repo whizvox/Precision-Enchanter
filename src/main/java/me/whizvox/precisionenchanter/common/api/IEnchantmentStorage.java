@@ -23,7 +23,6 @@ public interface IEnchantmentStorage {
   ItemStack removeEnchantment(ItemStack origStack, Enchantment enchantment);
 
   default void postRemoveEnchantment(ItemStack origStack) {
-    origStack.shrink(1);
   }
 
 }

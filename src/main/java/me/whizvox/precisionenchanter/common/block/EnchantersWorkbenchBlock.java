@@ -38,7 +38,7 @@ public class EnchantersWorkbenchBlock extends Block {
   public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
     return new SimpleMenuProvider(
         (containerId, playerInv, player) -> new EnchantersWorkbenchMenu(containerId, playerInv, ContainerLevelAccess.create(level, pos)),
-        PELang.ENCHANTERS_WORKBENCH
+        PELang.CONTAINER_ENCHANTERS_WORKBENCH
     );
   }
 
