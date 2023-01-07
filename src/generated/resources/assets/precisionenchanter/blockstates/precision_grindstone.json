@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "precisionenchanter:block/precision_grindstone",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "precisionenchanter:block/precision_grindstone"
+    },
+    "facing=south": {
+      "model": "precisionenchanter:block/precision_grindstone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "precisionenchanter:block/precision_grindstone",
+      "y": 270
+    }
+  }
+}
