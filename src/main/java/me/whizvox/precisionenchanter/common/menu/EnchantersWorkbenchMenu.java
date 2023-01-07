@@ -7,6 +7,7 @@ import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.MenuUtil;
 import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
+import me.whizvox.precisionenchanter.common.util.PEMathUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -181,7 +182,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
       if (matches.isEmpty()) {
         return;
       }
-      selectedRecipe = Math.abs((selectedRecipe + amount) % matches.size());
+      selectedRecipe = PEMathUtil.rollover(selectedRecipe, matches.size(), amount);
       var result = matches.get(selectedRecipe);
       cost.set(result.getRight().cost());
       enchantmentId.set(PEEnchantmentHelper.INSTANCE.getId(result.getLeft().getEnchantment()));

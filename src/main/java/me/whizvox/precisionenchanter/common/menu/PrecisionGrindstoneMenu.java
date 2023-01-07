@@ -7,6 +7,7 @@ import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.MenuUtil;
 import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
+import me.whizvox.precisionenchanter.common.util.PEMathUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -195,7 +196,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       if (enchantments.isEmpty()) {
         return;
       }
-      selectedEnchantment = Math.abs((selectedEnchantment + amount) % enchantments.size());
+      selectedEnchantment = PEMathUtil.rollover(selectedEnchantment, enchantments.size(), amount);
       var selected = enchantments.get(selectedEnchantment);
       enchantmentId.set(PEEnchantmentHelper.INSTANCE.getId(selected.enchantment));
       enchantmentLevel.set(selected.level - 1);
