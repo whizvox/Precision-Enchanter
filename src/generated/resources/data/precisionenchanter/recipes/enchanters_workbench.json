@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:deepslate"
+    },
+    "Q": {
+      "item": "precisionenchanter:enchanted_quill"
+    },
+    "R": {
+      "item": "minecraft:red_carpet"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "pattern": [
+    " Q ",
+    "RRR",
+    "DSD"
+  ],
+  "result": {
+    "item": "precisionenchanter:enchanters_workbench"
+  }
+}

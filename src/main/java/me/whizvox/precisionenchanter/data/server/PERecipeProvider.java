@@ -5,6 +5,7 @@ import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
@@ -52,6 +53,28 @@ public class PERecipeProvider extends RecipeProvider {
         .requires(Items.DRAGON_BREATH)
         .requires(Tags.Items.DUSTS_GLOWSTONE)
         .unlockedBy("has_dragon_breath", hasItems(Items.DRAGON_BREATH))
+        .save(writer);
+
+    ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PEItems.ENCHANTERS_WORKBENCH.get())
+        .pattern(" Q ")
+        .pattern("RRR")
+        .pattern("DSD")
+        .define('Q', PEItems.ENCHANTED_QUILL.get())
+        .define('R', Items.RED_CARPET)
+        .define('D', Items.DEEPSLATE)
+        .define('S', Items.SMOOTH_STONE_SLAB)
+        .unlockedBy("has_enchanted_quill", hasItems(PEItems.ENCHANTED_QUILL.get()))
+        .save(writer);
+
+    ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PEItems.PRECISION_GRINDSTONE.get())
+        .pattern(" Q ")
+        .pattern("LDL")
+        .pattern("WWW")
+        .define('Q', PEItems.ENCHANTED_QUILL.get())
+        .define('L', Tags.Items.GEMS_LAPIS)
+        .define('D', Items.DIORITE_SLAB)
+        .define('W', ItemTags.WOODEN_SLABS)
+        .unlockedBy("has_enchanted_quill", hasItems(PEItems.ENCHANTED_QUILL.get()))
         .save(writer);
   }
 

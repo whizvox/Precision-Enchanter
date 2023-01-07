@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:diorite_slab"
+    },
+    "L": {
+      "tag": "forge:gems/lapis"
+    },
+    "Q": {
+      "item": "precisionenchanter:enchanted_quill"
+    },
+    "W": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "pattern": [
+    " Q ",
+    "LDL",
+    "WWW"
+  ],
+  "result": {
+    "item": "precisionenchanter:precision_grindstone"
+  }
+}
