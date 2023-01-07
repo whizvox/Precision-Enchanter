@@ -3,9 +3,8 @@ plugins {
   id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-
 group = 'me.whizvox.precisionenchanter'
-version = 'dev-20221224'
+version = 'dev-20230106'
 
 java {
   archivesBaseName = 'precisionenchanter'
