@@ -10,6 +10,7 @@ import java.util.Set;
 public class PELootTableProvider {
 
   public static LootTableProvider create(PackOutput output) {
+    // not sure what "required tables" refers to
     return new LootTableProvider(output, Set.of(), List.of(
         new LootTableProvider.SubProviderEntry(PEBlockLoot::new, LootContextParamSets.BLOCK)
     ));
