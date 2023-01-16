@@ -2,21 +2,15 @@
   "id": "precisionenchanter:quick_charge_1",
   "ingredients": [
     {
-      "count": 48,
+      "count": 16,
       "ingredient": {
         "tag": "forge:dusts/redstone"
       }
     },
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "tag": "forge:string"
-      }
-    },
-    {
-      "count": 8,
-      "ingredient": {
-        "tag": "forge:feathers"
       }
     }
   ],

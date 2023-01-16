@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:protection_3",
+  "id": "precisionenchanter:protection_4",
   "ingredients": [
     {
       "count": 1,
@@ -8,20 +8,26 @@
       }
     },
     {
-      "count": 4,
+      "count": 8,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
       }
     },
     {
-      "count": 16,
+      "count": 24,
       "ingredient": {
-        "item": "minecraft:obsidian"
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "tag": "forge:storage_blocks/coal"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:protection",
-    "level": 3
+    "level": 4
   }
 }

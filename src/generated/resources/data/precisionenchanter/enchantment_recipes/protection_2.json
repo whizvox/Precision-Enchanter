@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 4,
+      "count": 2,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
       }
     },
     {
-      "count": 16,
+      "count": 64,
       "ingredient": {
-        "item": "minecraft:obsidian"
+        "item": "minecraft:deepslate"
       }
     }
   ],

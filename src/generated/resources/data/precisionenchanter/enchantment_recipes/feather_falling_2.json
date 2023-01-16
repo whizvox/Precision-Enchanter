@@ -2,21 +2,21 @@
   "id": "precisionenchanter:feather_falling_2",
   "ingredients": [
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "tag": "minecraft:wool"
       }
     },
     {
-      "count": 4,
+      "count": 2,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
       }
     },
     {
-      "count": 16,
+      "count": 64,
       "ingredient": {
-        "tag": "forge:obsidian"
+        "item": "minecraft:deepslate"
       }
     }
   ],

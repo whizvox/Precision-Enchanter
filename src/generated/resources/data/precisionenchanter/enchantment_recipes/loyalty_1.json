@@ -2,27 +2,21 @@
   "id": "precisionenchanter:loyalty_1",
   "ingredients": [
     {
-      "count": 4,
+      "count": 1,
       "ingredient": {
         "tag": "forge:storage_blocks/iron"
       }
     },
     {
-      "count": 4,
+      "count": 1,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
       }
     },
     {
-      "count": 8,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:bones"
-      }
-    },
-    {
-      "count": 8,
-      "ingredient": {
-        "item": "minecraft:beef"
+        "item": "minecraft:salmon"
       }
     }
   ],

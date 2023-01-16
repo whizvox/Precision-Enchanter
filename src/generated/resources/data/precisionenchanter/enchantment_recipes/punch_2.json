@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:power_0",
+  "id": "precisionenchanter:punch_2",
   "ingredients": [
     {
       "count": 1,
@@ -10,18 +10,18 @@
     {
       "count": 16,
       "ingredient": {
-        "tag": "forge:gems/quartz"
+        "tag": "forge:slimeballs"
       }
     },
     {
-      "count": 32,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:cobblestone"
+        "item": "minecraft:piston"
       }
     }
   ],
   "result": {
-    "enchantment": "minecraft:power",
-    "level": 0
+    "enchantment": "minecraft:punch",
+    "level": 2
   }
 }

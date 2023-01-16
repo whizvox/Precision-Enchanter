@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:fortune_0",
+  "id": "precisionenchanter:fortune_3",
   "ingredients": [
     {
       "count": 1,
@@ -8,7 +8,7 @@
       }
     },
     {
-      "count": 10,
+      "count": 40,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
       }
@@ -16,12 +16,12 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:rabbit_foot"
+        "item": "minecraft:heart_of_the_sea"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:fortune",
-    "level": 0
+    "level": 3
   }
 }

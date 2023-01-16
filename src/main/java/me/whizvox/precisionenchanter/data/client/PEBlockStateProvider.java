@@ -19,7 +19,7 @@ public class PEBlockStateProvider extends BlockStateProvider {
   void registerEnchantersWorkbench() {
     ModelFile model = models().getExistingFile(modLoc("block/enchanters_workbench"));
     getVariantBuilder(PEBlocks.ENCHANTERS_WORKBENCH.get())
-        .partialState().setModels(new ConfiguredModel(models().getExistingFile(modLoc("block/enchanters_workbench"))));
+        .partialState().setModels(new ConfiguredModel(model));
     simpleBlockItem(PEBlocks.ENCHANTERS_WORKBENCH.get(), model);
   }
 

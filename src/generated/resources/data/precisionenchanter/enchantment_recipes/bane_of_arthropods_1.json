@@ -2,21 +2,15 @@
   "id": "precisionenchanter:bane_of_arthropods_1",
   "ingredients": [
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "item": "minecraft:spider_eye"
       }
     },
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "tag": "forge:string"
-      }
-    },
-    {
-      "count": 1,
-      "ingredient": {
-        "tag": "forge:ingots/copper"
       }
     }
   ],

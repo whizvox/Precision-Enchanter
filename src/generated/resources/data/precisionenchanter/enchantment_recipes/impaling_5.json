@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:impaling_0",
+  "id": "precisionenchanter:impaling_5",
   "ingredients": [
     {
       "count": 1,
@@ -8,20 +8,20 @@
       }
     },
     {
-      "count": 16,
+      "count": 64,
       "ingredient": {
         "tag": "forge:gems/prismarine"
       }
     },
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:cobblestone"
+        "item": "minecraft:crying_obsidian"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:impaling",
-    "level": 0
+    "level": 5
   }
 }

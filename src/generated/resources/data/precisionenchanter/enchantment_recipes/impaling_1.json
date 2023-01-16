@@ -8,7 +8,7 @@
       }
     },
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "tag": "forge:gems/prismarine"
       }
@@ -16,7 +16,7 @@
     {
       "count": 32,
       "ingredient": {
-        "tag": "forge:cobblestone/deepslate"
+        "tag": "forge:cobblestone"
       }
     }
   ],

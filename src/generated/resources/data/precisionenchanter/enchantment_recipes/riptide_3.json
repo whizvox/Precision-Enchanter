@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:riptide_0",
+  "id": "precisionenchanter:riptide_3",
   "ingredients": [
     {
       "count": 1,
@@ -8,14 +8,14 @@
       }
     },
     {
-      "count": 8,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:prismarine"
+        "item": "minecraft:heart_of_the_sea"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:riptide",
-    "level": 0
+    "level": 3
   }
 }

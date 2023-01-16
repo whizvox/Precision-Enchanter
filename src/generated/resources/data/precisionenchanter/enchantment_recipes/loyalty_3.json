@@ -1,14 +1,14 @@
 {
-  "id": "precisionenchanter:loyalty_0",
+  "id": "precisionenchanter:loyalty_3",
   "ingredients": [
     {
-      "count": 1,
+      "count": 8,
       "ingredient": {
         "tag": "forge:storage_blocks/iron"
       }
     },
     {
-      "count": 1,
+      "count": 8,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
       }
@@ -16,12 +16,12 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:salmon"
+        "item": "minecraft:axolotl_bucket"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:loyalty",
-    "level": 0
+    "level": 3
   }
 }

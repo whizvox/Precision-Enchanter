@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 32,
+      "count": 64,
       "ingredient": {
-        "tag": "forge:storage_blocks/quartz"
+        "tag": "forge:gems/quartz"
       }
     },
     {
       "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/netherite"
+        "tag": "forge:storage_blocks/diamond"
       }
     }
   ],

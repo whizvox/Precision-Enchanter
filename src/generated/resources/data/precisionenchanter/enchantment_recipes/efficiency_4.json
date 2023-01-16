@@ -2,15 +2,15 @@
   "id": "precisionenchanter:efficiency_4",
   "ingredients": [
     {
-      "count": 64,
+      "count": 32,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
       }
     },
     {
-      "count": 48,
+      "count": 8,
       "ingredient": {
-        "item": "minecraft:firework_rocket"
+        "item": "minecraft:blue_ice"
       }
     }
   ],

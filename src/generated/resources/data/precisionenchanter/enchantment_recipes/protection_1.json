@@ -8,15 +8,9 @@
       }
     },
     {
-      "count": 2,
+      "count": 1,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
-      }
-    },
-    {
-      "count": 64,
-      "ingredient": {
-        "item": "minecraft:deepslate"
       }
     }
   ],

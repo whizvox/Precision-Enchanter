@@ -2,27 +2,21 @@
   "id": "precisionenchanter:soul_speed_1",
   "ingredients": [
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "tag": "forge:feathers"
       }
     },
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "item": "minecraft:soul_sand"
       }
     },
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "item": "minecraft:soul_soil"
-      }
-    },
-    {
-      "count": 4,
-      "ingredient": {
-        "item": "minecraft:packed_ice"
       }
     }
   ],

@@ -2,13 +2,13 @@
   "id": "precisionenchanter:smite_2",
   "ingredients": [
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "item": "minecraft:rotten_flesh"
       }
     },
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "tag": "forge:bones"
       }
@@ -16,7 +16,7 @@
     {
       "count": 1,
       "ingredient": {
-        "tag": "forge:ingots/iron"
+        "tag": "forge:ingots/copper"
       }
     }
   ],

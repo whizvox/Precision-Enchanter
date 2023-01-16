@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 64,
+      "count": 32,
       "ingredient": {
         "tag": "forge:storage_blocks/quartz"
       }
     },
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:crying_obsidian"
+        "tag": "forge:storage_blocks/netherite"
       }
     }
   ],

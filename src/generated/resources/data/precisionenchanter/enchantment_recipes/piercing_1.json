@@ -8,7 +8,7 @@
       }
     },
     {
-      "count": 3,
+      "count": 1,
       "ingredient": {
         "item": "minecraft:phantom_membrane"
       }
@@ -16,7 +16,7 @@
     {
       "count": 8,
       "ingredient": {
-        "item": "minecraft:flint"
+        "item": "minecraft:cobblestone"
       }
     }
   ],

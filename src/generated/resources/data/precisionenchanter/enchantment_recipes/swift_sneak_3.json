@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:swift_sneak_0",
+  "id": "precisionenchanter:swift_sneak_3",
   "ingredients": [
     {
       "count": 1,
@@ -8,14 +8,20 @@
       }
     },
     {
-      "count": 8,
+      "count": 16,
       "ingredient": {
         "tag": "forge:feathers"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "minecraft:blue_ice"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:swift_sneak",
-    "level": 0
+    "level": 3
   }
 }

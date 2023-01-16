@@ -8,7 +8,7 @@
       }
     },
     {
-      "count": 20,
+      "count": 10,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
       }
@@ -16,7 +16,7 @@
     {
       "count": 1,
       "ingredient": {
-        "tag": "forge:gems/emerald"
+        "item": "minecraft:rabbit_foot"
       }
     }
   ],

@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 64,
+      "count": 32,
       "ingredient": {
         "tag": "forge:gems/prismarine"
       }
     },
     {
-      "count": 1,
+      "count": 32,
       "ingredient": {
-        "tag": "forge:storage_blocks/diamond"
+        "tag": "forge:cobblestone/deepslate"
       }
     }
   ],

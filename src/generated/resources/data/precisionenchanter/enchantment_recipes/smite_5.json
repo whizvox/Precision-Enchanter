@@ -1,21 +1,27 @@
 {
-  "id": "precisionenchanter:smite_0",
+  "id": "precisionenchanter:smite_5",
   "ingredients": [
     {
-      "count": 8,
+      "count": 64,
       "ingredient": {
         "item": "minecraft:rotten_flesh"
       }
     },
     {
-      "count": 8,
+      "count": 64,
       "ingredient": {
         "tag": "forge:bones"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:gems/diamond"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:smite",
-    "level": 0
+    "level": 5
   }
 }

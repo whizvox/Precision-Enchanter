@@ -1,27 +1,33 @@
 {
-  "id": "precisionenchanter:feather_falling_3",
+  "id": "precisionenchanter:feather_falling_4",
   "ingredients": [
     {
-      "count": 16,
+      "count": 32,
       "ingredient": {
         "tag": "minecraft:wool"
       }
     },
     {
-      "count": 4,
+      "count": 8,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
       }
     },
     {
-      "count": 16,
+      "count": 24,
       "ingredient": {
-        "tag": "forge:obsidian"
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "tag": "forge:storage_blocks/coal"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:feather_falling",
-    "level": 3
+    "level": 4
   }
 }

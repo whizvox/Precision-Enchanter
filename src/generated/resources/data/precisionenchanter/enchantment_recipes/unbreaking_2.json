@@ -8,9 +8,9 @@
       }
     },
     {
-      "count": 48,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:obsidian"
+        "tag": "forge:storage_blocks/iron"
       }
     }
   ],

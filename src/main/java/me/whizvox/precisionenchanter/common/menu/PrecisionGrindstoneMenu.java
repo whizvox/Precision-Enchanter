@@ -174,7 +174,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
   public boolean enchantmentEquals(EnchantmentInstance other) {
     return other == null ?
         enchantmentId.get() == -1 :
-        PEEnchantmentHelper.INSTANCE.getId(other.enchantment) == enchantmentId.get() && other.level == enchantmentLevel.get() + 1;
+        PEEnchantmentHelper.INSTANCE.getId(other.enchantment) == enchantmentId.get() && other.level == enchantmentLevel.get();
   }
 
   @Nullable
@@ -183,7 +183,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
     if (id > -1) {
       Enchantment enchantment = PEEnchantmentHelper.INSTANCE.get(id);
       if (enchantment != null) {
-        return new EnchantmentInstance(enchantment, enchantmentLevel.get() + 1);
+        return new EnchantmentInstance(enchantment, enchantmentLevel.get());
       } else {
         PELog.LOGGER.warn(PELog.side(), "Could not determine enchantment from ID: {}", id);
       }
@@ -199,7 +199,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       selectedEnchantment = PEMathUtil.rollover(selectedEnchantment, enchantments.size(), amount);
       var selected = enchantments.get(selectedEnchantment);
       enchantmentId.set(PEEnchantmentHelper.INSTANCE.getId(selected.enchantment));
-      enchantmentLevel.set(selected.level - 1);
+      enchantmentLevel.set(selected.level);
       resultSlots.setStackInSlot(0, appliedStorage.applyEnchantment(applyOntoSlots.getStackInSlot(0), getSelectedEnchantment()));
       broadcastChanges();
     });

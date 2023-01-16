@@ -8,15 +8,9 @@
       }
     },
     {
-      "count": 16,
+      "count": 8,
       "ingredient": {
         "tag": "forge:feathers"
-      }
-    },
-    {
-      "count": 4,
-      "ingredient": {
-        "item": "minecraft:packed_ice"
       }
     }
   ],

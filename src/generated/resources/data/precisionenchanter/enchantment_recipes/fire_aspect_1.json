@@ -2,15 +2,15 @@
   "id": "precisionenchanter:fire_aspect_1",
   "ingredients": [
     {
-      "count": 6,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:blaze_rod"
+        "item": "minecraft:flint_and_steel"
       }
     },
     {
-      "count": 6,
+      "count": 16,
       "ingredient": {
-        "item": "minecraft:magma_cream"
+        "item": "minecraft:magma_block"
       }
     }
   ],

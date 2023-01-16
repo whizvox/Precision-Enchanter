@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:sweeping_0",
+  "id": "precisionenchanter:sweeping_3",
   "ingredients": [
     {
       "count": 1,
@@ -8,14 +8,14 @@
       }
     },
     {
-      "count": 1,
+      "count": 32,
       "ingredient": {
-        "item": "minecraft:milk_bucket"
+        "item": "minecraft:slime_block"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:sweeping",
-    "level": 0
+    "level": 3
   }
 }

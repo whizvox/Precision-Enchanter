@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:unbreaking_0",
+  "id": "precisionenchanter:unbreaking_3",
   "ingredients": [
     {
       "count": 1,
@@ -8,14 +8,14 @@
       }
     },
     {
-      "count": 64,
+      "count": 48,
       "ingredient": {
-        "tag": "forge:cobblestone/deepslate"
+        "tag": "forge:obsidian"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:unbreaking",
-    "level": 0
+    "level": 3
   }
 }

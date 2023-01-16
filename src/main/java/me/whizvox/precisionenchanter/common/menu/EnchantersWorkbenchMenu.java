@@ -195,7 +195,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
   public boolean enchantmentsEquals(EnchantmentInstance enchantment) {
     return enchantment == null ?
         enchantmentId.get() == -1 :
-        PEEnchantmentHelper.INSTANCE.getId(enchantment.enchantment) == enchantmentId.get() && enchantment.level == enchantmentLevel.get() + 1;
+        PEEnchantmentHelper.INSTANCE.getId(enchantment.enchantment) == enchantmentId.get() && enchantment.level == enchantmentLevel.get();
   }
 
   @Nullable
@@ -206,7 +206,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
       if (enchantment == null) {
         PELog.LOGGER.warn(PELog.side(), "Could not determine enchantment from numerical ID: {}", id);
       } else {
-        return new EnchantmentInstance(enchantment, enchantmentLevel.get() + 1);
+        return new EnchantmentInstance(enchantment, enchantmentLevel.get());
       }
     }
     return null;

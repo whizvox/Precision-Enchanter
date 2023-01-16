@@ -2,7 +2,7 @@
   "id": "precisionenchanter:efficiency_1",
   "ingredients": [
     {
-      "count": 8,
+      "count": 4,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
       }
@@ -10,7 +10,7 @@
     {
       "count": 8,
       "ingredient": {
-        "item": "minecraft:ice"
+        "tag": "forge:feathers"
       }
     }
   ],

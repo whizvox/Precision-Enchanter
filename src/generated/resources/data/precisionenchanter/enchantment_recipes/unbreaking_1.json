@@ -8,9 +8,9 @@
       }
     },
     {
-      "count": 16,
+      "count": 64,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
+        "tag": "forge:cobblestone/deepslate"
       }
     }
   ],

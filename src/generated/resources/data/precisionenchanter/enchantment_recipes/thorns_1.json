@@ -2,21 +2,21 @@
   "id": "precisionenchanter:thorns_1",
   "ingredients": [
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "item": "minecraft:cactus"
       }
     },
     {
-      "count": 12,
+      "count": 6,
       "ingredient": {
         "item": "minecraft:moss_block"
       }
     },
     {
-      "count": 3,
+      "count": 6,
       "ingredient": {
-        "item": "minecraft:ghast_tear"
+        "item": "minecraft:bone_meal"
       }
     }
   ],

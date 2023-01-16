@@ -2,15 +2,15 @@
   "id": "precisionenchanter:depth_strider_2",
   "ingredients": [
     {
-      "count": 24,
+      "count": 12,
       "ingredient": {
         "item": "minecraft:magma_block"
       }
     },
     {
-      "count": 1,
+      "count": 8,
       "ingredient": {
-        "item": "minecraft:trident"
+        "item": "minecraft:turtle_helmet"
       }
     }
   ],

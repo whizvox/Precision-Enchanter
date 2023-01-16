@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:punch_1",
+  "id": "precisionenchanter:power_5",
   "ingredients": [
     {
       "count": 1,
@@ -8,20 +8,20 @@
       }
     },
     {
-      "count": 4,
+      "count": 64,
       "ingredient": {
-        "tag": "forge:slimeballs"
+        "tag": "forge:storage_blocks/quartz"
       }
     },
     {
-      "count": 8,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:dusts/redstone"
+        "item": "minecraft:crying_obsidian"
       }
     }
   ],
   "result": {
-    "enchantment": "minecraft:punch",
-    "level": 1
+    "enchantment": "minecraft:power",
+    "level": 5
   }
 }

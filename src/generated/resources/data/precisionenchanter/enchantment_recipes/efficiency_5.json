@@ -1,21 +1,21 @@
 {
-  "id": "precisionenchanter:efficiency_0",
+  "id": "precisionenchanter:efficiency_5",
   "ingredients": [
     {
-      "count": 4,
+      "count": 64,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
       }
     },
     {
-      "count": 8,
+      "count": 48,
       "ingredient": {
-        "tag": "forge:feathers"
+        "item": "minecraft:firework_rocket"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:efficiency",
-    "level": 0
+    "level": 5
   }
 }

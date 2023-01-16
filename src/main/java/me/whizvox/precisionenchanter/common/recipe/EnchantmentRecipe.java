@@ -25,7 +25,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO Change to the level being 1-indexed rather than 0-indexed
 public class EnchantmentRecipe {
 
   private final ResourceLocation id;
@@ -39,7 +38,7 @@ public class EnchantmentRecipe {
     this.enchantment = enchantment;
     this.level = level;
 
-    if (isInvalid() && this != INVALID) {
+    if (isInvalid() && id != null) {
       List<String> problems = new ArrayList<>(2);
       if (ingredients.isEmpty()) {
         problems.add("no ingredients");
@@ -107,7 +106,7 @@ public class EnchantmentRecipe {
       for (int i = 0; i < invCopy.getSlots(); i++) {
         resultingStacks.add(invCopy.getStackInSlot(i));
       }
-      EnchantmentInstance instance = new EnchantmentInstance(enchantment, level + 1);
+      EnchantmentInstance instance = new EnchantmentInstance(enchantment, level);
       ItemStack result = storage.applyEnchantment(stackToEnchant, instance);
       int rarity = switch (enchantment.getRarity()) {
         case COMMON -> 3;
@@ -215,7 +214,7 @@ public class EnchantmentRecipe {
       return this;
     }
     public EnchantmentRecipe build() {
-      return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 0, Short.MAX_VALUE));
+      return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 1, Short.MAX_VALUE));
     }
   }
 

@@ -2,21 +2,21 @@
   "id": "precisionenchanter:luck_of_the_sea_2",
   "ingredients": [
     {
-      "count": 4,
+      "count": 2,
       "ingredient": {
         "item": "minecraft:pufferfish"
       }
     },
     {
-      "count": 16,
+      "count": 4,
       "ingredient": {
         "tag": "forge:storage_blocks/gold"
       }
     },
     {
-      "count": 1,
+      "count": 6,
       "ingredient": {
-        "item": "minecraft:axolotl_bucket"
+        "tag": "forge:storage_blocks/lapis"
       }
     }
   ],

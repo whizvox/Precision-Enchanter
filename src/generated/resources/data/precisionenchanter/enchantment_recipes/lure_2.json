@@ -2,7 +2,7 @@
   "id": "precisionenchanter:lure_2",
   "ingredients": [
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "item": "minecraft:glow_berries"
       }
@@ -10,7 +10,7 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:axolotl_bucket"
+        "item": "minecraft:glow_ink_sac"
       }
     }
   ],

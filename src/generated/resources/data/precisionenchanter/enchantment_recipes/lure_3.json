@@ -1,21 +1,21 @@
 {
-  "id": "precisionenchanter:lure_0",
+  "id": "precisionenchanter:lure_3",
   "ingredients": [
     {
-      "count": 8,
+      "count": 32,
       "ingredient": {
         "item": "minecraft:glow_berries"
       }
     },
     {
-      "count": 32,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:dirt"
+        "item": "minecraft:axolotl_bucket"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:lure",
-    "level": 0
+    "level": 3
   }
 }

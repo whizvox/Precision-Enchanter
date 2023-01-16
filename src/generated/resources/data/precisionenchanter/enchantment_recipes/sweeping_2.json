@@ -8,9 +8,9 @@
       }
     },
     {
-      "count": 32,
+      "count": 8,
       "ingredient": {
-        "item": "minecraft:slime_block"
+        "item": "minecraft:rabbit_hide"
       }
     }
   ],

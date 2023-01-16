@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 16,
+      "count": 4,
       "ingredient": {
         "tag": "forge:slimeballs"
       }
     },
     {
-      "count": 1,
+      "count": 8,
       "ingredient": {
-        "item": "minecraft:piston"
+        "tag": "forge:dusts/redstone"
       }
     }
   ],

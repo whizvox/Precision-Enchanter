@@ -1,5 +1,5 @@
 {
-  "id": "precisionenchanter:piercing_0",
+  "id": "precisionenchanter:piercing_4",
   "ingredients": [
     {
       "count": 1,
@@ -8,7 +8,7 @@
       }
     },
     {
-      "count": 1,
+      "count": 27,
       "ingredient": {
         "item": "minecraft:phantom_membrane"
       }
@@ -16,12 +16,12 @@
     {
       "count": 8,
       "ingredient": {
-        "item": "minecraft:cobblestone"
+        "item": "minecraft:crying_obsidian"
       }
     }
   ],
   "result": {
     "enchantment": "minecraft:piercing",
-    "level": 0
+    "level": 4
   }
 }

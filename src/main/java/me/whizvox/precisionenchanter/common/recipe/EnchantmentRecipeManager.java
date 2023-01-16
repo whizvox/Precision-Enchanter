@@ -133,7 +133,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
           PELog.LOGGER.debug(PELog.M_SERVER, "Enchantment {} has no recipes", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
         } else {
           int maxLevel = enchantment.getMaxLevel();
-          for (int i = 0; i < maxLevel; i++) {
+          for (int i = 1; i <= maxLevel; i++) {
             if (!byLevel.containsKey(i)) {
               PELog.LOGGER.debug(PELog.M_SERVER, "Enchantment {} is missing a recipe at level {}", ForgeRegistries.ENCHANTMENTS.getKey(enchantment), i + 1);
             }
@@ -171,7 +171,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     recipes.values().stream()
         .filter(recipe -> !recipe.isInvalid())
         .forEach(recipe -> {
-          EnchantmentInstance instance = new EnchantmentInstance(recipe.getEnchantment(), recipe.getLevel() + 1);
+          EnchantmentInstance instance = new EnchantmentInstance(recipe.getEnchantment(), recipe.getLevel());
           if (storage.canApply(stackToEnchant, instance)) {
             EnchantmentRecipe.MatchResult result = recipe.match(stackToEnchant, container, storage);
             if (result.matches()) {
