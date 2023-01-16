@@ -27,7 +27,7 @@ import java.util.List;
 
 public class EnchantmentRecipe {
 
-  private final ResourceLocation id;
+  private ResourceLocation id;
   private final List<Pair<Ingredient, Integer>> ingredients;
   private final Enchantment enchantment;
   private final int level;
@@ -37,17 +37,13 @@ public class EnchantmentRecipe {
     this.ingredients = ingredients.stream().filter(pair -> !pair.getLeft().isEmpty()).toList();
     this.enchantment = enchantment;
     this.level = level;
+  }
 
-    if (isInvalid() && id != null) {
-      List<String> problems = new ArrayList<>(2);
-      if (ingredients.isEmpty()) {
-        problems.add("no ingredients");
-      }
-      if (enchantment == null) {
-        problems.add("result not defined");
-      }
-      PELog.LOGGER.warn(PELog.M_SERVER, "Invalid precision enchantment recipe ({}): {}", id, String.join(", ", problems));
-    }
+  /**
+   * Only sets the ID if not immutable.
+   */
+  public void setId(ResourceLocation id) {
+    this.id = id;
   }
 
   public boolean isInvalid() {
@@ -128,6 +124,10 @@ public class EnchantmentRecipe {
     return match(stackToEnchant, container, storage);
   }
 
+  public EnchantmentRecipe immutable() {
+    return this instanceof Immutable ? this : new Immutable(this);
+  }
+
   public void toNetwork(FriendlyByteBuf buf) {
     buf.writeResourceLocation(id);
     if (isInvalid()) {
@@ -146,7 +146,7 @@ public class EnchantmentRecipe {
 
   public static EnchantmentRecipe fromNetwork(FriendlyByteBuf buf) {
     ResourceLocation id = buf.readResourceLocation();
-    Builder builder = builder(id);
+    Builder builder = builder().id(id);
     if (buf.readBoolean()) {
       int numIngredients = buf.readByte();
       for (int j = 0; j < numIngredients; j++) {
@@ -162,6 +162,34 @@ public class EnchantmentRecipe {
     return builder.build();
   }
 
+  public class Immutable extends EnchantmentRecipe {
+
+    public Immutable(EnchantmentRecipe recipe) {
+      super(recipe.id, recipe.ingredients, recipe.enchantment, recipe.level);
+
+      if (isInvalid() && id != null) {
+        List<String> problems = new ArrayList<>(2);
+        if (ingredients.isEmpty()) {
+          problems.add("no ingredients");
+        }
+        if (enchantment == null) {
+          problems.add("result not defined");
+        }
+        PELog.LOGGER.warn(PELog.M_SERVER, "Invalid precision enchantment recipe ({}): {}", id, String.join(", ", problems));
+      }
+    }
+
+    @Override
+    public boolean isInvalid() {
+      return super.isInvalid() || id == null;
+    }
+
+    @Override
+    public void setId(ResourceLocation id) {
+    }
+
+  }
+
   public static final EnchantmentRecipe INVALID = new EnchantmentRecipe(null, List.of(), null, 0);
 
   public record MatchResult(boolean matches, List<ItemStack> leftoverIngredients, ItemStack result, int cost) {
@@ -174,20 +202,24 @@ public class EnchantmentRecipe {
     return player.getAbilities().instabuild || player.experienceLevel >= cost;
   }
 
-  public static Builder builder(ResourceLocation id) {
-    return new Builder(id);
+  public static Builder builder() {
+    return new Builder();
   }
 
   public static class Builder {
-    private final ResourceLocation id;
+    private ResourceLocation id;
     private final List<Pair<Ingredient, Integer>> ingredients;
     private Enchantment result;
     private int level;
-    public Builder(ResourceLocation id) {
-      this.id = id;
+    public Builder() {
+      this.id = null;
       ingredients = new ArrayList<>();
       result = null;
       level = 1;
+    }
+    public Builder id(ResourceLocation id) {
+      this.id = id;
+      return this;
     }
     public Builder ingredient(Ingredient ingredient, int count) {
       ingredients.add(Pair.of(ingredient, count));
@@ -213,8 +245,11 @@ public class EnchantmentRecipe {
       this.level = level;
       return this;
     }
-    public EnchantmentRecipe build() {
+    public EnchantmentRecipe buildMutable() {
       return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 1, Short.MAX_VALUE));
+    }
+    public EnchantmentRecipe build() {
+      return buildMutable().immutable();
     }
   }
 
@@ -222,7 +257,6 @@ public class EnchantmentRecipe {
     @Override
     public JsonElement serialize(EnchantmentRecipe src, Type type, JsonSerializationContext ctx) {
       JsonObject json = new JsonObject();
-      json.addProperty("id", src.id.toString());
       JsonArray ingredientsArr = new JsonArray(src.ingredients.size());
       src.ingredients.forEach(pair -> {
         JsonObject ingredientJson = new JsonObject();
@@ -240,19 +274,7 @@ public class EnchantmentRecipe {
     @Override
     public EnchantmentRecipe deserialize(JsonElement jsonRaw, Type type, JsonDeserializationContext ctx) throws JsonParseException {
       JsonObject json = jsonRaw.getAsJsonObject();
-      JsonElement idJson = json.get("id");
-      if (idJson == null) {
-        throw new JsonParseException("Precision enchantment recipe must include an ID field (`id`)");
-      }
-      String idStr = idJson.getAsString();
-      ResourceLocation id = ResourceLocation.tryParse(idStr);
-      if (id == null) {
-        throw new JsonParseException("Invalid ID for precision enchantment recipe, must be a proper resource location: " + idStr);
-      }
-      if (id.getNamespace().equals("minecraft")) {
-        PELog.LOGGER.warn(PELog.M_SERVER, "Default namespace is not recommended for precision enchantment recipe: {}", id);
-      }
-      Builder builder = builder(id);
+      Builder builder = builder();
       JsonElement ingredientsJson = json.get("ingredients");
       if (ingredientsJson != null) {
         ingredientsJson.getAsJsonArray().forEach(ingredientRawJson -> {
@@ -270,14 +292,16 @@ public class EnchantmentRecipe {
         }
         Enchantment result = ForgeRegistries.ENCHANTMENTS.getValue(enchId);
         if (result == null) {
-          PELog.LOGGER.warn(PELog.M_SERVER, "Unknown enchantment while parsing recipe for {}: {}", id, enchId);
+          PELog.LOGGER.warn(PELog.M_SERVER, "Unknown enchantment while parsing recipe: {}", enchId);
         } else {
           int level = resultJson.get("level").getAsInt();
           builder.result(result, level);
         }
       }
-      return builder.build();
+      return builder.buildMutable();
     }
   }
+
+  public static final Serializer SERIALIZER = new Serializer();
 
 }

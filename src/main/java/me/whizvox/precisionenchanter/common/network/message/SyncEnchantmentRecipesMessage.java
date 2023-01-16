@@ -30,7 +30,7 @@ public record SyncEnchantmentRecipesMessage(List<EnchantmentRecipe> recipes) {
       int numRecipes = buf.readInt();
       List<EnchantmentRecipe> recipes = new ArrayList<>(numRecipes);
       for (int i = 0; i < numRecipes; i++) {
-        recipes.add(EnchantmentRecipe.fromNetwork(buf));
+        recipes.add(EnchantmentRecipe.fromNetwork(buf).immutable());
       }
       return new SyncEnchantmentRecipesMessage(Collections.unmodifiableList(recipes));
     }

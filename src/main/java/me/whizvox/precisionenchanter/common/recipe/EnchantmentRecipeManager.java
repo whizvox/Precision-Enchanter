@@ -32,7 +32,10 @@ import java.util.Map;
 
 public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
 
-  private static final Gson GSON = new GsonBuilder().registerTypeAdapter(EnchantmentRecipe.class, new EnchantmentRecipe.Serializer()).create();
+  private static final Gson GSON = new GsonBuilder()
+      .registerTypeAdapter(EnchantmentRecipe.class, EnchantmentRecipe.SERIALIZER)
+      .registerTypeAdapter(EnchantmentRecipe.Immutable.class, EnchantmentRecipe.SERIALIZER)
+      .create();
 
   private boolean initialized;
   private final Map<ResourceLocation, EnchantmentRecipe> recipes;
@@ -50,11 +53,16 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   private void add(EnchantmentRecipe recipe) {
-    recipes.put(recipe.getId(), recipe);
-    byEnchantment.computeIfAbsent(recipe.getEnchantment(), enchantment -> new Int2ObjectArrayMap<>()).put(recipe.getLevel(), recipe);
-    int numId = byNumId.size();
-    byNumId.add(recipe);
-    reverseByNumId.put(recipe.getId(), numId);
+    recipe = recipe.immutable();
+    if (recipe.isInvalid()) {
+      PELog.LOGGER.warn(PELog.side(), "Attempted to register invalid recipe (no ingredients, unset enchantment, or unset ID): {}", recipe.getId());
+    } else {
+      recipes.put(recipe.getId(), recipe);
+      byEnchantment.computeIfAbsent(recipe.getEnchantment(), enchantment -> new Int2ObjectArrayMap<>()).put(recipe.getLevel(), recipe);
+      int numId = byNumId.size();
+      byNumId.add(recipe);
+      reverseByNumId.put(recipe.getId(), numId);
+    }
   }
 
   private void markInitialized() {
@@ -125,7 +133,11 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   protected void apply(Map<ResourceLocation, JsonElement> entries, ResourceManager manager, ProfilerFiller profiler) {
     clear();
     synchronized (this) {
-      entries.forEach((location, json) -> add(deserialize(json)));
+      entries.forEach((location, json) -> {
+        EnchantmentRecipe recipe = deserialize(json);
+        recipe.setId(location);
+        add(recipe.immutable());
+      });
       PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded", recipes.size());
       ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
         var byLevel = byEnchantment.get(enchantment);

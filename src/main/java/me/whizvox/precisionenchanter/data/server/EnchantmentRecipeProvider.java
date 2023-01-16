@@ -51,13 +51,15 @@ public class EnchantmentRecipeProvider implements DataProvider {
   }
 
   private EnchantmentRecipe.Builder builder(Enchantment result, int level) {
-    return EnchantmentRecipe.builder(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath() + "_" + level))
+    return EnchantmentRecipe.builder()
+        .id(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath() + "_" + level))
         .result(result, level);
   }
 
   private EnchantmentRecipe.Builder builder(Enchantment result) {
-    return EnchantmentRecipe.builder(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath()))
-        .result(result, 0);
+    return EnchantmentRecipe.builder()
+        .id(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath()))
+        .result(result, 1);
   }
 
   public void buildRecipes(Consumer<EnchantmentRecipe> output) {
