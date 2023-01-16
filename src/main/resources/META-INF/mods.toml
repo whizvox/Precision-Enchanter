@@ -12,8 +12,7 @@ displayURL="http://github.com/whizvox/Precision-Enchanter"
 #credits="Thanks for this example mod goes to Java"
 authors = "whizvox"
 description = '''
-Have more control over enchanting! Apply specific enchantments, extract enchantments, and gain XP from unwanted
-enchantments.
+Have more control over enchanting! Remove the randomness by crafting and removing specific enchantments.
 '''
 
 [[dependencies.precisionenchanter]]
