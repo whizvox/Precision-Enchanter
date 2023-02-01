@@ -6,6 +6,9 @@
   "item.precisionenchanter.enchanted_quill": "Enchanted Quill",
   "item.precisionenchanter.quill": "Quill",
   "itemGroup.precisionenchanter.main": "Precision Enchanting",
+  "screen.precisionenchanter.enchantment_recipe_tablet.search_hint": "Search",
+  "screen.precisionenchanter.enchantment_recipe_tablet.sync_failed": "Failed to sync recipes",
+  "screen.precisionenchanter.generic.loading": "Loading",
   "screen.precisionenchanter.generic.select_next": "Select next",
   "screen.precisionenchanter.generic.select_previous": "Select previous"
 }

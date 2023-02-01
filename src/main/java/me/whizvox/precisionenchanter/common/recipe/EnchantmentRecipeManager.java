@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
 
@@ -113,6 +114,10 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       return getNumericalId(recipe.getId());
     }
     return null;
+  }
+
+  public Stream<Map.Entry<ResourceLocation, EnchantmentRecipe>> stream() {
+    return recipes.entrySet().stream();
   }
 
   /**

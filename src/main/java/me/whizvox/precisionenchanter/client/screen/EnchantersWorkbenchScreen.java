@@ -10,6 +10,7 @@ import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMes
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.client.gui.components.AbstractButton;
+import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -31,6 +32,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   private EnchantmentInstance currentEnchantment;
 
   private ChangeSelectionButton selectUpButton, selectDownButton;
+  private final EnchantmentRecipeTabletComponent tablet;
 
   public EnchantersWorkbenchScreen(EnchantersWorkbenchMenu menu, Inventory playerInv, Component title) {
     super(menu, playerInv, title);
@@ -38,6 +40,15 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     costText = null;
     costTextXPos = 0;
     currentEnchantment = null;
+    tablet = new EnchantmentRecipeTabletComponent();
+  }
+
+  private void updateTabletFocus() {
+    if (tablet.isVisible()) {
+      setFocused(tablet);
+    } else {
+      setFocused(null);
+    }
   }
 
   @Override
@@ -47,8 +58,23 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_SELECT_NEXT, -1);
     addRenderableWidget(selectUpButton);
     addRenderableWidget(selectDownButton);
+    addRenderableWidget(new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, TEXTURE_LOCATION, button -> {
+      tablet.toggleVisibility();
+      if (tablet.isVisible()) {
+        leftPos = (width - 148) / 2 - 86 + 148;
+        button.setPosition(leftPos - 168, topPos + 20);
+      } else {
+        leftPos = (width - imageWidth) / 2;
+        button.setPosition(leftPos - 20, topPos + 20);
+      }
+      selectUpButton.setPosition(leftPos + 157, topPos + 34);
+      selectDownButton.setPosition(leftPos + 157, topPos + 47);
+      updateTabletFocus();
+    }));
     selectUpButton.visible = false;
     selectDownButton.visible = false;
+    tablet.init(width, height, false, minecraft, menu);
+    updateTabletFocus();
   }
 
   @Override
@@ -71,6 +97,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
 
     renderBackground(pose);
     super.render(pose, mouseX, mouseY, partialTick);
+    tablet.render(pose, mouseX, mouseY, partialTick);
     renderTooltip(pose, mouseX, mouseY);
   }
 
@@ -100,6 +127,21 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       blit(pose, costTextXPos - 7, 63, 176, 17, 10, 10);
       drawString(pose, font, costText, costTextXPos + 7, 64, color);
     }
+  }
+
+  @Override
+  protected void containerTick() {
+    super.containerTick();
+    tablet.tick();
+  }
+
+  @Override
+  public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    if (tablet.mouseClicked(mouseX, mouseY, button)) {
+      setFocused(tablet);
+      return true;
+    }
+    return super.mouseClicked(mouseX, mouseY, button);
   }
 
   private class ChangeSelectionButton extends AbstractButton {

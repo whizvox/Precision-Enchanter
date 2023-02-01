@@ -24,6 +24,9 @@ public class PELanguageProvider extends LanguageProvider {
     add(PELang.Keys.CONTAINER_PRECISION_GRINDSTONE, "Precision Grindstone");
     add(PELang.Keys.SCREEN_SELECT_NEXT, "Select next");
     add(PELang.Keys.SCREEN_SELECT_PREV, "Select previous");
+    add(PELang.Keys.SCREEN_LOADING, "Loading");
+    add(PELang.Keys.TABLET_SEARCH_HINT, "Search");
+    add(PELang.Keys.TABLET_SYNC_FAILED, "Failed to sync recipes");
   }
 
 }
