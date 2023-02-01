@@ -17,6 +17,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,6 +101,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     super.render(pose, mouseX, mouseY, partialTick);
     tablet.render(pose, mouseX, mouseY, partialTick);
     renderTooltip(pose, mouseX, mouseY);
+    tablet.renderTooltips(pose, mouseX, mouseY);
   }
 
   @Override
@@ -142,6 +145,16 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       return true;
     }
     return super.mouseClicked(mouseX, mouseY, button);
+  }
+
+  @Override
+  protected void slotClicked(Slot slot, int slotId, int button, ClickType clickType) {
+    if (tablet.isVisible() && tablet.getPlaceholderRecipe().hasRecipe()) {
+      if (slotId >= 2 && slotId <= 5) {
+        tablet.getPlaceholderRecipe().clear();
+      }
+    }
+    super.slotClicked(slot, slotId, button, clickType);
   }
 
   private class ChangeSelectionButton extends AbstractButton {

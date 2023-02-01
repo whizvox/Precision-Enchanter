@@ -2,6 +2,7 @@ package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import me.whizvox.precisionenchanter.client.util.PlaceholderEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.lib.PELog;
@@ -63,6 +64,8 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   private Component pageNumberComponent;
   private ImageButton prevPageButton, nextPageButton;
 
+  private PlaceholderEnchantmentRecipe placeholderRecipe;
+
   public void init(int width, int height, boolean visible, Minecraft mc, EnchantersWorkbenchMenu menu) {
     this.width = width;
     this.height = height;
@@ -111,6 +114,8 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
         updateEnchantmentEntries();
       }
     });
+    placeholderRecipe = new PlaceholderEnchantmentRecipe(leftPos + 208, topPos + 30);
+    placeholderRecipe.init(mc);
     updateEnchantmentEntries();
   }
 
@@ -157,6 +162,10 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
 
   public void toggleVisibility() {
     setVisible(!visible);
+  }
+
+  public PlaceholderEnchantmentRecipe getPlaceholderRecipe() {
+    return placeholderRecipe;
   }
 
   public void tick() {
@@ -230,7 +239,8 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       }
       for (EnchantmentEntry entry : displayedEntries) {
         if (entry.mouseClicked(mouseX, mouseY, button)) {
-          // TODO Display ghost ingredients in input slots
+          placeholderRecipe.setRecipe(entry.info.recipe);
+          PENetwork.sendToServer(SimpleServerBoundMessage.CLEAR_ENCHANTERS_WORKBENCH_INGREDIENTS);
           return true;
         }
       }
@@ -254,6 +264,13 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       prevPageButton.render(pose, mouseX, mouseY, partialTick);
       nextPageButton.render(pose, mouseX, mouseY, partialTick);
       displayedEntries.forEach(entry -> entry.render(pose, mouseX, mouseY, partialTick));
+      placeholderRecipe.render(pose, mouseX, mouseY, partialTick);
+    }
+  }
+
+  public void renderTooltips(PoseStack pose, int mouseX, int mouseY) {
+    if (visible) {
+      placeholderRecipe.renderTooltip(pose, mouseX, mouseY);
     }
   }
 

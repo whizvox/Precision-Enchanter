@@ -177,6 +177,10 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
     });
   }
 
+  public void clearIngredients(Player player) {
+    clearContainer(player, ingredientInputContainer);
+  }
+
   public void changeSelection(int amount) {
     access.execute((level, blockPos) -> {
       if (matches.isEmpty()) {
