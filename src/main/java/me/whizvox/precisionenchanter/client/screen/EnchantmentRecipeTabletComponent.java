@@ -14,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -57,6 +58,10 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   private List<EnchantmentEntry> displayedEntries;
   private int currentRecipePage;
   private EditBox searchBar;
+  private String lastSearch;
+
+  private Component pageNumberComponent;
+  private ImageButton prevPageButton, nextPageButton;
 
   public void init(int width, int height, boolean visible, Minecraft mc, EnchantersWorkbenchMenu menu) {
     this.width = width;
@@ -86,6 +91,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     leftPos = (width - 148) / 2 - 86;
     topPos = (height - 167) / 2;
     currentRecipePage = 0;
+    lastSearch = "";
     searchBar = new EditBox(mc.font, leftPos + 18, topPos + 6, 123, 13, Component.translatable("itemGroup.search"));
     searchBar.setMaxLength(50);
     searchBar.setBordered(false);
@@ -93,13 +99,30 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     searchBar.setTextColor(0xFFFFFF);
     searchBar.setHint(PELang.TABLET_SEARCH_HINT);
     searchBar.active = recipesLoaded;
+    prevPageButton = new ImageButton(leftPos + 39, topPos + 151, 12, 12, 160, 0, TEXTURE_LOCATION, button -> {
+      if (currentRecipePage > 0) {
+        currentRecipePage--;
+        updateEnchantmentEntries();
+      }
+    });
+    nextPageButton = new ImageButton(leftPos + 97, topPos + 151, 12, 12, 172, 0, TEXTURE_LOCATION, button -> {
+      if ((currentRecipePage + 1) * MAX_RECIPES_PER_PAGE < filteredRecipes.size()) {
+        currentRecipePage++;
+        updateEnchantmentEntries();
+      }
+    });
     updateEnchantmentEntries();
   }
 
   private void updateEnchantmentEntries() {
+    String search = searchBar.getValue();
+    if (!search.equalsIgnoreCase(lastSearch)) {
+      currentRecipePage = 0;
+      lastSearch = search;
+    }
     filteredRecipes.clear();
     displayedEntries.clear();
-    String filter = searchBar.getValue().toLowerCase(Locale.getDefault());
+    String filter = search.toLowerCase(Locale.getDefault());
     Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.stream()
         .map(entry -> new EnchantmentRecipeInfo(entry.getKey(), entry.getValue(), entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).getString()));
     if (!filter.isEmpty()) {
@@ -107,8 +130,17 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
     stream.sorted(Comparator.comparing(o -> o.translatedString))
         .forEach(info -> filteredRecipes.add(info));
-    for (int i = 0; i < MAX_RECIPES_PER_PAGE && i < filteredRecipes.size(); i++) {
-      displayedEntries.add(new EnchantmentEntry(17 + i * 19, filteredRecipes.get(i)));
+    for (int i = currentRecipePage * MAX_RECIPES_PER_PAGE; i < ((currentRecipePage + 1) * MAX_RECIPES_PER_PAGE) && i < filteredRecipes.size(); i++) {
+      displayedEntries.add(new EnchantmentEntry(17 + (i % MAX_RECIPES_PER_PAGE) * 19, filteredRecipes.get(i)));
+    }
+    if (displayedEntries.isEmpty()) {
+      prevPageButton.visible = false;
+      nextPageButton.visible = false;
+      pageNumberComponent = Component.literal("0 / 0");
+    } else {
+      prevPageButton.visible = currentRecipePage > 0;
+      nextPageButton.visible = (currentRecipePage + 1) * MAX_RECIPES_PER_PAGE < filteredRecipes.size();
+      pageNumberComponent = Component.literal((currentRecipePage + 1) + " / " + ((filteredRecipes.size() - 1) / MAX_RECIPES_PER_PAGE + 1));
     }
   }
 
@@ -190,6 +222,12 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       if (searchBar.mouseClicked(mouseX, mouseY, button)) {
         return true;
       }
+      if (prevPageButton.mouseClicked(mouseX, mouseY, button)) {
+        return true;
+      }
+      if (nextPageButton.mouseClicked(mouseX, mouseY, button)) {
+        return true;
+      }
       for (EnchantmentEntry entry : displayedEntries) {
         if (entry.mouseClicked(mouseX, mouseY, button)) {
           // TODO Display ghost ingredients in input slots
@@ -211,7 +249,10 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       if (!recipesLoaded) {
         drawCenteredString(pose, mc.font, PELang.SCREEN_LOADING, leftPos + 74, topPos + 90, 0xFFFFFF);
       }
+      drawCenteredString(pose, mc.font, pageNumberComponent, leftPos + 74, topPos + 153, 0xFFFFFF);
       searchBar.render(pose, mouseX, mouseY, partialTick);
+      prevPageButton.render(pose, mouseX, mouseY, partialTick);
+      nextPageButton.render(pose, mouseX, mouseY, partialTick);
       displayedEntries.forEach(entry -> entry.render(pose, mouseX, mouseY, partialTick));
     }
   }
