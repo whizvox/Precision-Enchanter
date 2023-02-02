@@ -24,14 +24,12 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import org.lwjgl.glfw.GLFW;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class EnchantmentRecipeTabletComponent extends GuiComponent implements Renderable, GuiEventListener, NarratableEntry {
@@ -56,10 +54,12 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   // Whether the maximum number of recipe sync attempts has been reached
   private boolean syncFailed;
   private List<EnchantmentRecipeInfo> filteredRecipes;
+  private Set<EnchantmentRecipe> craftableRecipes;
   private List<EnchantmentEntry> displayedEntries;
   private int currentRecipePage;
   private EditBox searchBar;
   private String lastSearch;
+  private float time;
 
   private Component pageNumberComponent;
   private ImageButton prevPageButton, nextPageButton;
@@ -74,7 +74,9 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     this.visible = visible;
     recipesLoaded = false;
     filteredRecipes = new ArrayList<>();
+    craftableRecipes = new HashSet<>();
     displayedEntries = new ArrayList<>();
+    time = 0;
     if (visible) {
       initVisuals();
     }
@@ -91,10 +93,10 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
         syncFailed = false;
       }
     }
+    time = 0;
     leftPos = (width - 148) / 2 - 86;
     topPos = (height - 167) / 2;
     currentRecipePage = 0;
-    lastSearch = "";
     searchBar = new EditBox(mc.font, leftPos + 18, topPos + 6, 123, 13, Component.translatable("itemGroup.search"));
     searchBar.setMaxLength(50);
     searchBar.setBordered(false);
@@ -116,25 +118,27 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     });
     placeholderRecipe = new PlaceholderEnchantmentRecipe(leftPos + 208, topPos + 30);
     placeholderRecipe.init(mc);
+    updateCraftableRecipes();
+    lastSearch = null;
     updateEnchantmentEntries();
   }
 
   private void updateEnchantmentEntries() {
     String search = searchBar.getValue();
-    if (!search.equalsIgnoreCase(lastSearch)) {
+    if (lastSearch == null || !search.equalsIgnoreCase(lastSearch)) {
       currentRecipePage = 0;
       lastSearch = search;
+      filteredRecipes.clear();
+      String filter = search.toLowerCase(Locale.getDefault());
+      Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.stream()
+          .map(entry -> new EnchantmentRecipeInfo(entry.getKey(), entry.getValue(), entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).getString()));
+      if (!filter.isEmpty()) {
+        stream = stream.filter(info -> info.translatedString.toLowerCase(Locale.getDefault()).contains(filter));
+      }
+      stream.sorted(Comparator.comparing(o -> o.translatedString))
+          .forEach(info -> filteredRecipes.add(info));
     }
-    filteredRecipes.clear();
     displayedEntries.clear();
-    String filter = search.toLowerCase(Locale.getDefault());
-    Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.stream()
-        .map(entry -> new EnchantmentRecipeInfo(entry.getKey(), entry.getValue(), entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).getString()));
-    if (!filter.isEmpty()) {
-      stream = stream.filter(info -> info.translatedString.toLowerCase(Locale.getDefault()).contains(filter));
-    }
-    stream.sorted(Comparator.comparing(o -> o.translatedString))
-        .forEach(info -> filteredRecipes.add(info));
     for (int i = currentRecipePage * MAX_RECIPES_PER_PAGE; i < ((currentRecipePage + 1) * MAX_RECIPES_PER_PAGE) && i < filteredRecipes.size(); i++) {
       displayedEntries.add(new EnchantmentEntry(17 + (i % MAX_RECIPES_PER_PAGE) * 19, filteredRecipes.get(i)));
     }
@@ -147,6 +151,11 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       nextPageButton.visible = (currentRecipePage + 1) * MAX_RECIPES_PER_PAGE < filteredRecipes.size();
       pageNumberComponent = Component.literal((currentRecipePage + 1) + " / " + ((filteredRecipes.size() - 1) / MAX_RECIPES_PER_PAGE + 1));
     }
+    updateEntryCraftableStatus();
+  }
+
+  private void updateEntryCraftableStatus() {
+    displayedEntries.forEach(entry -> entry.craftable = craftableRecipes.contains(entry.info.recipe));
   }
 
   public boolean isVisible() {
@@ -168,11 +177,18 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     return placeholderRecipe;
   }
 
+  public void updateCraftableRecipes() {
+    craftableRecipes.clear();
+    craftableRecipes.addAll(EnchantmentRecipeManager.INSTANCE.match(mc.player.getInventory()));
+    updateEntryCraftableStatus();
+  }
+
   public void tick() {
     if (visible) {
       if (!recipesLoaded) {
         if (EnchantmentRecipeManager.INSTANCE.isInitialized()) {
           recipesLoaded = true;
+          updateCraftableRecipes();
           updateEnchantmentEntries();
         } else if (!syncFailed) {
           LocalDateTime now = LocalDateTime.now();
@@ -239,8 +255,6 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       }
       for (EnchantmentEntry entry : displayedEntries) {
         if (entry.mouseClicked(mouseX, mouseY, button)) {
-          placeholderRecipe.setRecipe(entry.info.recipe);
-          PENetwork.sendToServer(SimpleServerBoundMessage.CLEAR_ENCHANTERS_WORKBENCH_INGREDIENTS);
           return true;
         }
       }
@@ -251,6 +265,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   @Override
   public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
     if (visible) {
+      time += partialTick;
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -293,11 +308,16 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   private record EnchantmentRecipeInfo(ResourceLocation id, EnchantmentRecipe recipe, String translatedString) {}
 
   private class EnchantmentEntry extends AbstractButton {
+
     final EnchantmentRecipeInfo info;
+    boolean craftable;
+
     public EnchantmentEntry(int y, EnchantmentRecipeInfo info) {
       super(leftPos + 3, topPos + y, 142, 19, Component.literal(info.translatedString));
       this.info = info;
+      craftable = false;
     }
+
     @Override
     public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -305,7 +325,12 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       RenderSystem.setShaderColor(1, 1, 1, 1);
       int srcY = isHovered ? 186 : 167;
       blit(pose, getX(), getY(), 0, srcY, width, height);
-      //drawString(pose, mc.font, getMessage(), getX() + 5, getY() + 6, 0x000000);
+      if (craftable) {
+        RenderSystem.enableBlend();
+        RenderSystem.setShaderColor(1, 1, 1, 0.5F * Mth.sin(Mth.PI * (time % 40) / 40) + 0.5F);
+        blit(pose, getX(), getY(), 0, 205, width, height);
+        RenderSystem.disableBlend();
+      }
       mc.font.draw(pose, getMessage(), getX() + 5, getY() + 6, 0x000000);
     }
 
@@ -313,9 +338,17 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     protected void updateWidgetNarration(NarrationElementOutput output) {
       defaultButtonNarrationText(output);
     }
+
     @Override
     public void onPress() {
+      if (Screen.hasShiftDown() && craftable) {
+
+      } else {
+        placeholderRecipe.setRecipe(info.recipe);
+        PENetwork.sendToServer(SimpleServerBoundMessage.CLEAR_ENCHANTERS_WORKBENCH_INGREDIENTS);
+      }
     }
+
   }
 
 }

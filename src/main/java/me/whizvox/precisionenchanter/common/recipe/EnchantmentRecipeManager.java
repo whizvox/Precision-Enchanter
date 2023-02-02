@@ -179,6 +179,10 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     }
   }
 
+  public List<EnchantmentRecipe> match(Container container) {
+    return recipes.values().stream().filter(recipe -> !recipe.isInvalid() && recipe.match(container)).toList();
+  }
+
   public List<Pair<EnchantmentRecipe, EnchantmentRecipe.MatchResult>> match(ItemStack stackToEnchant, Container container) {
     IEnchantmentStorage storage = EnchantmentStorageManager.INSTANCE.findMatch(stackToEnchant);
     if (storage == null) {

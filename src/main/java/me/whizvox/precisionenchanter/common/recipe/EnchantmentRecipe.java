@@ -16,6 +16,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.MutablePair;
@@ -66,18 +67,9 @@ public class EnchantmentRecipe {
     return level;
   }
 
-  /**
-   * Attempt to match contents of recipe to contents of container.
-   * @param container The container with ingredients (ItemStacks)
-   * @return A map of int pairs (key = slot, value = count to shrink by), or an empty map if no match was found
-   */
-  public MatchResult match(ItemStack stackToEnchant, Container container, IEnchantmentStorage storage) {
+  private boolean match(Container container, IItemHandler invCopy) {
     if (isInvalid()) {
-      return MatchResult.FALSE;
-    }
-    ItemStackHandler invCopy = new ItemStackHandler(container.getContainerSize());
-    for (int i = 0; i < container.getContainerSize(); i++) {
-      invCopy.setStackInSlot(i, container.getItem(i).copy());
+      return false;
     }
     List<Pair<Ingredient, Integer>> remaining = new ArrayList<>(ingredients.size());
     ingredients.forEach(pair -> remaining.add(MutablePair.of(pair.getLeft(), pair.getRight())));
@@ -97,7 +89,21 @@ public class EnchantmentRecipe {
         }
       }
     }
-    if (remaining.isEmpty()) {
+    return remaining.isEmpty();
+  }
+
+  public boolean match(Container container) {
+    return match(container, copyContainer(container));
+  }
+
+  /**
+   * Attempt to match contents of recipe to contents of container.
+   * @param container The container with ingredients (ItemStacks)
+   * @return A map of int pairs (key = slot, value = count to shrink by), or an empty map if no match was found
+   */
+  public MatchResult match(ItemStack stackToEnchant, Container container, IEnchantmentStorage storage) {
+    IItemHandler invCopy = copyContainer(container);
+    if (match(container, invCopy)) {
       List<ItemStack> resultingStacks = new ArrayList<>(invCopy.getSlots());
       for (int i = 0; i < invCopy.getSlots(); i++) {
         resultingStacks.add(invCopy.getStackInSlot(i));
@@ -142,6 +148,14 @@ public class EnchantmentRecipe {
       buf.writeResourceLocation(ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
       buf.writeShort(level);
     }
+  }
+
+  private static IItemHandler copyContainer(Container container) {
+    ItemStackHandler invCopy = new ItemStackHandler(container.getContainerSize());
+    for (int i = 0; i < container.getContainerSize(); i++) {
+      invCopy.setStackInSlot(i, container.getItem(i).copy());
+    }
+    return invCopy;
   }
 
   public static EnchantmentRecipe fromNetwork(FriendlyByteBuf buf) {
