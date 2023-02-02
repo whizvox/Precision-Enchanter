@@ -8,6 +8,7 @@ import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
+import me.whizvox.precisionenchanter.common.network.message.MatchThenMoveEnchantmentRecipeIngredientsMessage;
 import me.whizvox.precisionenchanter.common.network.message.SimpleServerBoundMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
@@ -54,7 +55,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   // Whether the maximum number of recipe sync attempts has been reached
   private boolean syncFailed;
   private List<EnchantmentRecipeInfo> filteredRecipes;
-  private Set<EnchantmentRecipe> craftableRecipes;
+  private Map<EnchantmentRecipe, Boolean> craftableRecipes;
   private List<EnchantmentEntry> displayedEntries;
   private int currentRecipePage;
   private EditBox searchBar;
@@ -74,7 +75,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     this.visible = visible;
     recipesLoaded = false;
     filteredRecipes = new ArrayList<>();
-    craftableRecipes = new HashSet<>();
+    craftableRecipes = new HashMap<>();
     displayedEntries = new ArrayList<>();
     time = 0;
     if (visible) {
@@ -118,14 +119,17 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     });
     placeholderRecipe = new PlaceholderEnchantmentRecipe(leftPos + 208, topPos + 30);
     placeholderRecipe.init(mc);
-    updateCraftableRecipes();
+    refreshCraftableRecipes();
     lastSearch = null;
     updateEnchantmentEntries();
+
+    menu.setPlayerInventoryChangedCallback(this::refreshCraftableRecipes);
   }
 
   private void updateEnchantmentEntries() {
     String search = searchBar.getValue();
-    if (lastSearch == null || !search.equalsIgnoreCase(lastSearch)) {
+    // null check built in
+    if (!search.equalsIgnoreCase(lastSearch)) {
       currentRecipePage = 0;
       lastSearch = search;
       filteredRecipes.clear();
@@ -155,7 +159,10 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   }
 
   private void updateEntryCraftableStatus() {
-    displayedEntries.forEach(entry -> entry.craftable = craftableRecipes.contains(entry.info.recipe));
+    displayedEntries.forEach(entry -> {
+      EnchantmentRecipe recipe = entry.info.recipe;
+      entry.craftable = craftableRecipes.computeIfAbsent(recipe, r -> menu.attemptMatchThenMove(Minecraft.getInstance().player, r).matches());
+    });
   }
 
   public boolean isVisible() {
@@ -177,9 +184,8 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     return placeholderRecipe;
   }
 
-  public void updateCraftableRecipes() {
+  public void refreshCraftableRecipes() {
     craftableRecipes.clear();
-    craftableRecipes.addAll(EnchantmentRecipeManager.INSTANCE.match(mc.player.getInventory()));
     updateEntryCraftableStatus();
   }
 
@@ -188,7 +194,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       if (!recipesLoaded) {
         if (EnchantmentRecipeManager.INSTANCE.isInitialized()) {
           recipesLoaded = true;
-          updateCraftableRecipes();
+          refreshCraftableRecipes();
           updateEnchantmentEntries();
         } else if (!syncFailed) {
           LocalDateTime now = LocalDateTime.now();
@@ -327,7 +333,8 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       blit(pose, getX(), getY(), 0, srcY, width, height);
       if (craftable) {
         RenderSystem.enableBlend();
-        RenderSystem.setShaderColor(1, 1, 1, 0.5F * Mth.sin(Mth.PI * (time % 40) / 40) + 0.5F);
+        // sine oscillation between 50% and 100% opacity with a period of 30 ticks
+        RenderSystem.setShaderColor(1, 1, 1, 0.25F * Mth.sin(Mth.PI * time / 15) + 0.75F);
         blit(pose, getX(), getY(), 0, 205, width, height);
         RenderSystem.disableBlend();
       }
@@ -342,7 +349,8 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     @Override
     public void onPress() {
       if (Screen.hasShiftDown() && craftable) {
-
+        PENetwork.sendToServer(new MatchThenMoveEnchantmentRecipeIngredientsMessage(info.recipe));
+        placeholderRecipe.clear();
       } else {
         placeholderRecipe.setRecipe(info.recipe);
         PENetwork.sendToServer(SimpleServerBoundMessage.CLEAR_ENCHANTERS_WORKBENCH_INGREDIENTS);

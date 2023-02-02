@@ -25,6 +25,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class EnchantmentRecipe {
 
@@ -67,7 +68,7 @@ public class EnchantmentRecipe {
     return level;
   }
 
-  private boolean match(Container container, IItemHandler invCopy) {
+  private boolean match(IItemHandler invCopy) {
     if (isInvalid()) {
       return false;
     }
@@ -93,7 +94,7 @@ public class EnchantmentRecipe {
   }
 
   public boolean match(Container container) {
-    return match(container, copyContainer(container));
+    return match(copyContainer(container));
   }
 
   /**
@@ -103,7 +104,7 @@ public class EnchantmentRecipe {
    */
   public MatchResult match(ItemStack stackToEnchant, Container container, IEnchantmentStorage storage) {
     IItemHandler invCopy = copyContainer(container);
-    if (match(container, invCopy)) {
+    if (match(invCopy)) {
       List<ItemStack> resultingStacks = new ArrayList<>(invCopy.getSlots());
       for (int i = 0; i < invCopy.getSlots(); i++) {
         resultingStacks.add(invCopy.getStackInSlot(i));
@@ -148,6 +149,16 @@ public class EnchantmentRecipe {
       buf.writeResourceLocation(ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
       buf.writeShort(level);
     }
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return obj instanceof EnchantmentRecipe other && Objects.equals(other.id, id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(id);
   }
 
   private static IItemHandler copyContainer(Container container) {

@@ -43,6 +43,7 @@ public class PENetwork {
     register(SyncEnchantmentRecipesMessage.HANDLER, NetworkDirection.PLAY_TO_CLIENT);
     register(PEChangeSelectionMessage.HANDLER, NetworkDirection.PLAY_TO_SERVER);
     register(SyncEnchantmentsMessage.HANDLER, NetworkDirection.PLAY_TO_CLIENT);
+    register(MatchThenMoveEnchantmentRecipeIngredientsMessage.HANDLER, NetworkDirection.PLAY_TO_SERVER);
   }
 
   public static void sendToServer(Object msg) {

@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.menu;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
+import me.whizvox.precisionenchanter.common.recipe.util.MatchThenMove;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.MenuUtil;
@@ -17,12 +18,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
@@ -49,6 +52,9 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
   private final DataSlot enchantmentId;
   private final DataSlot enchantmentLevel;
   private final DataSlot matchesMultiple;
+
+  // client
+  private Runnable playerInventoryChangedCallback;
 
   private static final int
       BOOL_FALSE = 1,
@@ -132,7 +138,29 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
       }
     }
 
-    MenuUtil.addPlayerInventory(playerInv, this::addSlot);
+    playerInventoryChangedCallback = () -> {};
+
+    //MenuUtil.addPlayerInventory(playerInv, this::addSlot);
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 9; j++) {
+        addSlot(new Slot(playerInv, 9 + j + i * 9, 8 + j * 18, 84 + i * 18) {
+          @Override
+          public void setChanged() {
+            playerInventoryChangedCallback.run();
+            super.setChanged();
+          }
+        });
+      }
+    }
+    for (int i = 0; i < 9; i++) {
+      addSlot(new Slot(playerInv, i, 8 + i * 18, 142) {
+        @Override
+        public void setChanged() {
+          playerInventoryChangedCallback.run();
+          super.setChanged();
+        }
+      });
+    }
 
     matches = new ArrayList<>();
     preventResultUpdates = false;
@@ -175,6 +203,41 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
       }
       preventResultUpdates = false;
     });
+  }
+
+  public void setPlayerInventoryChangedCallback(Runnable playerInventoryChangedCallback) {
+    this.playerInventoryChangedCallback = playerInventoryChangedCallback;
+  }
+
+  public MatchThenMove attemptMatchThenMove(Player player, EnchantmentRecipe recipe) {
+    return MatchThenMove.attempt(recipe, new InvWrapper(player.getInventory()), ingredientInputSlots);
+  }
+
+  public boolean matchThenMove(IItemHandlerModifiable inputInventory, MatchThenMove result) {
+    if (result.matches()) {
+      if (result.inputInventory().getSlots() == inputInventory.getSlots() && result.outputInventory().getSlots() == ingredientInputSlots.getSlots()) {
+        int inSlots = inputInventory.getSlots();
+        int outSlots = ingredientInputSlots.getSlots();
+        for (int i = 0; i < inSlots; i++) {
+          inputInventory.setStackInSlot(i, result.inputInventory().getStackInSlot(i));
+        }
+        for (int i = 0; i < outSlots; i++) {
+          ingredientInputSlots.setStackInSlot(i, result.outputInventory().getStackInSlot(i));
+        }
+        return true;
+      } else {
+        PELog.LOGGER.warn(PELog.side(),
+            "Resulting and actual inventory sizes don't match up: inRes={}, inAct={}, outRes={}, outAct={}",
+            result.inputInventory().getSlots(), inputInventory.getSlots(), result.outputInventory(),
+            ingredientInputSlots.getSlots()
+        );
+      }
+    }
+    return false;
+  }
+
+  public boolean matchThenMove(Player player, EnchantmentRecipe recipe) {
+    return matchThenMove(new InvWrapper(player.getInventory()), attemptMatchThenMove(player, recipe));
   }
 
   public void clearIngredients(Player player) {
