@@ -1,9 +1,11 @@
 package me.whizvox.precisionenchanter.common.recipe.util;
 
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
+import me.whizvox.precisionenchanter.common.util.InventoryUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -24,14 +26,14 @@ public record MatchThenMove(boolean matches, IItemHandler inputInventory, IItemH
     // using that, it's better to sort all matched items by stack count in descending order and select from the largest
     // stack count first.
 
-    ItemStackHandler input = new ItemStackHandler(inputInv.getSlots());
-    for (int i = 0; i < inputInv.getSlots(); i++) {
-      input.setStackInSlot(i, inputInv.getStackInSlot(i).copy());
+    // First attempt to clear out ingredients in output slots and put them all into the input slots
+    IItemHandlerModifiable input = InventoryUtil.copyInventory(inputInv);
+    // If there are any leftovers from doing this, stop any further processing.
+    if (!InventoryUtil.insertAll(outputInv, input, true).isEmpty()) {
+      return FALSE;
     }
-    ItemStackHandler output = new ItemStackHandler(outputInv.getSlots());
-    for (int i = 0; i < outputInv.getSlots(); i++) {
-      output.setStackInSlot(i, outputInv.getStackInSlot(i).copy());
-    }
+    // Clean slate for the output slots.
+    IItemHandlerModifiable output = new ItemStackHandler(outputInv.getSlots());
 
     // Sort ingredients by count in descending order
     List<Pair<Ingredient, Integer>> remaining = new ArrayList<>();
@@ -75,8 +77,7 @@ public record MatchThenMove(boolean matches, IItemHandler inputInventory, IItemH
             }
           }
           // If there was any leftover, then we couldn't insert into the output inventory due to it being full. This
-          // is caused by stacks already being in the output inventory, multiple stacks matched a single ingredient
-          // before fulfilling it, or if the output is just too small (shouldn't happen).
+          // is caused by multiple stacks matched a single ingredient.
           if (!leftover.isEmpty()) {
             return FALSE;
           }

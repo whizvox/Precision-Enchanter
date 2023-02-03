@@ -134,13 +134,18 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
     // ingredient slots
     for (int i = 0; i < 2; i++) {
       for (int j = 0; j < 2; j++) {
-        addSlot(new SlotItemHandler(ingredientInputSlots, j + i * 2, 60 + j * 18, 30 + i * 18));
+        addSlot(new SlotItemHandler(ingredientInputSlots, j + i * 2, 60 + j * 18, 30 + i * 18) {
+          @Override
+          public void setChanged() {
+            playerInventoryChangedCallback.run();
+            super.setChanged();
+          }
+        });
       }
     }
 
     playerInventoryChangedCallback = () -> {};
 
-    //MenuUtil.addPlayerInventory(playerInv, this::addSlot);
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 9; j++) {
         addSlot(new Slot(playerInv, 9 + j + i * 9, 8 + j * 18, 84 + i * 18) {
