@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = 'dev-20230203'
+version = 'dev-20230203.1'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -83,8 +83,18 @@ sourceSets.main.resources {
 repositories {
 }
 
+sourceSets {
+  checkVersion {
+    java {
+      srcDirs('src/checkversion')
+    }
+  }
+}
+
 dependencies {
   minecraft 'net.minecraftforge:forge:1.19.3-44.1.0'
+
+  checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }
 
 jar {
@@ -105,4 +115,11 @@ jar.finalizedBy('reobfJar')
 
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+tasks.register('checkRemoteVersion', JavaExec) {
+  group = 'other'
+  description = 'Compare remote project version with local'
+  classpath = sourceSets.checkVersion.runtimeClasspath
+  mainClass.set('me.whizvox.precisionenchanting.CheckRemoteVersion')
 }
