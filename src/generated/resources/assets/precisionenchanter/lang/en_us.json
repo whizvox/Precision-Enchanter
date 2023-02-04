@@ -1,6 +1,9 @@
 {
   "block.precisionenchanter.enchanters_workbench": "Enchanter's Workbench",
   "block.precisionenchanter.precision_grindstone": "Precision Grindstone",
+  "command.precisionenchanter.check_recipes.header": "%s impossible recipe(s) found:",
+  "command.precisionenchanter.check_recipes.more": "... +%s more",
+  "command.precisionenchanter.check_recipes.none": "No impossible recipes found",
   "container.precisionenchanter.enchanters_workbench": "Enchanter's Workbench",
   "container.precisionenchanter.precision_grindstone": "Precision Grindstone",
   "item.precisionenchanter.enchanted_quill": "Enchanted Quill",

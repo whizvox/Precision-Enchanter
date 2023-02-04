@@ -50,13 +50,13 @@ public class EnchantmentRecipeProvider implements DataProvider {
     return "EnchantmentRecipes";
   }
 
-  private EnchantmentRecipe.Builder builder(Enchantment result, int level) {
+  public EnchantmentRecipe.Builder builder(Enchantment result, int level) {
     return EnchantmentRecipe.builder()
         .id(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath() + "_" + level))
         .result(result, level);
   }
 
-  private EnchantmentRecipe.Builder builder(Enchantment result) {
+  public EnchantmentRecipe.Builder builder(Enchantment result) {
     return EnchantmentRecipe.builder()
         .id(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath()))
         .result(result, 1);
@@ -577,11 +577,11 @@ public class EnchantmentRecipeProvider implements DataProvider {
         .ingredient(Items.NETHER_WART, 4)
         .build());
     output.accept(builder(Enchantments.RESPIRATION, 2)
-        .ingredient(Items.TURTLE_HELMET, 2)
+        .ingredient(Items.TURTLE_HELMET)
         .ingredient(Items.NETHER_WART_BLOCK)
         .build());
     output.accept(builder(Enchantments.RESPIRATION, 3)
-        .ingredient(Items.TURTLE_HELMET, 4)
+        .ingredient(Items.TURTLE_HELMET)
         .ingredient(Items.NETHER_WART_BLOCK, 2)
         .ingredient(Items.SEAGRASS, 16)
         .build());
@@ -616,7 +616,7 @@ public class EnchantmentRecipeProvider implements DataProvider {
         .build());
     output.accept(builder(Enchantments.DEPTH_STRIDER, 2)
         .ingredient(Items.MAGMA_BLOCK, 12)
-        .ingredient(Items.TURTLE_HELMET, 8)
+        .ingredient(Items.TURTLE_EGG, 8)
         .build());
     output.accept(builder(Enchantments.DEPTH_STRIDER, 3)
         .ingredient(Items.MAGMA_BLOCK, 24)

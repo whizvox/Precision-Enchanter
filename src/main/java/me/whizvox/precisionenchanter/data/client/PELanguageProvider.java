@@ -27,6 +27,9 @@ public class PELanguageProvider extends LanguageProvider {
     add(PELang.Keys.SCREEN_LOADING, "Loading");
     add(PELang.Keys.TABLET_SEARCH_HINT, "Search");
     add(PELang.Keys.TABLET_SYNC_FAILED, "Failed to sync recipes");
+    add(PELang.Keys.NO_IMPOSSIBLE_RECIPES, "No impossible recipes found");
+    add(PELang.Keys.FOUND_IMPOSSIBLE_RECIPES, "%s impossible recipe(s) found:");
+    add(PELang.Keys.MORE_IMPOSSIBLE_RECIPES, "... +%s more");
   }
 
 }

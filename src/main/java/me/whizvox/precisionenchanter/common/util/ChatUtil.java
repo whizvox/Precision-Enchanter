@@ -13,8 +13,15 @@ public class ChatUtil {
     return component.copy();
   }
 
-  public static MutableComponent reset(Component component) {
-    return mut(component).withStyle(ChatFormatting.RESET);
+  public static MutableComponent mut(Object obj) {
+    return obj instanceof Component comp ? mut(comp) : Component.literal(String.valueOf(obj));
   }
+
+  public static final ChatFormatting
+      INFO = ChatFormatting.AQUA,
+      WARN = ChatFormatting.YELLOW,
+      ERROR = ChatFormatting.RED,
+      PRIMARY = ChatFormatting.GREEN,
+      SECONDARY = ChatFormatting.GRAY;
 
 }

@@ -10,10 +10,12 @@ import me.whizvox.precisionenchanter.common.registry.PEItems;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
 import me.whizvox.precisionenchanter.data.PEDataGenerator;
+import me.whizvox.precisionenchanter.server.PECommand;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -41,11 +43,8 @@ public class PrecisionEnchanter {
     modBus.addListener(this::onClientSetup);
 
     PEEnchantmentHelper.register(forgeBus);
-    forgeBus.addListener(this::addPrecisionEnchantmentRecipeListener);
-  }
-
-  private void addPrecisionEnchantmentRecipeListener(final AddReloadListenerEvent event) {
-    event.addListener(EnchantmentRecipeManager.INSTANCE);
+    forgeBus.addListener(this::onRegisterCommands);
+    forgeBus.addListener(this::onAddReloadListener);
   }
 
   private void onClientSetup(final FMLClientSetupEvent event) {
@@ -53,6 +52,14 @@ public class PrecisionEnchanter {
       MenuScreens.register(PEMenus.ENCHANTERS_WORKBENCH.get(), EnchantersWorkbenchScreen::new);
       MenuScreens.register(PEMenus.PRECISION_GRINDSTONE.get(), PrecisionGrindstoneScreen::new);
     });
+  }
+
+  private void onRegisterCommands(final RegisterCommandsEvent event) {
+    PECommand.register(event.getDispatcher());
+  }
+
+  private void onAddReloadListener(final AddReloadListenerEvent event) {
+    event.addListener(EnchantmentRecipeManager.INSTANCE);
   }
 
 }

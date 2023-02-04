@@ -8,6 +8,7 @@ import me.whizvox.precisionenchanter.common.menu.PrecisionGrindstoneMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -51,7 +52,7 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
       if (selectedEnchantment == null) {
         selectedEnchantmentText = null;
       } else {
-        selectedEnchantmentText = ChatUtil.reset(selectedEnchantment.enchantment.getFullname(selectedEnchantment.level));
+        selectedEnchantmentText = ChatUtil.mut(selectedEnchantment.enchantment.getFullname(selectedEnchantment.level)).withStyle(ChatFormatting.RESET);
       }
 
       boolean flag = menu.hasMultipleEnchantments();

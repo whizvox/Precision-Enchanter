@@ -166,6 +166,26 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   /**
+   * Find all enchantment recipes that cannot be crafted due to having at least one ingredient that has no items. Most
+   * likely, this will happen with empty tags. However, even if a tag isn't empty, it will resolve to such if this
+   * method is called too early, and will mess up all recipes that use this tag. I have no idea why this can even
+   * happen, but there you go.
+   * @return All enchantment recipes that are impossible to craft
+   */
+  public List<EnchantmentRecipe> findImpossibleRecipes() {
+    return recipes.values().stream().filter(recipe -> recipe.getIngredients().stream().anyMatch(pair -> {
+      boolean impossible = true;
+      for (ItemStack item : pair.getLeft().getItems()) {
+        if (item.getItem().getMaxStackSize(item) >= pair.getRight()) {
+          impossible = false;
+          break;
+        }
+      }
+      return impossible;
+    })).toList();
+  }
+
+  /**
    * Sync with an external list of enchantment recipes. Should only be called on the client when the player needs to
    * view enchantment recipes. Can also call preemptively (i.e. on login) if wanted.
    * @param newRecipes The recipes to add to this manager

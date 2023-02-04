@@ -1,7 +1,11 @@
 package me.whizvox.precisionenchanter.common.lib;
 
 import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+
+import static me.whizvox.precisionenchanter.common.util.ChatUtil.*;
 
 public class PELang {
 
@@ -18,7 +22,10 @@ public class PELang {
         SCREEN_SELECT_NEXT = withModId("screen.%s.generic.select_next"),
         SCREEN_LOADING = withModId("screen.%s.generic.loading"),
         TABLET_SEARCH_HINT = withModId("screen.%s.enchantment_recipe_tablet.search_hint"),
-        TABLET_SYNC_FAILED = withModId("screen.%s.enchantment_recipe_tablet.sync_failed");
+        TABLET_SYNC_FAILED = withModId("screen.%s.enchantment_recipe_tablet.sync_failed"),
+        NO_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.none"),
+        FOUND_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.header"),
+        MORE_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.more");
   }
 
   public static final Component
@@ -29,6 +36,15 @@ public class PELang {
       SCREEN_SELECT_NEXT = Component.translatable(Keys.SCREEN_SELECT_NEXT),
       SCREEN_LOADING = Component.translatable(Keys.SCREEN_LOADING),
       TABLET_SEARCH_HINT = Component.translatable(Keys.TABLET_SEARCH_HINT),
-      TABLET_SYNC_FAILED = Component.translatable(Keys.TABLET_SYNC_FAILED);
+      TABLET_SYNC_FAILED = Component.translatable(Keys.TABLET_SYNC_FAILED),
+      NO_IMPOSSIBLE_RECIPES = Component.translatable(Keys.NO_IMPOSSIBLE_RECIPES);
+
+  public static MutableComponent foundImpossibleRecipes(int count) {
+    return Component.translatable(Keys.FOUND_IMPOSSIBLE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
+  }
+
+  public static MutableComponent moreImpossibleRecipes(int count) {
+    return Component.translatable(Keys.MORE_IMPOSSIBLE_RECIPES, count);
+  }
 
 }
