@@ -116,6 +116,11 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     return null;
   }
 
+  @Nullable
+  public EnchantmentRecipe get(Enchantment enchantment, int level) {
+    return byEnchantment.getOrDefault(enchantment, Map.of()).getOrDefault(level, null);
+  }
+
   public Stream<Map.Entry<ResourceLocation, EnchantmentRecipe>> stream() {
     return recipes.entrySet().stream();
   }
@@ -183,6 +188,12 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       }
       return impossible;
     })).toList();
+  }
+
+  public List<EnchantmentRecipe> findFreeRecipes() {
+    return recipes.values().stream()
+        .filter(recipe -> recipe.getCost() <= 0)
+        .toList();
   }
 
   /**

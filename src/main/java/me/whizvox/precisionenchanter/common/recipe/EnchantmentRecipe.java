@@ -33,12 +33,14 @@ public class EnchantmentRecipe {
   private final List<Pair<Ingredient, Integer>> ingredients;
   private final Enchantment enchantment;
   private final int level;
+  private final int cost;
 
-  EnchantmentRecipe(ResourceLocation id, List<Pair<Ingredient, Integer>> ingredients, Enchantment enchantment, int level) {
+  EnchantmentRecipe(ResourceLocation id, List<Pair<Ingredient, Integer>> ingredients, Enchantment enchantment, int level, int cost) {
     this.id = id;
     this.ingredients = ingredients.stream().filter(pair -> !pair.getLeft().isEmpty()).toList();
     this.enchantment = enchantment;
     this.level = level;
+    this.cost = cost;
   }
 
   /**
@@ -66,6 +68,10 @@ public class EnchantmentRecipe {
 
   public int getLevel() {
     return level;
+  }
+
+  public int getCost() {
+    return cost;
   }
 
   private boolean match(IItemHandler invCopy) {
@@ -111,14 +117,18 @@ public class EnchantmentRecipe {
       }
       EnchantmentInstance instance = new EnchantmentInstance(enchantment, level);
       ItemStack result = storage.applyEnchantment(stackToEnchant, instance);
-      int rarity = switch (enchantment.getRarity()) {
-        case COMMON -> 3;
-        case UNCOMMON -> 5;
-        case RARE -> 7;
-        case VERY_RARE -> 9;
-      };
-      int cost = rarity * (instance.level - storage.getEnchantments(stackToEnchant).getOrDefault(enchantment, 0));
-      return new MatchResult(true, resultingStacks, result, cost);
+      int finalCost = cost;
+      // apply discount if the same enchantment is already on the stack
+      if (level > 1) {
+        int currLevel = storage.getEnchantments(stackToEnchant).getOrDefault(enchantment, 0);
+        if (currLevel > 0) {
+          EnchantmentRecipe currLevelRecipe = EnchantmentRecipeManager.INSTANCE.get(enchantment, currLevel);
+          if (currLevelRecipe != null) {
+            finalCost -= currLevelRecipe.cost;
+          }
+        }
+      }
+      return new MatchResult(true, resultingStacks, result, finalCost);
     }
     return MatchResult.FALSE;
   }
@@ -190,7 +200,7 @@ public class EnchantmentRecipe {
   public class Immutable extends EnchantmentRecipe {
 
     public Immutable(EnchantmentRecipe recipe) {
-      super(recipe.id, recipe.ingredients, recipe.enchantment, recipe.level);
+      super(recipe.id, recipe.ingredients, recipe.enchantment, recipe.level, recipe.cost);
 
       if (isInvalid() && id != null) {
         List<String> problems = new ArrayList<>(2);
@@ -215,7 +225,7 @@ public class EnchantmentRecipe {
 
   }
 
-  public static final EnchantmentRecipe INVALID = new EnchantmentRecipe(null, List.of(), null, 0);
+  public static final EnchantmentRecipe INVALID = new EnchantmentRecipe(null, List.of(), null, 0, 0);
 
   public record MatchResult(boolean matches, List<ItemStack> leftoverIngredients, ItemStack result, int cost) {
 
@@ -236,11 +246,13 @@ public class EnchantmentRecipe {
     private final List<Pair<Ingredient, Integer>> ingredients;
     private Enchantment result;
     private int level;
+    private int cost;
     public Builder() {
       this.id = null;
       ingredients = new ArrayList<>();
       result = null;
       level = 1;
+      cost = 0;
     }
     public Builder id(ResourceLocation id) {
       this.id = id;
@@ -265,13 +277,29 @@ public class EnchantmentRecipe {
     public Builder ingredient(TagKey<Item> tag) {
       return ingredient(tag, 1);
     }
+    public Builder cost(int cost) {
+      this.cost = cost;
+      return this;
+    }
+    public Builder noCost() {
+      return cost(0);
+    }
+    public Builder standardCost() {
+      int rarity = switch (result.getRarity()) {
+        case COMMON -> 3;
+        case UNCOMMON -> 5;
+        case RARE -> 7;
+        case VERY_RARE -> 9;
+      };
+      return cost(rarity * level);
+    }
     public Builder result(Enchantment result, int level) {
       this.result = result;
       this.level = level;
       return this;
     }
     public EnchantmentRecipe buildMutable() {
-      return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 1, Short.MAX_VALUE));
+      return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 1, Short.MAX_VALUE), Mth.clamp(cost, 0, Short.MAX_VALUE));
     }
     public EnchantmentRecipe build() {
       return buildMutable().immutable();
@@ -279,11 +307,12 @@ public class EnchantmentRecipe {
   }
 
   public static class Serializer implements JsonSerializer<EnchantmentRecipe>, JsonDeserializer<EnchantmentRecipe> {
+
     @Override
-    public JsonElement serialize(EnchantmentRecipe src, Type type, JsonSerializationContext ctx) {
+    public JsonElement serialize(EnchantmentRecipe recipe, Type type, JsonSerializationContext ctx) {
       JsonObject json = new JsonObject();
-      JsonArray ingredientsArr = new JsonArray(src.ingredients.size());
-      src.ingredients.forEach(pair -> {
+      JsonArray ingredientsArr = new JsonArray(recipe.ingredients.size());
+      recipe.ingredients.forEach(pair -> {
         JsonObject ingredientJson = new JsonObject();
         ingredientJson.add("ingredient", pair.getLeft().toJson());
         ingredientJson.addProperty("count", pair.getRight());
@@ -291,11 +320,13 @@ public class EnchantmentRecipe {
       });
       json.add("ingredients", ingredientsArr);
       JsonObject resultJson = new JsonObject();
-      resultJson.addProperty("enchantment", ForgeRegistries.ENCHANTMENTS.getKey(src.enchantment).toString());
-      resultJson.addProperty("level", src.level);
+      resultJson.addProperty("enchantment", ForgeRegistries.ENCHANTMENTS.getKey(recipe.enchantment).toString());
+      resultJson.addProperty("level", recipe.level);
       json.add("result", resultJson);
+      json.addProperty("cost", recipe.cost);
       return json;
     }
+
     @Override
     public EnchantmentRecipe deserialize(JsonElement jsonRaw, Type type, JsonDeserializationContext ctx) throws JsonParseException {
       JsonObject json = jsonRaw.getAsJsonObject();
@@ -323,8 +354,12 @@ public class EnchantmentRecipe {
           builder.result(result, level);
         }
       }
+      if (json.has("cost")) {
+        builder.cost(json.get("cost").getAsInt());
+      }
       return builder.buildMutable();
     }
+
   }
 
   public static final Serializer SERIALIZER = new Serializer();

@@ -23,9 +23,13 @@ public class PELang {
         SCREEN_LOADING = withModId("screen.%s.generic.loading"),
         TABLET_SEARCH_HINT = withModId("screen.%s.enchantment_recipe_tablet.search_hint"),
         TABLET_SYNC_FAILED = withModId("screen.%s.enchantment_recipe_tablet.sync_failed"),
-        NO_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.none"),
-        FOUND_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.header"),
-        MORE_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.more");
+
+        // Player chat
+        N_MORE = withModId("command.%s.generic.more"),
+        NO_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.impossible.none"),
+        FOUND_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.impossible.header"),
+        NO_FREE_RECIPES = withModId("command.%s.check_recipes.free.none"),
+        FOUND_FREE_RECIPES = withModId("command.%s.check_recipes.free.header");
   }
 
   public static final Component
@@ -37,14 +41,19 @@ public class PELang {
       SCREEN_LOADING = Component.translatable(Keys.SCREEN_LOADING),
       TABLET_SEARCH_HINT = Component.translatable(Keys.TABLET_SEARCH_HINT),
       TABLET_SYNC_FAILED = Component.translatable(Keys.TABLET_SYNC_FAILED),
-      NO_IMPOSSIBLE_RECIPES = Component.translatable(Keys.NO_IMPOSSIBLE_RECIPES);
+      NO_IMPOSSIBLE_RECIPES = Component.translatable(Keys.NO_IMPOSSIBLE_RECIPES),
+      NO_FREE_RECIPES = Component.translatable(Keys.NO_FREE_RECIPES);
+
+  public static MutableComponent nMore(int count) {
+    return Component.translatable(Keys.N_MORE, count);
+  }
 
   public static MutableComponent foundImpossibleRecipes(int count) {
     return Component.translatable(Keys.FOUND_IMPOSSIBLE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
   }
 
-  public static MutableComponent moreImpossibleRecipes(int count) {
-    return Component.translatable(Keys.MORE_IMPOSSIBLE_RECIPES, count);
+  public static MutableComponent foundFreeRecipes(int count) {
+    return Component.translatable(Keys.FOUND_FREE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
   }
 
 }
