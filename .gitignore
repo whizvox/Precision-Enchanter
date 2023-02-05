@@ -122,3 +122,6 @@ run/
 
 # Blockbench models
 *.bbmodel
+
+# Data generation cache
+src/generated/resources/.cache/

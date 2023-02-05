@@ -23,6 +23,8 @@ public class PELang {
         SCREEN_LOADING = withModId("screen.%s.generic.loading"),
         TABLET_SEARCH_HINT = withModId("screen.%s.enchantment_recipe_tablet.search_hint"),
         TABLET_SYNC_FAILED = withModId("screen.%s.enchantment_recipe_tablet.sync_failed"),
+        TABLET_SHOW_ALL = withModId("screen.%s.enchantment_recipe_tablet.show_all"),
+        TABLET_SHOW_CRAFTABLE = withModId("screen.%s.enchantment_recipe_tablet.show_craftables"),
 
         // Player chat
         N_MORE = withModId("command.%s.generic.more"),
@@ -41,6 +43,8 @@ public class PELang {
       SCREEN_LOADING = Component.translatable(Keys.SCREEN_LOADING),
       TABLET_SEARCH_HINT = Component.translatable(Keys.TABLET_SEARCH_HINT),
       TABLET_SYNC_FAILED = Component.translatable(Keys.TABLET_SYNC_FAILED),
+      TABLET_SHOW_ALL = Component.translatable(Keys.TABLET_SHOW_ALL),
+      TABLET_SHOW_CRAFTABLE = Component.translatable(Keys.TABLET_SHOW_CRAFTABLE),
       NO_IMPOSSIBLE_RECIPES = Component.translatable(Keys.NO_IMPOSSIBLE_RECIPES),
       NO_FREE_RECIPES = Component.translatable(Keys.NO_FREE_RECIPES);
 

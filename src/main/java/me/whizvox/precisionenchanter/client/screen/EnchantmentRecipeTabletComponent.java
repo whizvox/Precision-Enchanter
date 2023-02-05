@@ -64,6 +64,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
 
   private Component pageNumberComponent;
   private ImageButton prevPageButton, nextPageButton;
+  private ToggleShowCraftableButton showCraftableButton;
 
   private PlaceholderEnchantmentRecipe placeholderRecipe;
 
@@ -117,6 +118,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
         updateEnchantmentEntries();
       }
     });
+    showCraftableButton = new ToggleShowCraftableButton();
     placeholderRecipe = new PlaceholderEnchantmentRecipe(leftPos + 208, topPos + 30);
     placeholderRecipe.init(mc);
     refreshCraftableRecipes();
@@ -140,7 +142,14 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
         stream = stream.filter(info -> info.translatedString.toLowerCase(Locale.getDefault()).contains(filter));
       }
       stream.sorted(Comparator.comparing(o -> o.translatedString))
-          .forEach(info -> filteredRecipes.add(info));
+          .forEach(filteredRecipes::add);
+    }
+    if (isShowingOnlyCraftable()) {
+      List<EnchantmentRecipeInfo> toRemove = new ArrayList<>();
+      filteredRecipes.stream()
+          .filter(info -> !craftableRecipes.computeIfAbsent(info.recipe, r -> menu.attemptMatchThenMove(Minecraft.getInstance().player, r).matches()))
+          .forEach(toRemove::add);
+      filteredRecipes.removeAll(toRemove);
     }
     displayedEntries.clear();
     for (int i = currentRecipePage * MAX_RECIPES_PER_PAGE; i < ((currentRecipePage + 1) * MAX_RECIPES_PER_PAGE) && i < filteredRecipes.size(); i++) {
@@ -159,14 +168,19 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   }
 
   private void updateEntryCraftableStatus() {
-    displayedEntries.forEach(entry -> {
-      EnchantmentRecipe recipe = entry.info.recipe;
-      entry.craftable = craftableRecipes.computeIfAbsent(recipe, r -> menu.attemptMatchThenMove(Minecraft.getInstance().player, r).matches());
-    });
+    displayedEntries.forEach(entry ->
+        entry.craftable = craftableRecipes.computeIfAbsent(entry.info.recipe, r ->
+            menu.attemptMatchThenMove(Minecraft.getInstance().player, r).matches()
+        )
+    );
   }
 
   public boolean isVisible() {
     return visible;
+  }
+
+  public boolean isShowingOnlyCraftable() {
+    return showCraftableButton.showOnlyCraftable;
   }
 
   public void setVisible(boolean visible) {
@@ -176,8 +190,22 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     this.visible = visible;
   }
 
+  public void setShowCraftable(boolean show) {
+    if (visible && show != showCraftableButton.showOnlyCraftable) {
+      showCraftableButton.showOnlyCraftable = show;
+      if (!show) {
+        lastSearch = null;
+      }
+      updateEnchantmentEntries();
+    }
+  }
+
   public void toggleVisibility() {
     setVisible(!visible);
+  }
+
+  public void toggleShowCraftable() {
+    setShowCraftable(!showCraftableButton.showOnlyCraftable);
   }
 
   public PlaceholderEnchantmentRecipe getPlaceholderRecipe() {
@@ -259,6 +287,9 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       if (nextPageButton.mouseClicked(mouseX, mouseY, button)) {
         return true;
       }
+      if (showCraftableButton.mouseClicked(mouseX, mouseY, button)) {
+        return true;
+      }
       for (EnchantmentEntry entry : displayedEntries) {
         if (entry.mouseClicked(mouseX, mouseY, button)) {
           return true;
@@ -285,6 +316,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       prevPageButton.render(pose, mouseX, mouseY, partialTick);
       nextPageButton.render(pose, mouseX, mouseY, partialTick);
       displayedEntries.forEach(entry -> entry.render(pose, mouseX, mouseY, partialTick));
+      showCraftableButton.render(pose, mouseX, mouseY, partialTick);
       placeholderRecipe.render(pose, mouseX, mouseY, partialTick);
     }
   }
@@ -292,6 +324,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   public void renderTooltips(PoseStack pose, int mouseX, int mouseY) {
     if (visible) {
       placeholderRecipe.renderTooltip(pose, mouseX, mouseY);
+      showCraftableButton.renderTooltip(pose, mouseX, mouseY);
     }
   }
 
@@ -331,7 +364,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       RenderSystem.setShaderColor(1, 1, 1, 1);
       int srcY = isHovered ? 186 : 167;
       blit(pose, getX(), getY(), 0, srcY, width, height);
-      if (craftable) {
+      if (craftable && !isShowingOnlyCraftable()) {
         RenderSystem.enableBlend();
         // sine oscillation between 50% and 100% opacity with a period of 30 ticks
         RenderSystem.setShaderColor(1, 1, 1, 0.25F * Mth.sin(Mth.PI * time / 15) + 0.75F);
@@ -355,6 +388,48 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
         placeholderRecipe.setRecipe(info.recipe);
         PENetwork.sendToServer(SimpleServerBoundMessage.CLEAR_ENCHANTERS_WORKBENCH_INGREDIENTS);
       }
+    }
+
+  }
+
+  private class ToggleShowCraftableButton extends AbstractButton {
+
+    boolean showOnlyCraftable;
+
+    public ToggleShowCraftableButton() {
+      super(leftPos - 20, topPos + 42, 20, 20, Component.empty());
+      showOnlyCraftable = false;
+    }
+
+    @Override
+    public Component getMessage() {
+      return showOnlyCraftable ? PELang.TABLET_SHOW_CRAFTABLE : PELang.TABLET_SHOW_ALL;
+    }
+
+    @Override
+    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+      RenderSystem.setShader(GameRenderer::getPositionTexShader);
+      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
+      RenderSystem.setShaderColor(1, 1, 1, 1);
+      int srcX = showOnlyCraftable ? 168 : 148;
+      int srcY = isHovered ? 44 : 24;
+      blit(pose, getX(), getY(), srcX, srcY, getWidth(), getHeight());
+    }
+
+    public void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
+      if (isHovered) {
+        mc.screen.renderComponentTooltip(pose, List.of(getMessage()), mouseX, mouseY);
+      }
+    }
+
+    @Override
+    public void onPress() {
+      toggleShowCraftable();
+    }
+
+    @Override
+    protected void updateWidgetNarration(NarrationElementOutput output) {
+      defaultButtonNarrationText(output);
     }
 
   }
