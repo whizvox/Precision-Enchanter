@@ -29,9 +29,6 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
 
   @Nullable
   private Component selectedEnchantmentText;
-  @Nullable
-  private Component costText;
-  private int costTextXPos;
   private EnchantmentInstance currentEnchantment;
 
   private ChangeSelectionButton selectUpButton, selectDownButton;
@@ -40,8 +37,6 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   public EnchantersWorkbenchScreen(EnchantersWorkbenchMenu menu, Inventory playerInv, Component title) {
     super(menu, playerInv, title);
     selectedEnchantmentText = null;
-    costText = null;
-    costTextXPos = 0;
     currentEnchantment = null;
     tablet = new EnchantmentRecipeTabletComponent();
   }
@@ -51,6 +46,26 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       setFocused(tablet);
     } else {
       setFocused(null);
+    }
+  }
+
+  private void renderCost(PoseStack pose, int cost, boolean includeCross) {
+    if (cost > 0) {
+      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
+      int color;
+      if (EnchantmentRecipe.canCraftEnchantment(minecraft.player, cost)) {
+        color = 0x38D600;
+      } else {
+        color = 0xFF3C3F;
+        if (includeCross) {
+          blit(pose, 104, 38, 176, 0, 17, 17);
+        }
+      }
+      Component comp = ChatUtil.mut(cost);
+      int xPos = 144 - (font.width(comp) / 2);
+      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
+      blit(pose, xPos - 7, 63, 176, 17, 10, 10);
+      drawString(pose, font, comp, xPos + 7, 64, color);
     }
   }
 
@@ -86,12 +101,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       currentEnchantment = menu.getSelectedEnchantment();
       if (currentEnchantment == null) {
         selectedEnchantmentText = null;
-        costText = null;
       } else {
-        int cost = menu.getCost();
         selectedEnchantmentText = ChatUtil.mut(currentEnchantment.enchantment.getFullname(currentEnchantment.level)).withStyle(ChatFormatting.RESET);
-        costText = Component.literal(String.valueOf(cost));
-        costTextXPos = 144 - (font.width(costText) / 2);
       }
       boolean flag = menu.multipleRecipesMatched();
       selectUpButton.visible = flag;
@@ -118,18 +129,9 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     super.renderLabels(pose, mouseX, mouseY);
     if (selectedEnchantmentText != null) {
       drawCenteredString(pose, font, selectedEnchantmentText, 88, 17, 0x38D600);
-    }
-    if (costText != null) {
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      int color;
-      if (EnchantmentRecipe.canCraftEnchantment(minecraft.player, menu.getCost())) {
-        color = 0x38D600;
-      } else {
-        color = 0xFF3C3F;
-        blit(pose, 104, 38, 176, 0, 17, 17);
-      }
-      blit(pose, costTextXPos - 7, 63, 176, 17, 10, 10);
-      drawString(pose, font, costText, costTextXPos + 7, 64, color);
+      renderCost(pose, menu.getCost(), true);
+    } else if (tablet.isVisible() && tablet.getPlaceholderRecipe().hasRecipe()) {
+      renderCost(pose, tablet.getPlaceholderRecipe().getRecipe().getCost(), false);
     }
   }
 
