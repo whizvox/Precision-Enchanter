@@ -66,7 +66,8 @@ public record MatchThenMove(boolean matches, IItemHandler inputInventory, IItemH
           // Create a copy of the stack (limited by the target count) and insert it into the output inventory
           int targetCount = pair.getRight();
           int actualCount = stack.getCount();
-          ItemStack leftover = stack.copyWithCount(Math.min(targetCount, actualCount));
+          ItemStack leftover = stack.copy();
+          leftover.setCount(Math.min(targetCount, actualCount));
           for (int j = 0; j < output.getSlots(); j++) {
             // Contains the leftover stack from attempting to insert (i.e. inserting 64 cobblestone into a slot with
             // 16 cobblestone results in a stack of 48 cobblestone). If this leftover is empty, that means the entire

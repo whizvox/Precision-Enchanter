@@ -1,5 +1,6 @@
 package me.whizvox.precisionenchanter.common.item;
 
+import me.whizvox.precisionenchanter.common.PECreativeTab;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,7 +17,7 @@ public class QuillItem extends Item {
   }
 
   public QuillItem() {
-    this(new Item.Properties().durability(50));
+    this(new Item.Properties().durability(50).tab(PECreativeTab.INSTANCE));
   }
 
   @Override

@@ -17,7 +17,7 @@ import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.Renderable;
+import net.minecraft.client.gui.components.Widget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class EnchantmentRecipeTabletComponent extends GuiComponent implements Renderable, GuiEventListener, NarratableEntry {
+public class EnchantmentRecipeTabletComponent extends GuiComponent implements Widget, GuiEventListener, NarratableEntry {
 
   private static final ResourceLocation TEXTURE_LOCATION = PrecisionEnchanter.modLoc("textures/gui/enchantment_recipe_tablet.png");
   private static final int
@@ -104,7 +104,6 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     searchBar.setBordered(false);
     searchBar.setVisible(true);
     searchBar.setTextColor(0xFFFFFF);
-    searchBar.setHint(PELang.TABLET_SEARCH_HINT);
     searchBar.active = recipesLoaded;
     prevPageButton = new ImageButton(leftPos + 39, topPos + 151, 12, 12, 160, 0, TEXTURE_LOCATION, button -> {
       if (currentRecipePage > 0) {
@@ -313,6 +312,10 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       }
       drawCenteredString(pose, mc.font, pageNumberComponent, leftPos + 74, topPos + 153, 0xFFFFFF);
       searchBar.render(pose, mouseX, mouseY, partialTick);
+      // hint
+      if (searchBar.getValue().isEmpty() && !searchBar.isFocused()) {
+        drawString(pose, mc.font, PELang.TABLET_SEARCH_HINT, leftPos + 18, topPos + 6, 0xFFFFFF);
+      }
       prevPageButton.render(pose, mouseX, mouseY, partialTick);
       nextPageButton.render(pose, mouseX, mouseY, partialTick);
       displayedEntries.forEach(entry -> entry.render(pose, mouseX, mouseY, partialTick));
@@ -363,19 +366,19 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       RenderSystem.setShaderColor(1, 1, 1, 1);
       int srcY = isHovered ? 186 : 167;
-      blit(pose, getX(), getY(), 0, srcY, width, height);
+      blit(pose, x, y, 0, srcY, width, height);
       if (craftable && !isShowingOnlyCraftable()) {
         RenderSystem.enableBlend();
         // sine oscillation between 50% and 100% opacity with a period of 30 ticks
         RenderSystem.setShaderColor(1, 1, 1, 0.25F * Mth.sin(Mth.PI * time / 15) + 0.75F);
-        blit(pose, getX(), getY(), 0, 205, width, height);
+        blit(pose, x, y, 0, 205, width, height);
         RenderSystem.disableBlend();
       }
-      mc.font.draw(pose, getMessage(), getX() + 5, getY() + 6, 0x000000);
+      mc.font.draw(pose, getMessage(), x + 5, y + 6, 0x000000);
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateNarration(NarrationElementOutput output) {
       defaultButtonNarrationText(output);
     }
 
@@ -413,7 +416,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       RenderSystem.setShaderColor(1, 1, 1, 1);
       int srcX = showOnlyCraftable ? 168 : 148;
       int srcY = isHovered ? 44 : 24;
-      blit(pose, getX(), getY(), srcX, srcY, getWidth(), getHeight());
+      blit(pose, x, y, srcX, srcY, getWidth(), getHeight());
     }
 
     public void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
@@ -428,7 +431,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateNarration(NarrationElementOutput output) {
       defaultButtonNarrationText(output);
     }
 

@@ -116,7 +116,7 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
     public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       int srcXOff = isHovered ? getWidth() : 0;
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      blit(pose, getX(), getY(), srcX + srcXOff, srcY, getWidth(), getHeight());
+      blit(pose, x, y, srcX + srcXOff, srcY, getWidth(), getHeight());
     }
 
     @Override
@@ -125,7 +125,7 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateNarration(NarrationElementOutput output) {
       defaultButtonNarrationText(output);
     }
 

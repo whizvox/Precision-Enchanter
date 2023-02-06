@@ -84,7 +84,8 @@ public class CheckRemoteVersion {
     CommandLineParser parser = new DefaultParser();
     CommandLine cmd = parser.parse(options, args);
 
-    new CheckRemoteVersion().checkRemoteVersion(!cmd.hasOption("e"), !cmd.hasOption("a"));
+    // TODO Disabled for now
+    //new CheckRemoteVersion().checkRemoteVersion(!cmd.hasOption("e"), !cmd.hasOption("a"));
   }
 
 }

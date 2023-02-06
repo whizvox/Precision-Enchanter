@@ -28,7 +28,8 @@ public class EnchantableItemEnchantmentStorage implements IEnchantmentStorage {
 
   @Override
   public ItemStack applyEnchantment(ItemStack origStack, EnchantmentInstance instance) {
-    ItemStack copy = origStack.copyWithCount(1);
+    ItemStack copy = origStack.copy();
+    copy.setCount(1);
     var enchantments = EnchantmentHelper.getEnchantments(copy);
     enchantments.put(instance.enchantment, instance.level);
     EnchantmentHelper.setEnchantments(enchantments, copy);
@@ -37,7 +38,8 @@ public class EnchantableItemEnchantmentStorage implements IEnchantmentStorage {
 
   @Override
   public ItemStack removeEnchantment(ItemStack origStack, Enchantment enchantment) {
-    ItemStack copy = origStack.copyWithCount(1);
+    ItemStack copy = origStack.copy();
+    copy.setCount(1);
     var enchantments = EnchantmentHelper.getEnchantments(copy);
     enchantments.remove(enchantment);
     EnchantmentHelper.setEnchantments(enchantments, copy);

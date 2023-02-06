@@ -1,12 +1,12 @@
 package me.whizvox.precisionenchanter.data.server;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -15,10 +15,8 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class EnchantmentRecipeProvider implements DataProvider {
@@ -32,17 +30,19 @@ public class EnchantmentRecipeProvider implements DataProvider {
   }
 
   @Override
-  public CompletableFuture<?> run(CachedOutput out) {
-    final PackOutput.PathProvider pathProvider = gen.getPackOutput().createPathProvider(PackOutput.Target.DATA_PACK, "enchantment_recipes");
-    List<CompletableFuture<?>> list = new ArrayList<>();
+  public void run(CachedOutput out) {
+    DataGenerator.PathProvider pathProvider = gen.createPathProvider(DataGenerator.Target.DATA_PACK, "enchantment_recipes");
     Set<ResourceLocation> ids = new ObjectOpenHashSet<>();
     buildRecipes(recipe -> {
       if (!ids.add(recipe.getId())) {
         throw new IllegalArgumentException("Duplicate recipes: " + recipe.getId());
       }
-      list.add(DataProvider.saveStable(out, EnchantmentRecipeManager.serialize(recipe), pathProvider.json(recipe.getId())));
+      try {
+        DataProvider.saveStable(out, EnchantmentRecipeManager.serialize(recipe), pathProvider.json(recipe.getId()));
+      } catch (IOException e) {
+        PELog.LOGGER.error(PELog.M_DATAGEN, "Could not save enchantment recipe: {}", recipe.getId());
+      }
     });
-    return CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
   }
 
   @Override

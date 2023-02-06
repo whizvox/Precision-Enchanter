@@ -80,13 +80,16 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       tablet.toggleVisibility();
       if (tablet.isVisible()) {
         leftPos = (width - 148) / 2 - 86 + 148;
-        button.setPosition(leftPos - 168, topPos + 20);
+        button.x = leftPos - 168;
       } else {
         leftPos = (width - imageWidth) / 2;
-        button.setPosition(leftPos - 20, topPos + 20);
+        button.x = leftPos - 20;
       }
-      selectUpButton.setPosition(leftPos + 157, topPos + 34);
-      selectDownButton.setPosition(leftPos + 157, topPos + 47);
+      button.y = topPos + 20;
+      selectUpButton.x = leftPos + 157;
+      selectUpButton.y = topPos + 34;
+      selectDownButton.x = selectUpButton.x;
+      selectDownButton.y = topPos + 47;
       updateTabletFocus();
     }));
     selectUpButton.visible = false;
@@ -177,7 +180,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       int xOff = isHovered ? getWidth() : 0;
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      blit(pose, getX(), getY(), srcX + xOff, srcY, getWidth(), getHeight());
+      blit(pose, x, y, srcX + xOff, srcY, getWidth(), getHeight());
     }
 
     @Override
@@ -186,7 +189,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateNarration(NarrationElementOutput output) {
       defaultButtonNarrationText(output);
     }
 

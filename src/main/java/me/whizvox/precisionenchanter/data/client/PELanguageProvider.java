@@ -4,13 +4,13 @@ import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEItems;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class PELanguageProvider extends LanguageProvider {
 
-  public PELanguageProvider(PackOutput output, String locale) {
-    super(output, PrecisionEnchanter.MOD_ID, locale);
+  public PELanguageProvider(DataGenerator gen, String locale) {
+    super(gen, PrecisionEnchanter.MOD_ID, locale);
   }
 
   @Override

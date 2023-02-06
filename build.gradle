@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = 'dev-20230205.1'
+version = '1.19.2-forge-dev-20230205.1'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -12,10 +12,7 @@ java {
 }
 
 minecraft {
-  mappings channel: 'parchment', version: '2022.12.18-1.19.3'
-  // fallback mappings
-  //mappings channel: 'official', version: '1.19.3'
-  //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+  mappings channel: 'parchment', version: '2022.11.27-1.19.2'
   runs {
     client {
       workingDirectory project.file('run')
@@ -92,7 +89,7 @@ sourceSets {
 }
 
 dependencies {
-  minecraft 'net.minecraftforge:forge:1.19.3-44.1.0'
+  minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
 
   checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }

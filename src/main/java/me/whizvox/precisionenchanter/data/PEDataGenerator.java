@@ -9,7 +9,6 @@ import me.whizvox.precisionenchanter.data.server.PERecipeProvider;
 import me.whizvox.precisionenchanter.data.server.loot.PELootTableProvider;
 import me.whizvox.precisionenchanter.data.server.tag.PEBlockTagProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,18 +21,16 @@ public class PEDataGenerator {
 
   private static void onGatherData(final GatherDataEvent event) {
     DataGenerator gen = event.getGenerator();
-    PackOutput output = gen.getPackOutput();
     ExistingFileHelper fileHelper = event.getExistingFileHelper();
-    var lookupProvider = event.getLookupProvider();
     boolean includeClient = event.includeClient();
     boolean includeServer = event.includeServer();
 
-    gen.addProvider(includeClient, new PELanguageProvider(output, "en_us"));
-    gen.addProvider(includeClient, new PEBlockStateProvider(output, fileHelper));
-    gen.addProvider(includeClient, new PEItemModelProvider(output, fileHelper));
-    gen.addProvider(includeServer, new PERecipeProvider(output));
-    gen.addProvider(includeServer, new PEBlockTagProvider(output, lookupProvider, fileHelper));
-    gen.addProvider(includeServer, PELootTableProvider.create(output));
+    gen.addProvider(includeClient, new PELanguageProvider(gen, "en_us"));
+    gen.addProvider(includeClient, new PEBlockStateProvider(gen, fileHelper));
+    gen.addProvider(includeClient, new PEItemModelProvider(gen, fileHelper));
+    gen.addProvider(includeServer, new PERecipeProvider(gen));
+    gen.addProvider(includeServer, new PEBlockTagProvider(gen, fileHelper));
+    gen.addProvider(includeServer, new PELootTableProvider(gen));
     gen.addProvider(includeServer, new EnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
   }
 

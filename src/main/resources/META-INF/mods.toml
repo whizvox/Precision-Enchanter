@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[44,)"
+loaderVersion = "[43,)"
 license = "MIT"
 issueTrackerURL="https://github.com/whizvox/Precision-Enchanter/issues"
 [[mods]]
@@ -18,13 +18,13 @@ Have more control over enchanting! Remove the randomness by crafting and removin
 [[dependencies.precisionenchanter]]
 modId = "forge"
 mandatory = true
-versionRange = "[44,)"
+versionRange = "[43,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.precisionenchanter]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.3,1.20)"
+versionRange = "[1.19.2,1.19.3)"
 ordering = "NONE"
 side = "BOTH"

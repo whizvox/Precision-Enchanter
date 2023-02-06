@@ -4,7 +4,7 @@ import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.block.PrecisionGrindstoneBlock;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.core.Direction;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -12,8 +12,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class PEBlockStateProvider extends BlockStateProvider {
 
-  public PEBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-    super(output, PrecisionEnchanter.MOD_ID, existingFileHelper);
+  public PEBlockStateProvider(DataGenerator gen, ExistingFileHelper existingFileHelper) {
+    super(gen, PrecisionEnchanter.MOD_ID, existingFileHelper);
   }
 
   void registerEnchantersWorkbench() {
