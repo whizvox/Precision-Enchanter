@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.menu;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.lib.PELog;
+import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.MenuUtil;
@@ -46,6 +47,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
   private final DataSlot enchantmentId;
   private final DataSlot enchantmentLevel;
   private final DataSlot hasMultiple;
+  private final DataSlot cost;
 
   private boolean preventResultUpdates;
 
@@ -79,14 +81,21 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       }
     };
 
-    addSlot(new SlotItemHandler(resultSlots, 0, 127, 40) {
+    addSlot(new SlotItemHandler(resultSlots, 0, 127, 39) {
       @Override
       public boolean mayPlace(@NotNull ItemStack stack) {
         return false;
       }
       @Override
+      public boolean mayPickup(Player player) {
+        return EnchantmentRecipe.canCraftEnchantment(player, cost.get());
+      }
+      @Override
       public void onTake(Player player, ItemStack stack) {
         access.execute((level, pos) -> {
+          if (!player.getAbilities().instabuild) {
+            player.giveExperienceLevels(-cost.get());
+          }
           ItemStack scrapeFrom = scrapeFromSlots.getStackInSlot(0);
           ItemStack applyTo = applyOntoSlots.getStackInSlot(0);
           preventResultUpdates = true;
@@ -99,15 +108,16 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
         });
       }
     });
-    addSlot(new SlotItemHandler(scrapeFromSlots, 0, 29, 40));
-    addSlot(new SlotItemHandler(applyOntoSlots, 0, 69, 40));
+    addSlot(new SlotItemHandler(scrapeFromSlots, 0, 29, 39));
+    addSlot(new SlotItemHandler(applyOntoSlots, 0, 69, 39));
 
     MenuUtil.addPlayerInventory(playerInv, this::addSlot);
 
-    int[] sharedSlots = new int[3];
+    int[] sharedSlots = new int[4];
     enchantmentId = DataSlot.shared(sharedSlots, 0);
     enchantmentLevel = DataSlot.shared(sharedSlots, 1);
     hasMultiple = DataSlot.shared(sharedSlots, 2);
+    cost = DataSlot.shared(sharedSlots, 3);
 
     enchantmentId.set(-1);
     hasMultiple.set(BOOL_FALSE);
@@ -115,6 +125,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
     addDataSlot(enchantmentId);
     addDataSlot(enchantmentLevel);
     addDataSlot(hasMultiple);
+    addDataSlot(cost);
 
     enchantments = new ArrayList<>();
     selectedEnchantment = 0;
@@ -161,6 +172,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
         enchantmentLevel.set(0);
         hasMultiple.set(BOOL_FALSE);
         resultSlots.setStackInSlot(0, ItemStack.EMPTY);
+        cost.set(0);
         broadcastChanges();
       }
       preventResultUpdates = false;
@@ -175,6 +187,10 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
     return other == null ?
         enchantmentId.get() == -1 :
         PEEnchantmentHelper.INSTANCE.getId(other.enchantment) == enchantmentId.get() && other.level == enchantmentLevel.get();
+  }
+
+  public int getCost() {
+    return cost.get();
   }
 
   @Nullable
@@ -201,6 +217,13 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       enchantmentId.set(PEEnchantmentHelper.INSTANCE.getId(selected.enchantment));
       enchantmentLevel.set(selected.level);
       resultSlots.setStackInSlot(0, appliedStorage.applyEnchantment(applyOntoSlots.getStackInSlot(0), getSelectedEnchantment()));
+      int costAmount = switch (selected.enchantment.getRarity()) {
+        case COMMON -> 1;
+        case UNCOMMON -> 2;
+        case RARE -> 3;
+        case VERY_RARE -> 4;
+      };
+      cost.set(costAmount);
       broadcastChanges();
     });
   }

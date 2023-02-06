@@ -5,7 +5,7 @@ import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
-import static me.whizvox.precisionenchanter.common.util.ChatUtil.*;
+import static me.whizvox.precisionenchanter.common.util.ChatUtil.ERROR;
 
 public class PELang {
 

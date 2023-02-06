@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = 'dev-20230205'
+version = 'dev-20230205.1'
 
 java {
   archivesBaseName = 'precisionenchanter'
