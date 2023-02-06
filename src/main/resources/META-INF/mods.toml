@@ -6,10 +6,9 @@ issueTrackerURL="https://github.com/whizvox/Precision-Enchanter/issues"
 modId = "precisionenchanter"
 version = "${file.jarVersion}"
 displayName = "Precision Enchanter"
-#updateJSONURL="http://myurl.me/"
+updateJSONURL="https://raw.githubusercontent.com/whizvox/Precision-Enchanter/1.19.2/updates.json"
 displayURL="http://github.com/whizvox/Precision-Enchanter"
-#logoFile="precisionenchanter.png"
-#credits="Thanks for this example mod goes to Java"
+logoFile="precisionenchanter-logo.png"
 authors = "whizvox"
 description = '''
 Have more control over enchanting! Remove the randomness by crafting and removing specific enchantments.

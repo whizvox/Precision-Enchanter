@@ -1,0 +1,10 @@
+{
+  "homepage": "https://github.com/whizvox/Precision-Enchanter",
+  "promos": {
+    "1.19.2-latest": "1.19.2-1.0.0-rc1",
+    "1.19.2-recommended": "1.19.2-1.0.0-rc1"
+  },
+  "1.19.2": {
+    "1.19.2-1.0.0-rc1": "- First release!"
+  }
+}
