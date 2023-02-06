@@ -1,22 +1,22 @@
 {
-  "cost": 21,
+  "cost": 9,
   "ingredients": [
     {
-      "count": 4,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:pufferfish"
+        "item": "minecraft:fishing_rod"
       }
     },
     {
-      "count": 16,
+      "count": 28,
       "ingredient": {
-        "tag": "forge:storage_blocks/gold"
+        "tag": "forge:storage_blocks/lapis"
       }
     },
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:axolotl_bucket"
+        "tag": "forge:gems/emerald"
       }
     }
   ],

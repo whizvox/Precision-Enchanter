@@ -1,5 +1,5 @@
 {
-  "cost": 35,
+  "cost": 6,
   "ingredients": [
     {
       "count": 1,
@@ -8,15 +8,9 @@
       }
     },
     {
-      "count": 64,
+      "count": 48,
       "ingredient": {
         "tag": "forge:gems/prismarine"
-      }
-    },
-    {
-      "count": 16,
-      "ingredient": {
-        "item": "minecraft:crying_obsidian"
       }
     }
   ],

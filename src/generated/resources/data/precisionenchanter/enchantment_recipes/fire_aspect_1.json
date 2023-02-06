@@ -1,16 +1,16 @@
 {
-  "cost": 7,
+  "cost": 3,
   "ingredients": [
     {
-      "count": 1,
+      "count": 3,
       "ingredient": {
-        "item": "minecraft:flint_and_steel"
+        "item": "minecraft:fire_charge"
       }
     },
     {
       "count": 16,
       "ingredient": {
-        "item": "minecraft:magma_block"
+        "item": "minecraft:blaze_powder"
       }
     }
   ],

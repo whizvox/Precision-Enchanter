@@ -1,22 +1,28 @@
 {
-  "cost": 15,
+  "cost": 4,
   "ingredients": [
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
         "item": "minecraft:arrow"
       }
     },
     {
-      "count": 4,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:obsidian"
+        "item": "minecraft:shield"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:phantom_membrane"
       }
     }
   ],

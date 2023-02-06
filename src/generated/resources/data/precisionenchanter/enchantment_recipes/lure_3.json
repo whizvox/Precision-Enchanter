@@ -1,6 +1,12 @@
 {
-  "cost": 21,
+  "cost": 6,
   "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fishing_rod"
+      }
+    },
     {
       "count": 32,
       "ingredient": {
@@ -8,9 +14,9 @@
       }
     },
     {
-      "count": 1,
+      "count": 8,
       "ingredient": {
-        "item": "minecraft:axolotl_bucket"
+        "item": "minecraft:glow_ink_sac"
       }
     }
   ],

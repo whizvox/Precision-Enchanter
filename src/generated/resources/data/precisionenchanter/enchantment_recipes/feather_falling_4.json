@@ -1,6 +1,12 @@
 {
-  "cost": 20,
+  "cost": 8,
   "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:leather_boots"
+      }
+    },
     {
       "count": 32,
       "ingredient": {
@@ -8,21 +14,15 @@
       }
     },
     {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:slime_block"
+      }
+    },
+    {
       "count": 8,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
-      }
-    },
-    {
-      "count": 24,
-      "ingredient": {
-        "tag": "forge:storage_blocks/iron"
-      }
-    },
-    {
-      "count": 12,
-      "ingredient": {
-        "tag": "forge:storage_blocks/coal"
+        "item": "minecraft:sponge"
       }
     }
   ],

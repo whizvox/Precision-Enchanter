@@ -1,14 +1,20 @@
 {
-  "cost": 9,
+  "cost": 5,
   "ingredients": [
     {
-      "count": 32,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:cobweb"
+        "item": "minecraft:golden_pickaxe"
       }
     },
     {
-      "count": 8,
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:string"
+      }
+    },
+    {
+      "count": 6,
       "ingredient": {
         "tag": "forge:gems/emerald"
       }

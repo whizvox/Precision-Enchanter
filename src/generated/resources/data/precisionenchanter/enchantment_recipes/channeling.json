@@ -1,8 +1,8 @@
 {
-  "cost": 9,
+  "cost": 6,
   "ingredients": [
     {
-      "count": 8,
+      "count": 1,
       "ingredient": {
         "item": "minecraft:lightning_rod"
       }
@@ -14,9 +14,15 @@
       }
     },
     {
-      "count": 1,
+      "count": 16,
       "ingredient": {
-        "item": "minecraft:iron_axe"
+        "tag": "forge:dusts/redstone"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:ingots/iron"
       }
     }
   ],

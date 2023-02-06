@@ -1,6 +1,12 @@
 {
-  "cost": 10,
+  "cost": 4,
   "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:leather_boots"
+      }
+    },
     {
       "count": 8,
       "ingredient": {
@@ -8,15 +14,9 @@
       }
     },
     {
-      "count": 2,
+      "count": 4,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
-      }
-    },
-    {
-      "count": 64,
-      "ingredient": {
-        "item": "minecraft:deepslate"
+        "item": "minecraft:slime_block"
       }
     }
   ],

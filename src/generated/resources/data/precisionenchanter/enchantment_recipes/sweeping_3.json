@@ -1,5 +1,5 @@
 {
-  "cost": 21,
+  "cost": 7,
   "ingredients": [
     {
       "count": 1,
@@ -8,9 +8,15 @@
       }
     },
     {
-      "count": 32,
+      "count": 8,
       "ingredient": {
-        "item": "minecraft:slime_block"
+        "tag": "forge:gems/quartz"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:obsidian"
       }
     }
   ],

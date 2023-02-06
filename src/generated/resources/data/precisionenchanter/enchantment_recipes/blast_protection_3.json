@@ -1,5 +1,5 @@
 {
-  "cost": 21,
+  "cost": 4,
   "ingredients": [
     {
       "count": 8,
@@ -14,9 +14,9 @@
       }
     },
     {
-      "count": 16,
+      "count": 32,
       "ingredient": {
-        "tag": "forge:obsidian"
+        "item": "minecraft:cobbled_deepslate"
       }
     }
   ],

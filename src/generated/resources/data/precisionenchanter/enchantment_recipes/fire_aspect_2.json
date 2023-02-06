@@ -1,16 +1,28 @@
 {
-  "cost": 14,
+  "cost": 6,
   "ingredients": [
     {
       "count": 6,
       "ingredient": {
-        "item": "minecraft:blaze_rod"
+        "item": "minecraft:fire_charge"
       }
     },
     {
-      "count": 6,
+      "count": 32,
       "ingredient": {
-        "item": "minecraft:magma_cream"
+        "item": "minecraft:blaze_powder"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:lava_bucket"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:magma_block"
       }
     }
   ],

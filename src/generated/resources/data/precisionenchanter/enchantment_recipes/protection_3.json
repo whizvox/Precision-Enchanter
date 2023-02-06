@@ -1,5 +1,5 @@
 {
-  "cost": 9,
+  "cost": 7,
   "ingredients": [
     {
       "count": 1,
@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 4,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:obsidian"
+        "item": "minecraft:dragon_breath"
       }
     }
   ],

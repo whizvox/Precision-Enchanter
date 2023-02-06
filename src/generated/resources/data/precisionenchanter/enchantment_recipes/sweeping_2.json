@@ -1,5 +1,5 @@
 {
-  "cost": 14,
+  "cost": 4,
   "ingredients": [
     {
       "count": 1,
@@ -10,7 +10,13 @@
     {
       "count": 8,
       "ingredient": {
-        "item": "minecraft:rabbit_hide"
+        "tag": "forge:gems/quartz"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:cobblestone/deepslate"
       }
     }
   ],

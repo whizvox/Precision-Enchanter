@@ -1,28 +1,22 @@
 {
-  "cost": 20,
+  "cost": 5,
   "ingredients": [
     {
-      "count": 32,
+      "count": 1,
       "ingredient": {
         "item": "minecraft:arrow"
       }
     },
     {
-      "count": 8,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 24,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
-      }
-    },
-    {
-      "count": 12,
-      "ingredient": {
-        "tag": "forge:storage_blocks/coal"
+        "item": "minecraft:dragon_breath"
       }
     }
   ],

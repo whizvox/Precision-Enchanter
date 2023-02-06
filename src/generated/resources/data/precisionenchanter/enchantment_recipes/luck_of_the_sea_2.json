@@ -1,22 +1,22 @@
 {
-  "cost": 14,
+  "cost": 6,
   "ingredients": [
     {
-      "count": 2,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:pufferfish"
+        "item": "minecraft:fishing_rod"
       }
     },
     {
-      "count": 4,
-      "ingredient": {
-        "tag": "forge:storage_blocks/gold"
-      }
-    },
-    {
-      "count": 6,
+      "count": 14,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
       }
     }
   ],

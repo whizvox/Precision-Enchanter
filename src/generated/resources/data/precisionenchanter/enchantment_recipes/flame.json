@@ -1,10 +1,16 @@
 {
-  "cost": 7,
+  "cost": 5,
   "ingredients": [
     {
-      "count": 32,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:blaze_powder"
+        "item": "minecraft:bow"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:fire_charge"
       }
     },
     {

@@ -1,5 +1,5 @@
 {
-  "cost": 12,
+  "cost": 9,
   "ingredients": [
     {
       "count": 1,
@@ -8,21 +8,15 @@
       }
     },
     {
-      "count": 8,
+      "count": 32,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 24,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
-      }
-    },
-    {
-      "count": 12,
-      "ingredient": {
-        "tag": "forge:storage_blocks/coal"
+        "item": "minecraft:nether_star"
       }
     }
   ],

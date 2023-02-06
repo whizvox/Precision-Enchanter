@@ -286,10 +286,10 @@ public class EnchantmentRecipe {
     }
     public Builder standardCost() {
       int rarity = switch (result.getRarity()) {
-        case COMMON -> 3;
-        case UNCOMMON -> 5;
-        case RARE -> 7;
-        case VERY_RARE -> 9;
+        case COMMON -> 1;
+        case UNCOMMON -> 2;
+        case RARE -> 3;
+        case VERY_RARE -> 4;
       };
       return cost(rarity * level);
     }

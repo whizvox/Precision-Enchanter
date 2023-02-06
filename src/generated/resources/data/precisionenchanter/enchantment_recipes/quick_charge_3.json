@@ -1,22 +1,16 @@
 {
-  "cost": 15,
+  "cost": 4,
   "ingredients": [
     {
-      "count": 16,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 14,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
-      }
-    },
-    {
-      "count": 48,
-      "ingredient": {
-        "tag": "forge:string"
-      }
-    },
-    {
-      "count": 8,
-      "ingredient": {
-        "item": "minecraft:clay"
       }
     }
   ],

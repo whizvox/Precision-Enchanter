@@ -1,5 +1,5 @@
 {
-  "cost": 7,
+  "cost": 1,
   "ingredients": [
     {
       "count": 1,
@@ -8,15 +8,9 @@
       }
     },
     {
-      "count": 16,
+      "count": 3,
       "ingredient": {
         "tag": "forge:gems/prismarine"
-      }
-    },
-    {
-      "count": 32,
-      "ingredient": {
-        "tag": "forge:cobblestone"
       }
     }
   ],

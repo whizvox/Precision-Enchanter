@@ -1,22 +1,16 @@
 {
-  "cost": 10,
+  "cost": 3,
   "ingredients": [
     {
-      "count": 48,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 64,
       "ingredient": {
         "tag": "forge:dusts/redstone"
-      }
-    },
-    {
-      "count": 32,
-      "ingredient": {
-        "tag": "forge:string"
-      }
-    },
-    {
-      "count": 8,
-      "ingredient": {
-        "tag": "forge:feathers"
       }
     }
   ],

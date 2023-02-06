@@ -1,5 +1,5 @@
 {
-  "cost": 20,
+  "cost": 6,
   "ingredients": [
     {
       "count": 16,
@@ -8,21 +8,21 @@
       }
     },
     {
-      "count": 8,
+      "count": 32,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 24,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
+        "item": "minecraft:powder_snow_bucket"
       }
     },
     {
-      "count": 12,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/coal"
+        "item": "minecraft:dragon_breath"
       }
     }
   ],

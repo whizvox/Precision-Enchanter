@@ -1,5 +1,5 @@
 {
-  "cost": 15,
+  "cost": 4,
   "ingredients": [
     {
       "count": 8,
@@ -8,15 +8,15 @@
       }
     },
     {
-      "count": 4,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:obsidian"
+        "item": "minecraft:powder_snow_bucket"
       }
     }
   ],

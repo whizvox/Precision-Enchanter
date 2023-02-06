@@ -1,10 +1,10 @@
 {
-  "cost": 18,
+  "cost": 4,
   "ingredients": [
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:feathers"
+        "item": "minecraft:golden_boots"
       }
     },
     {

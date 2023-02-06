@@ -1,16 +1,16 @@
 {
-  "cost": 9,
+  "cost": 5,
   "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_pickaxe"
+      }
+    },
     {
       "count": 16,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
-      }
-    },
-    {
-      "count": 8,
-      "ingredient": {
-        "item": "minecraft:packed_ice"
       }
     }
   ],

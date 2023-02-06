@@ -1,5 +1,5 @@
 {
-  "cost": 28,
+  "cost": 5,
   "ingredients": [
     {
       "count": 1,
@@ -8,15 +8,9 @@
       }
     },
     {
-      "count": 32,
+      "count": 24,
       "ingredient": {
         "tag": "forge:gems/prismarine"
-      }
-    },
-    {
-      "count": 1,
-      "ingredient": {
-        "tag": "forge:storage_blocks/netherite"
       }
     }
   ],

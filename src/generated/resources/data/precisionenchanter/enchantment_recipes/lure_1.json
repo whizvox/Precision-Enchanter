@@ -1,16 +1,16 @@
 {
-  "cost": 7,
+  "cost": 2,
   "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fishing_rod"
+      }
+    },
     {
       "count": 8,
       "ingredient": {
         "item": "minecraft:glow_berries"
-      }
-    },
-    {
-      "count": 32,
-      "ingredient": {
-        "item": "minecraft:dirt"
       }
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "cost": 3,
+  "cost": 2,
   "ingredients": [
     {
       "count": 1,
@@ -8,9 +8,9 @@
       }
     },
     {
-      "count": 1,
+      "count": 4,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     }
   ],

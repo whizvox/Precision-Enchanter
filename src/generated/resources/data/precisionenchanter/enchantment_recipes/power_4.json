@@ -1,10 +1,10 @@
 {
-  "cost": 12,
+  "cost": 6,
   "ingredients": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:dispenser"
+        "item": "minecraft:fletching_table"
       }
     },
     {
@@ -14,9 +14,9 @@
       }
     },
     {
-      "count": 1,
+      "count": 16,
       "ingredient": {
-        "tag": "forge:storage_blocks/netherite"
+        "tag": "forge:obsidian"
       }
     }
   ],

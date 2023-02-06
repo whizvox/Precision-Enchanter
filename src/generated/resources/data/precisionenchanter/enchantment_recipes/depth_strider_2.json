@@ -1,10 +1,16 @@
 {
-  "cost": 14,
+  "cost": 4,
   "ingredients": [
     {
-      "count": 12,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:magma_block"
+        "item": "minecraft:leather_boots"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:sugar"
       }
     },
     {

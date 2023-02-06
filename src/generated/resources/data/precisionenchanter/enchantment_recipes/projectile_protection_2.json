@@ -1,22 +1,22 @@
 {
-  "cost": 10,
+  "cost": 2,
   "ingredients": [
     {
-      "count": 8,
+      "count": 1,
       "ingredient": {
         "item": "minecraft:arrow"
       }
     },
     {
-      "count": 2,
+      "count": 8,
       "ingredient": {
-        "tag": "forge:storage_blocks/copper"
+        "tag": "minecraft:wool"
       }
     },
     {
-      "count": 64,
+      "count": 16,
       "ingredient": {
-        "item": "minecraft:deepslate"
+        "item": "minecraft:chain"
       }
     }
   ],

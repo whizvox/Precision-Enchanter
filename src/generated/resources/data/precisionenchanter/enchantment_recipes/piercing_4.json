@@ -1,5 +1,5 @@
 {
-  "cost": 12,
+  "cost": 6,
   "ingredients": [
     {
       "count": 1,
@@ -16,7 +16,7 @@
     {
       "count": 8,
       "ingredient": {
-        "item": "minecraft:crying_obsidian"
+        "tag": "forge:obsidian"
       }
     }
   ],

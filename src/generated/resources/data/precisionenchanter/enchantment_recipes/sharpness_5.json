@@ -1,10 +1,10 @@
 {
-  "cost": 15,
+  "cost": 7,
   "ingredients": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:iron_sword"
+        "item": "minecraft:smithing_table"
       }
     },
     {
@@ -14,9 +14,9 @@
       }
     },
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "item": "minecraft:crying_obsidian"
+        "tag": "forge:storage_blocks/netherite"
       }
     }
   ],

@@ -1,22 +1,16 @@
 {
-  "cost": 5,
+  "cost": 4,
   "ingredients": [
     {
       "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
+        "item": "minecraft:axolotl_bucket"
       }
     },
     {
-      "count": 1,
+      "count": 4,
       "ingredient": {
-        "tag": "forge:storage_blocks/redstone"
-      }
-    },
-    {
-      "count": 1,
-      "ingredient": {
-        "item": "minecraft:salmon"
+        "item": "minecraft:ender_eye"
       }
     }
   ],

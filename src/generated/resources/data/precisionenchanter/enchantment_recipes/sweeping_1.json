@@ -1,5 +1,5 @@
 {
-  "cost": 7,
+  "cost": 2,
   "ingredients": [
     {
       "count": 1,
@@ -8,9 +8,15 @@
       }
     },
     {
-      "count": 1,
+      "count": 4,
       "ingredient": {
-        "item": "minecraft:milk_bucket"
+        "tag": "forge:gems/quartz"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:cobblestone"
       }
     }
   ],

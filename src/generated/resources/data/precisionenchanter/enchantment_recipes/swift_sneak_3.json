@@ -1,5 +1,5 @@
 {
-  "cost": 27,
+  "cost": 4,
   "ingredients": [
     {
       "count": 1,
@@ -8,13 +8,13 @@
       }
     },
     {
-      "count": 16,
+      "count": 32,
       "ingredient": {
         "tag": "forge:feathers"
       }
     },
     {
-      "count": 4,
+      "count": 2,
       "ingredient": {
         "item": "minecraft:blue_ice"
       }

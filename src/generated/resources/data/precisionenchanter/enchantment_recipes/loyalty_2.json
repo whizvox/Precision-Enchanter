@@ -1,28 +1,22 @@
 {
-  "cost": 10,
+  "cost": 6,
   "ingredients": [
     {
-      "count": 4,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
-      }
-    },
-    {
-      "count": 4,
-      "ingredient": {
-        "tag": "forge:storage_blocks/redstone"
+        "item": "minecraft:axolotl_bucket"
       }
     },
     {
       "count": 8,
       "ingredient": {
-        "tag": "forge:bones"
+        "item": "minecraft:ender_eye"
       }
     },
     {
-      "count": 8,
+      "count": 2,
       "ingredient": {
-        "item": "minecraft:beef"
+        "item": "minecraft:shulker_shell"
       }
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "cost": 28,
+  "cost": 6,
   "ingredients": [
     {
       "count": 16,
@@ -16,13 +16,7 @@
     {
       "count": 24,
       "ingredient": {
-        "tag": "forge:storage_blocks/iron"
-      }
-    },
-    {
-      "count": 12,
-      "ingredient": {
-        "tag": "forge:storage_blocks/coal"
+        "tag": "forge:obsidian"
       }
     }
   ],

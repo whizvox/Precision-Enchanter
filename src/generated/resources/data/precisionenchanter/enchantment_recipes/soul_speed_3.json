@@ -1,26 +1,26 @@
 {
-  "cost": 27,
+  "cost": 6,
   "ingredients": [
     {
-      "count": 16,
+      "count": 1,
       "ingredient": {
-        "tag": "forge:feathers"
+        "item": "minecraft:golden_boots"
       }
     },
     {
-      "count": 16,
+      "count": 32,
       "ingredient": {
         "item": "minecraft:soul_sand"
       }
     },
     {
-      "count": 16,
+      "count": 32,
       "ingredient": {
         "item": "minecraft:soul_soil"
       }
     },
     {
-      "count": 4,
+      "count": 2,
       "ingredient": {
         "item": "minecraft:blue_ice"
       }

@@ -27,12 +27,11 @@ public class PECommand {
   }
 
   private static void listItems(CommandSourceStack src, List<?> items, int max, Style itemStyle) {
-    int currentCount = 0;
     for (int i = 0; i < items.size() && i < max; i++) {
       src.sendSystemMessage(createListEntry(items.get(i), itemStyle));
     }
-    if (currentCount < items.size()) {
-      int remaining = items.size() - currentCount;
+    if (max < items.size()) {
+      int currentCount = max;
       MutableComponent remainingItems = createListEntry(items.get(currentCount), itemStyle);
       currentCount++;
       while (currentCount < items.size()) {
@@ -40,7 +39,7 @@ public class PECommand {
         currentCount++;
       }
       src.sendSystemMessage(Component.literal("- ")
-          .append(PELang.nMore(remaining).withStyle(
+          .append(PELang.nMore(items.size() - max).withStyle(
               Style.EMPTY
                   .withUnderlined(true)
                   .withColor(ChatUtil.INFO)

@@ -1,16 +1,16 @@
 {
-  "cost": 14,
+  "cost": 6,
   "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:leather_boots"
+      }
+    },
     {
       "count": 8,
       "ingredient": {
         "item": "minecraft:blue_ice"
-      }
-    },
-    {
-      "count": 1,
-      "ingredient": {
-        "tag": "forge:chests/ender"
       }
     }
   ],
