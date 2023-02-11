@@ -1,0 +1,21 @@
+{
+  "block.precisionenchanter.enchanters_workbench": "付呪師の作業台",
+  "block.precisionenchanter.precision_grindstone": "高精度の砥石",
+  "command.precisionenchanter.check_recipes.free.header": "%s 個の自由レシピが見つかりました :",
+  "command.precisionenchanter.check_recipes.free.none": "自由レシピは見つかりませんでした",
+  "command.precisionenchanter.check_recipes.impossible.header": "%s 個の不可能なレシピが見つかりました:",
+  "command.precisionenchanter.check_recipes.impossible.none": "不可能なレシピは見つかりませんでした",
+  "command.precisionenchanter.generic.more": "... +%s よりも多い",
+  "container.precisionenchanter.enchanters_workbench": "付呪師の作業台",
+  "container.precisionenchanter.precision_grindstone": "高精度の砥石",
+  "item.precisionenchanter.enchanted_quill": "付呪された羽ペン",
+  "item.precisionenchanter.quill": "羽ペン",
+  "itemGroup.precisionenchanter.main": "Precision Enchanting",
+  "screen.precisionenchanter.enchantment_recipe_tablet.search_hint": "検索",
+  "screen.precisionenchanter.enchantment_recipe_tablet.show_all": "全てを表示",
+  "screen.precisionenchanter.enchantment_recipe_tablet.show_craftables": "クラフト可能を表示",
+  "screen.precisionenchanter.enchantment_recipe_tablet.sync_failed": "レシピの同期は失敗しました",
+  "screen.precisionenchanter.generic.loading": "読み込み中",
+  "screen.precisionenchanter.generic.select_next": "次を選択",
+  "screen.precisionenchanter.generic.select_previous": "前を選択"
+}
