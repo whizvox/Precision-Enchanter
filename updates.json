@@ -1,10 +1,11 @@
 {
   "homepage": "https://github.com/whizvox/Precision-Enchanter",
   "promos": {
-    "1.19.3-latest": "1.19.3-1.0.0-rc1",
+    "1.19.3-latest": "1.19.3-1.0.0-rc2",
     "1.19.3-recommended": "1.19.3-1.0.0-rc1"
   },
   "1.19.3": {
-    "1.19.3-1.0.0-rc1": "- First release!"
+    "1.19.3-1.0.0-rc1": "- First release!",
+    "1.19.3.1.0.0-rc2": "- Added ja_jp localization"
   }
 }
