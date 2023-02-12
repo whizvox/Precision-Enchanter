@@ -1,27 +1,27 @@
 {
-  "cost": 5,
   "ingredients": [
     {
-      "count": 64,
       "ingredient": {
         "item": "minecraft:spider_eye"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 64,
       "ingredient": {
         "tag": "forge:string"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 1,
       "ingredient": {
         "tag": "forge:gems/diamond"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:bane_of_arthropods",
     "level": 5
-  }
+  },
+  "cost": 5
 }

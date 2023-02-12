@@ -1,21 +1,21 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:elytra"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:nautilus_shell"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:riptide",
     "level": 2
-  }
+  },
+  "cost": 6
 }

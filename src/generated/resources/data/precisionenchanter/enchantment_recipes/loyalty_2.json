@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:axolotl_bucket"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:ender_eye"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 2,
       "ingredient": {
         "item": "minecraft:shulker_shell"
-      }
+      },
+      "count": 2
     }
   ],
   "result": {
     "enchantment": "minecraft:loyalty",
     "level": 2
-  }
+  },
+  "cost": 6
 }

@@ -1,21 +1,21 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fletching_table"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 14,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
-      }
+      },
+      "count": 14
     }
   ],
   "result": {
     "enchantment": "minecraft:quick_charge",
     "level": 3
-  }
+  },
+  "cost": 4
 }

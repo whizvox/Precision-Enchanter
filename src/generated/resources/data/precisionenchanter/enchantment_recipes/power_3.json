@@ -1,27 +1,27 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fletching_table"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 64,
       "ingredient": {
         "tag": "forge:gems/quartz"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:obsidian"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:power",
     "level": 3
-  }
+  },
+  "cost": 4
 }

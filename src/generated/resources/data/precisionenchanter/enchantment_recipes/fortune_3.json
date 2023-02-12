@@ -1,27 +1,27 @@
 {
-  "cost": 10,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:golden_pickaxe"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 40,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
-      }
+      },
+      "count": 40
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:heart_of_the_sea"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:fortune",
     "level": 3
-  }
+  },
+  "cost": 10
 }

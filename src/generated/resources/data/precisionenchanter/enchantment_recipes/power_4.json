@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fletching_table"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 32,
       "ingredient": {
         "tag": "forge:storage_blocks/quartz"
-      }
+      },
+      "count": 32
     },
     {
-      "count": 16,
       "ingredient": {
         "tag": "forge:obsidian"
-      }
+      },
+      "count": 16
     }
   ],
   "result": {
     "enchantment": "minecraft:power",
     "level": 4
-  }
+  },
+  "cost": 6
 }

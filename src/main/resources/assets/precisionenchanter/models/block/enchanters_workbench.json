@@ -2,7 +2,6 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"ambientocclusion": false,
-	"render_type": "cutout",
 	"textures": {
 		"0": "precisionenchanter:block/enchanters_workbench",
 		"particle": "precisionenchanter:block/enchanters_workbench"

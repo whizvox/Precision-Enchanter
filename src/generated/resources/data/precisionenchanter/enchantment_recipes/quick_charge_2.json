@@ -1,21 +1,21 @@
 {
-  "cost": 3,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fletching_table"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 64,
       "ingredient": {
         "tag": "forge:dusts/redstone"
-      }
+      },
+      "count": 64
     }
   ],
   "result": {
     "enchantment": "minecraft:quick_charge",
     "level": 2
-  }
+  },
+  "cost": 3
 }

@@ -1,21 +1,21 @@
 {
-  "cost": 3,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:iron_pickaxe"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:efficiency",
     "level": 2
-  }
+  },
+  "cost": 3
 }

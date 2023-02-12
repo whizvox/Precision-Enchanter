@@ -1,21 +1,21 @@
 {
-  "cost": 1,
   "ingredients": [
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:rotten_flesh"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:bones"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:smite",
     "level": 1
-  }
+  },
+  "cost": 1
 }

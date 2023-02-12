@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:grindstone"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 27,
       "ingredient": {
         "item": "minecraft:phantom_membrane"
-      }
+      },
+      "count": 27
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:obsidian"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:piercing",
     "level": 4
-  }
+  },
+  "cost": 6
 }

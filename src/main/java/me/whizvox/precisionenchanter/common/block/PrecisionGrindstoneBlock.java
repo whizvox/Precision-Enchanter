@@ -105,7 +105,7 @@ public class PrecisionGrindstoneBlock extends Block {
   @Override
   public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-      NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, pos), pos);
+      NetworkHooks.openGui(serverPlayer, state.getMenuProvider(level, pos), pos);
     }
     return InteractionResult.sidedSuccess(level.isClientSide);
   }

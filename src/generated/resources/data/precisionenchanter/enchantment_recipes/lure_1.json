@@ -1,21 +1,21 @@
 {
-  "cost": 2,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fishing_rod"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:glow_berries"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:lure",
     "level": 1
-  }
+  },
+  "cost": 2
 }

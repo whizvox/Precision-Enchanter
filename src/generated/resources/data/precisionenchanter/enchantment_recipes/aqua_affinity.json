@@ -1,27 +1,27 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:turtle_helmet"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:diamond_pickaxe"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:sea_pickle"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:aqua_affinity",
     "level": 1
-  }
+  },
+  "cost": 4
 }

@@ -1,27 +1,27 @@
 {
-  "cost": 7,
   "ingredients": [
     {
-      "count": 64,
       "ingredient": {
         "item": "minecraft:cactus"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 24,
       "ingredient": {
         "item": "minecraft:moss_block"
-      }
+      },
+      "count": 24
     },
     {
-      "count": 4,
       "ingredient": {
         "item": "minecraft:end_crystal"
-      }
+      },
+      "count": 4
     }
   ],
   "result": {
     "enchantment": "minecraft:thorns",
     "level": 3
-  }
+  },
+  "cost": 7
 }

@@ -181,7 +181,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     return recipes.values().stream().filter(recipe -> recipe.getIngredients().stream().anyMatch(pair -> {
       boolean impossible = true;
       for (ItemStack item : pair.getLeft().getItems()) {
-        if (item.getItem().getMaxStackSize(item) >= pair.getRight()) {
+        if (item.getMaxStackSize() >= pair.getRight()) {
           impossible = false;
           break;
         }

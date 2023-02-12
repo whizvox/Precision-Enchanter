@@ -12,7 +12,11 @@ import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
 import me.whizvox.precisionenchanter.data.PEDataGenerator;
 import me.whizvox.precisionenchanter.server.PECommand;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.ForgeRenderTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -49,6 +53,7 @@ public class PrecisionEnchanter {
 
   private void onClientSetup(final FMLClientSetupEvent event) {
     event.enqueueWork(() -> {
+      ItemBlockRenderTypes.setRenderLayer(PEBlocks.ENCHANTERS_WORKBENCH.get(), RenderType.cutout());
       MenuScreens.register(PEMenus.ENCHANTERS_WORKBENCH.get(), EnchantersWorkbenchScreen::new);
       MenuScreens.register(PEMenus.PRECISION_GRINDSTONE.get(), PrecisionGrindstoneScreen::new);
     });

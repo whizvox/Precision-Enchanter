@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:turtle_helmet"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 2,
       "ingredient": {
         "item": "minecraft:nether_wart_block"
-      }
+      },
+      "count": 2
     },
     {
-      "count": 16,
       "ingredient": {
         "item": "minecraft:seagrass"
-      }
+      },
+      "count": 16
     }
   ],
   "result": {
     "enchantment": "minecraft:respiration",
     "level": 3
-  }
+  },
+  "cost": 6
 }

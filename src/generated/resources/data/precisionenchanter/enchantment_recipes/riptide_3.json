@@ -1,21 +1,21 @@
 {
-  "cost": 9,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:elytra"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:heart_of_the_sea"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:riptide",
     "level": 3
-  }
+  },
+  "cost": 9
 }

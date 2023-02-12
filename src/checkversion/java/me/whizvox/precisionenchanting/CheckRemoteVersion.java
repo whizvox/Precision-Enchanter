@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class CheckRemoteVersion {
 
   private static final String
-      REMOTE_URL = "https://raw.githubusercontent.com/whizvox/Precision-Enchanter/1.19.2/build.gradle";
+      REMOTE_URL = "https://raw.githubusercontent.com/whizvox/Precision-Enchanter/1.18.2/build.gradle";
 
   private static final Pattern VERSION_LINE_PATTERN = Pattern.compile("^version = '(.*)'$");
 
@@ -84,7 +84,8 @@ public class CheckRemoteVersion {
     CommandLineParser parser = new DefaultParser();
     CommandLine cmd = parser.parse(options, args);
 
-    new CheckRemoteVersion().checkRemoteVersion(!cmd.hasOption("e"), !cmd.hasOption("a"));
+    // ignore until repo push
+    //new CheckRemoteVersion().checkRemoteVersion(!cmd.hasOption("e"), !cmd.hasOption("a"));
   }
 
 }

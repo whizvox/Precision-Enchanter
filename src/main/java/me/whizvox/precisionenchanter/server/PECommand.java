@@ -9,10 +9,7 @@ import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.*;
 
 import java.util.List;
 
@@ -23,29 +20,29 @@ public class PECommand {
       MAX_LIST_COUNT = 5;
 
   private static MutableComponent createListEntry(Object obj, Style itemStyle) {
-    return Component.literal("- ").append(ChatUtil.mut(obj).withStyle(itemStyle));
+    return new TextComponent("- ").append(ChatUtil.mut(obj).withStyle(itemStyle));
   }
 
   private static void listItems(CommandSourceStack src, List<?> items, int max, Style itemStyle) {
     for (int i = 0; i < items.size() && i < max; i++) {
-      src.sendSystemMessage(createListEntry(items.get(i), itemStyle));
+      src.sendSuccess(createListEntry(items.get(i), itemStyle), false);
     }
     if (max < items.size()) {
       int currentCount = max;
       MutableComponent remainingItems = createListEntry(items.get(currentCount), itemStyle);
       currentCount++;
       while (currentCount < items.size()) {
-        remainingItems.append(Component.literal("\n").append(createListEntry(items.get(currentCount), itemStyle)));
+        remainingItems.append(new TextComponent("\n").append(createListEntry(items.get(currentCount), itemStyle)));
         currentCount++;
       }
-      src.sendSystemMessage(Component.literal("- ")
+      src.sendSuccess(new TextComponent("- ")
           .append(PELang.nMore(items.size() - max).withStyle(
               Style.EMPTY
                   .withUnderlined(true)
                   .withColor(ChatUtil.INFO)
                   .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, remainingItems))
               )
-          )
+          ), false
       );
     }
   }
@@ -53,9 +50,9 @@ public class PECommand {
   private static int checkForImpossibleRecipes(CommandSourceStack src) {
     var recipes = EnchantmentRecipeManager.INSTANCE.findImpossibleRecipes();
     if (recipes.isEmpty()) {
-      src.sendSystemMessage(PELang.NO_IMPOSSIBLE_RECIPES);
+      src.sendSuccess(PELang.NO_IMPOSSIBLE_RECIPES, false);
     } else {
-      src.sendSystemMessage(PELang.foundImpossibleRecipes(recipes.size()));
+      src.sendSuccess(PELang.foundImpossibleRecipes(recipes.size()), false);
       listItems(src, recipes.stream().map(EnchantmentRecipe::getId).toList(), MAX_LIST_COUNT, Style.EMPTY.withColor(ChatUtil.SECONDARY));
     }
     return SUCCESS;
@@ -64,9 +61,9 @@ public class PECommand {
   private static int checkForFreeRecipes(CommandSourceStack src) {
     var recipes = EnchantmentRecipeManager.INSTANCE.findFreeRecipes();
     if (recipes.isEmpty()) {
-      src.sendSystemMessage(PELang.NO_FREE_RECIPES);
+      src.sendSuccess(PELang.NO_FREE_RECIPES, false);
     } else {
-      src.sendSystemMessage(PELang.foundFreeRecipes(recipes.size()));
+      src.sendSuccess(PELang.foundFreeRecipes(recipes.size()), false);
       listItems(src, recipes.stream().map(EnchantmentRecipe::getId).toList(), MAX_LIST_COUNT, Style.EMPTY.withColor(ChatUtil.SECONDARY));
     }
     return 1;

@@ -1,27 +1,27 @@
 {
-  "cost": 7,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:shield"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 16,
       "ingredient": {
         "tag": "minecraft:wool"
-      }
+      },
+      "count": 16
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:dragon_breath"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:protection",
     "level": 3
-  }
+  },
+  "cost": 7
 }

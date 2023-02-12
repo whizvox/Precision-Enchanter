@@ -1,21 +1,21 @@
 {
-  "cost": 7,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:iron_pickaxe"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 48,
       "ingredient": {
         "tag": "forge:obsidian"
-      }
+      },
+      "count": 48
     }
   ],
   "result": {
     "enchantment": "minecraft:unbreaking",
     "level": 3
-  }
+  },
+  "cost": 7
 }

@@ -1,27 +1,27 @@
 {
-  "cost": 2,
   "ingredients": [
     {
-      "count": 16,
       "ingredient": {
         "item": "minecraft:cactus"
-      }
+      },
+      "count": 16
     },
     {
-      "count": 6,
       "ingredient": {
         "item": "minecraft:moss_block"
-      }
+      },
+      "count": 6
     },
     {
-      "count": 6,
       "ingredient": {
         "item": "minecraft:bone_meal"
-      }
+      },
+      "count": 6
     }
   ],
   "result": {
     "enchantment": "minecraft:thorns",
     "level": 1
-  }
+  },
+  "cost": 2
 }

@@ -1,27 +1,27 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:tnt"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 4,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
-      }
+      },
+      "count": 4
     },
     {
-      "count": 32,
       "ingredient": {
         "item": "minecraft:cobbled_deepslate"
-      }
+      },
+      "count": 32
     }
   ],
   "result": {
     "enchantment": "minecraft:blast_protection",
     "level": 3
-  }
+  },
+  "cost": 4
 }

@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "precisionenchanter:enchanters_workbench",
     "precisionenchanter:precision_grindstone"

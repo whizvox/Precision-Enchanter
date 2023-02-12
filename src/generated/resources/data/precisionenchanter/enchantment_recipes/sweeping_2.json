@@ -1,27 +1,27 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:wooden_sword"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:gems/quartz"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 16,
       "ingredient": {
         "tag": "forge:cobblestone/deepslate"
-      }
+      },
+      "count": 16
     }
   ],
   "result": {
     "enchantment": "minecraft:sweeping",
     "level": 2
-  }
+  },
+  "cost": 4
 }

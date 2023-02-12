@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fishing_rod"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 14,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
-      }
+      },
+      "count": 14
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:rabbit_foot"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:luck_of_the_sea",
     "level": 2
-  }
+  },
+  "cost": 6
 }

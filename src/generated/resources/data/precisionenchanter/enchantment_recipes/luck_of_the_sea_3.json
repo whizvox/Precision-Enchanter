@@ -1,27 +1,27 @@
 {
-  "cost": 9,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:fishing_rod"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 28,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
-      }
+      },
+      "count": 28
     },
     {
-      "count": 1,
       "ingredient": {
         "tag": "forge:gems/emerald"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:luck_of_the_sea",
     "level": 3
-  }
+  },
+  "cost": 9
 }

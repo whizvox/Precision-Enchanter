@@ -1,12 +1,14 @@
 package me.whizvox.precisionenchanter.data.server;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
-import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -16,10 +18,13 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Set;
 import java.util.function.Consumer;
 
 public class EnchantmentRecipeProvider implements DataProvider {
+
+  private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
   private final DataGenerator gen;
   private final String modId;
@@ -30,15 +35,15 @@ public class EnchantmentRecipeProvider implements DataProvider {
   }
 
   @Override
-  public void run(CachedOutput out) {
-    DataGenerator.PathProvider pathProvider = gen.createPathProvider(DataGenerator.Target.DATA_PACK, "enchantment_recipes");
+  public void run(HashCache cache) {
+    Path outDir = gen.getOutputFolder();
     Set<ResourceLocation> ids = new ObjectOpenHashSet<>();
     buildRecipes(recipe -> {
       if (!ids.add(recipe.getId())) {
         throw new IllegalArgumentException("Duplicate recipes: " + recipe.getId());
       }
       try {
-        DataProvider.saveStable(out, EnchantmentRecipeManager.serialize(recipe), pathProvider.json(recipe.getId()));
+        DataProvider.save(GSON, cache, EnchantmentRecipeManager.serialize(recipe), createPath(outDir, recipe.getId()));
       } catch (IOException e) {
         PELog.LOGGER.error(PELog.M_DATAGEN, "Could not save enchantment recipe: {}", recipe.getId());
       }
@@ -48,6 +53,10 @@ public class EnchantmentRecipeProvider implements DataProvider {
   @Override
   public String getName() {
     return "EnchantmentRecipes";
+  }
+
+  private static Path createPath(Path root, ResourceLocation location) {
+    return root.resolve("data/" + location.getNamespace() + "/enchantment_recipes/" + location.getPath() + ".json");
   }
 
   public EnchantmentRecipe.Builder builder(Enchantment result, int level) {
@@ -525,7 +534,7 @@ public class EnchantmentRecipeProvider implements DataProvider {
     output.accept(builder(Enchantments.MENDING)
         .ingredient(Items.MOSS_BLOCK, 64)
         .ingredient(Items.RESPAWN_ANCHOR)
-        .ingredient(Items.SCULK_CATALYST)
+        .ingredient(Items.GHAST_TEAR, 10)
         .cost(10)
         .build());
 
@@ -775,25 +784,6 @@ public class EnchantmentRecipeProvider implements DataProvider {
         .ingredient(Items.SOUL_SOIL, 32)
         .ingredient(Items.BLUE_ICE, 2)
         .cost(6)
-        .build());
-
-    // Swift Sneak
-    output.accept(builder(Enchantments.SWIFT_SNEAK, 1)
-        .ingredient(Items.LEATHER_BOOTS)
-        .ingredient(Tags.Items.FEATHERS, 8)
-        .cost(1)
-        .build());
-    output.accept(builder(Enchantments.SWIFT_SNEAK, 2)
-        .ingredient(Items.LEATHER_BOOTS)
-        .ingredient(Tags.Items.FEATHERS, 16)
-        .ingredient(Items.PACKED_ICE, 4)
-        .cost(2)
-        .build());
-    output.accept(builder(Enchantments.SWIFT_SNEAK, 3)
-        .ingredient(Items.LEATHER_BOOTS)
-        .ingredient(Tags.Items.FEATHERS, 32)
-        .ingredient(Items.BLUE_ICE, 2)
-        .cost(4)
         .build());
 
   }

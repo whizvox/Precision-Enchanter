@@ -24,6 +24,8 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.lwjgl.glfw.GLFW;
@@ -99,7 +101,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     leftPos = (width - 148) / 2 - 86;
     topPos = (height - 167) / 2;
     currentRecipePage = 0;
-    searchBar = new EditBox(mc.font, leftPos + 18, topPos + 6, 123, 13, Component.translatable("itemGroup.search"));
+    searchBar = new EditBox(mc.font, leftPos + 18, topPos + 6, 123, 13, new TranslatableComponent("itemGroup.search"));
     searchBar.setMaxLength(50);
     searchBar.setBordered(false);
     searchBar.setVisible(true);
@@ -157,11 +159,11 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     if (displayedEntries.isEmpty()) {
       prevPageButton.visible = false;
       nextPageButton.visible = false;
-      pageNumberComponent = Component.literal("0 / 0");
+      pageNumberComponent = new TextComponent("0 / 0");
     } else {
       prevPageButton.visible = currentRecipePage > 0;
       nextPageButton.visible = (currentRecipePage + 1) * MAX_RECIPES_PER_PAGE < filteredRecipes.size();
-      pageNumberComponent = Component.literal((currentRecipePage + 1) + " / " + ((filteredRecipes.size() - 1) / MAX_RECIPES_PER_PAGE + 1));
+      pageNumberComponent = new TextComponent((currentRecipePage + 1) + " / " + ((filteredRecipes.size() - 1) / MAX_RECIPES_PER_PAGE + 1));
     }
     updateEntryCraftableStatus();
   }
@@ -355,7 +357,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     boolean craftable;
 
     public EnchantmentEntry(int y, EnchantmentRecipeInfo info) {
-      super(leftPos + 3, topPos + y, 142, 19, Component.literal(info.translatedString));
+      super(leftPos + 3, topPos + y, 142, 19, new TextComponent(info.translatedString));
       this.info = info;
       craftable = false;
     }
@@ -400,7 +402,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     boolean showOnlyCraftable;
 
     public ToggleShowCraftableButton() {
-      super(leftPos - 20, topPos + 42, 20, 20, Component.empty());
+      super(leftPos - 20, topPos + 42, 20, 20, new TextComponent(""));
       showOnlyCraftable = false;
     }
 

@@ -1,27 +1,27 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:leather_boots"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:sugar"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:turtle_egg"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:depth_strider",
     "level": 2
-  }
+  },
+  "cost": 4
 }

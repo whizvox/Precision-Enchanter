@@ -1,21 +1,21 @@
 {
-  "cost": 5,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:iron_sword"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 24,
       "ingredient": {
         "tag": "forge:gems/prismarine"
-      }
+      },
+      "count": 24
     }
   ],
   "result": {
     "enchantment": "minecraft:impaling",
     "level": 4
-  }
+  },
+  "cost": 5
 }

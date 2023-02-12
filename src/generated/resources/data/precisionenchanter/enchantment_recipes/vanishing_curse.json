@@ -1,27 +1,27 @@
 {
-  "cost": 3,
   "ingredients": [
     {
-      "count": 4,
       "ingredient": {
         "item": "minecraft:poisonous_potato"
-      }
+      },
+      "count": 4
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:suspicious_stew"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 4,
       "ingredient": {
         "item": "minecraft:phantom_membrane"
-      }
+      },
+      "count": 4
     }
   ],
   "result": {
     "enchantment": "minecraft:vanishing_curse",
     "level": 1
-  }
+  },
+  "cost": 3
 }

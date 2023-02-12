@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:leather_boots"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:sugar"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:trident"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:depth_strider",
     "level": 3
-  }
+  },
+  "cost": 6
 }

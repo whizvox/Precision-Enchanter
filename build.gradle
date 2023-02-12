@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.2-1.0.0-rc2'
+version = '1.18.2-1.0.0-rc1'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -12,7 +12,7 @@ java {
 }
 
 minecraft {
-  mappings channel: 'parchment', version: '2022.11.27-1.19.2'
+  mappings channel: 'parchment', version: '2022.11.06-1.18.2'
   runs {
     client {
       workingDirectory project.file('run')
@@ -89,7 +89,7 @@ sourceSets {
 }
 
 dependencies {
-  minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+  minecraft 'net.minecraftforge:forge:1.18.2-40.2.0'
 
   checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }

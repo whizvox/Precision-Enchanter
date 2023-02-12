@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:golden_pickaxe"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 20,
       "ingredient": {
         "tag": "forge:storage_blocks/lapis"
-      }
+      },
+      "count": 20
     },
     {
-      "count": 1,
       "ingredient": {
         "tag": "forge:gems/emerald"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:fortune",
     "level": 2
-  }
+  },
+  "cost": 6
 }

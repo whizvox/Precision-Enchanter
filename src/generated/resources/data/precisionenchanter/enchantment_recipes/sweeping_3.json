@@ -1,27 +1,27 @@
 {
-  "cost": 7,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:wooden_sword"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:gems/quartz"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:obsidian"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:sweeping",
     "level": 3
-  }
+  },
+  "cost": 7
 }

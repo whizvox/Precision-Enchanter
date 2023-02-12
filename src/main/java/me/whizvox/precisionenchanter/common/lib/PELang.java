@@ -4,6 +4,7 @@ import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import static me.whizvox.precisionenchanter.common.util.ChatUtil.ERROR;
 
@@ -35,29 +36,29 @@ public class PELang {
   }
 
   public static final Component
-      CREATIVE_MODE_TAB = Component.translatable(Keys.CREATIVE_MODE_TAB),
-      CONTAINER_ENCHANTERS_WORKBENCH = Component.translatable(Keys.CONTAINER_ENCHANTERS_WORKBENCH),
-      CONTAINER_PRECISION_GRINDSTONE = Component.translatable(Keys.CONTAINER_PRECISION_GRINDSTONE),
-      SCREEN_SELECT_PREV = Component.translatable(Keys.SCREEN_SELECT_PREV),
-      SCREEN_SELECT_NEXT = Component.translatable(Keys.SCREEN_SELECT_NEXT),
-      SCREEN_LOADING = Component.translatable(Keys.SCREEN_LOADING),
-      TABLET_SEARCH_HINT = Component.translatable(Keys.TABLET_SEARCH_HINT),
-      TABLET_SYNC_FAILED = Component.translatable(Keys.TABLET_SYNC_FAILED),
-      TABLET_SHOW_ALL = Component.translatable(Keys.TABLET_SHOW_ALL),
-      TABLET_SHOW_CRAFTABLE = Component.translatable(Keys.TABLET_SHOW_CRAFTABLE),
-      NO_IMPOSSIBLE_RECIPES = Component.translatable(Keys.NO_IMPOSSIBLE_RECIPES),
-      NO_FREE_RECIPES = Component.translatable(Keys.NO_FREE_RECIPES);
+      CREATIVE_MODE_TAB = new TranslatableComponent(Keys.CREATIVE_MODE_TAB),
+      CONTAINER_ENCHANTERS_WORKBENCH = new TranslatableComponent(Keys.CONTAINER_ENCHANTERS_WORKBENCH),
+      CONTAINER_PRECISION_GRINDSTONE = new TranslatableComponent(Keys.CONTAINER_PRECISION_GRINDSTONE),
+      SCREEN_SELECT_PREV = new TranslatableComponent(Keys.SCREEN_SELECT_PREV),
+      SCREEN_SELECT_NEXT = new TranslatableComponent(Keys.SCREEN_SELECT_NEXT),
+      SCREEN_LOADING = new TranslatableComponent(Keys.SCREEN_LOADING),
+      TABLET_SEARCH_HINT = new TranslatableComponent(Keys.TABLET_SEARCH_HINT),
+      TABLET_SYNC_FAILED = new TranslatableComponent(Keys.TABLET_SYNC_FAILED),
+      TABLET_SHOW_ALL = new TranslatableComponent(Keys.TABLET_SHOW_ALL),
+      TABLET_SHOW_CRAFTABLE = new TranslatableComponent(Keys.TABLET_SHOW_CRAFTABLE),
+      NO_IMPOSSIBLE_RECIPES = new TranslatableComponent(Keys.NO_IMPOSSIBLE_RECIPES),
+      NO_FREE_RECIPES = new TranslatableComponent(Keys.NO_FREE_RECIPES);
 
   public static MutableComponent nMore(int count) {
-    return Component.translatable(Keys.N_MORE, count);
+    return new TranslatableComponent(Keys.N_MORE, count);
   }
 
   public static MutableComponent foundImpossibleRecipes(int count) {
-    return Component.translatable(Keys.FOUND_IMPOSSIBLE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
+    return new TranslatableComponent(Keys.FOUND_IMPOSSIBLE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
   }
 
   public static MutableComponent foundFreeRecipes(int count) {
-    return Component.translatable(Keys.FOUND_FREE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
+    return new TranslatableComponent(Keys.FOUND_FREE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
   }
 
 }

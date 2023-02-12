@@ -1,27 +1,27 @@
 {
-  "cost": 1,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:arrow"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 4,
       "ingredient": {
         "tag": "minecraft:wool"
-      }
+      },
+      "count": 4
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:chain"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:projectile_protection",
     "level": 1
-  }
+  },
+  "cost": 1
 }

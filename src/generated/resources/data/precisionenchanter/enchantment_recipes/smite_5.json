@@ -1,27 +1,27 @@
 {
-  "cost": 5,
   "ingredients": [
     {
-      "count": 64,
       "ingredient": {
         "item": "minecraft:rotten_flesh"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 64,
       "ingredient": {
         "tag": "forge:bones"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 1,
       "ingredient": {
         "tag": "forge:gems/diamond"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:smite",
     "level": 5
-  }
+  },
+  "cost": 5
 }

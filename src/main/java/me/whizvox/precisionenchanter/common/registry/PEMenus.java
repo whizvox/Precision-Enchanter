@@ -14,7 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class PEMenus {
 
-  private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, PrecisionEnchanter.MOD_ID);
+  private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, PrecisionEnchanter.MOD_ID);
 
   public static void register(IEventBus bus) {
     MENUS.register(bus);

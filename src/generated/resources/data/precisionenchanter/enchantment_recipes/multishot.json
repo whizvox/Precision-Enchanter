@@ -1,21 +1,21 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "tag": "forge:chests/ender"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 16,
       "ingredient": {
         "item": "minecraft:spectral_arrow"
-      }
+      },
+      "count": 16
     }
   ],
   "result": {
     "enchantment": "minecraft:multishot",
     "level": 1
-  }
+  },
+  "cost": 6
 }

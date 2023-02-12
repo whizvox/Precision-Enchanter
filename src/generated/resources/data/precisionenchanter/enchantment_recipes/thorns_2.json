@@ -1,27 +1,27 @@
 {
-  "cost": 5,
   "ingredients": [
     {
-      "count": 32,
       "ingredient": {
         "item": "minecraft:cactus"
-      }
+      },
+      "count": 32
     },
     {
-      "count": 12,
       "ingredient": {
         "item": "minecraft:moss_block"
-      }
+      },
+      "count": 12
     },
     {
-      "count": 3,
       "ingredient": {
         "item": "minecraft:ghast_tear"
-      }
+      },
+      "count": 3
     }
   ],
   "result": {
     "enchantment": "minecraft:thorns",
     "level": 2
-  }
+  },
+  "cost": 5
 }

@@ -1,21 +1,21 @@
 {
-  "cost": 3,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:elytra"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:prismarine"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:riptide",
     "level": 1
-  }
+  },
+  "cost": 3
 }

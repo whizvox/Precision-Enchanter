@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
 
 public class ChatUtil {
 
@@ -14,7 +15,7 @@ public class ChatUtil {
   }
 
   public static MutableComponent mut(Object obj) {
-    return obj instanceof Component comp ? mut(comp) : Component.literal(String.valueOf(obj));
+    return obj instanceof Component comp ? mut(comp) : new TextComponent(String.valueOf(obj));
   }
 
   public static final ChatFormatting

@@ -1,27 +1,27 @@
 {
-  "cost": 4,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:shield"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "minecraft:wool"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:iron_axe"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:protection",
     "level": 2
-  }
+  },
+  "cost": 4
 }

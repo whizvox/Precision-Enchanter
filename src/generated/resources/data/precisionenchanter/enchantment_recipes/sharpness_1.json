@@ -1,27 +1,27 @@
 {
-  "cost": 1,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:smithing_table"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 16,
       "ingredient": {
         "tag": "forge:gems/quartz"
-      }
+      },
+      "count": 16
     },
     {
-      "count": 32,
       "ingredient": {
         "tag": "forge:cobblestone"
-      }
+      },
+      "count": 32
     }
   ],
   "result": {
     "enchantment": "minecraft:sharpness",
     "level": 1
-  }
+  },
+  "cost": 1
 }

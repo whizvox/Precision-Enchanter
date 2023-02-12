@@ -1,33 +1,33 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 16,
       "ingredient": {
         "item": "minecraft:magma_cream"
-      }
+      },
+      "count": 16
     },
     {
-      "count": 32,
       "ingredient": {
         "tag": "minecraft:wool"
-      }
+      },
+      "count": 32
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:powder_snow_bucket"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:dragon_breath"
-      }
+      },
+      "count": 1
     }
   ],
   "result": {
     "enchantment": "minecraft:fire_protection",
     "level": 4
-  }
+  },
+  "cost": 6
 }

@@ -1,27 +1,27 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 16,
       "ingredient": {
         "item": "minecraft:tnt"
-      }
+      },
+      "count": 16
     },
     {
-      "count": 8,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
-      }
+      },
+      "count": 8
     },
     {
-      "count": 24,
       "ingredient": {
         "tag": "forge:obsidian"
-      }
+      },
+      "count": 24
     }
   ],
   "result": {
     "enchantment": "minecraft:blast_protection",
     "level": 4
-  }
+  },
+  "cost": 6
 }

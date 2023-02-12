@@ -1,21 +1,21 @@
 {
-  "cost": 2,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:turtle_helmet"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 4,
       "ingredient": {
         "item": "minecraft:nether_wart"
-      }
+      },
+      "count": 4
     }
   ],
   "result": {
     "enchantment": "minecraft:respiration",
     "level": 1
-  }
+  },
+  "cost": 2
 }

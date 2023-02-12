@@ -1,27 +1,27 @@
 {
-  "cost": 10,
   "ingredients": [
     {
-      "count": 64,
       "ingredient": {
         "item": "minecraft:moss_block"
-      }
+      },
+      "count": 64
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:respawn_anchor"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 1,
       "ingredient": {
-        "item": "minecraft:sculk_catalyst"
-      }
+        "item": "minecraft:ghast_tear"
+      },
+      "count": 10
     }
   ],
   "result": {
     "enchantment": "minecraft:mending",
     "level": 1
-  }
+  },
+  "cost": 10
 }

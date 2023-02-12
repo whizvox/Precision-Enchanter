@@ -1,33 +1,33 @@
 {
-  "cost": 6,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:golden_boots"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 32,
       "ingredient": {
         "item": "minecraft:soul_sand"
-      }
+      },
+      "count": 32
     },
     {
-      "count": 32,
       "ingredient": {
         "item": "minecraft:soul_soil"
-      }
+      },
+      "count": 32
     },
     {
-      "count": 2,
       "ingredient": {
         "item": "minecraft:blue_ice"
-      }
+      },
+      "count": 2
     }
   ],
   "result": {
     "enchantment": "minecraft:soul_speed",
     "level": 3
-  }
+  },
+  "cost": 6
 }

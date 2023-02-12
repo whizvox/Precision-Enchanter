@@ -1,27 +1,27 @@
 {
-  "cost": 1,
   "ingredients": [
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:grindstone"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "minecraft:phantom_membrane"
-      }
+      },
+      "count": 1
     },
     {
-      "count": 8,
       "ingredient": {
         "item": "minecraft:cobblestone"
-      }
+      },
+      "count": 8
     }
   ],
   "result": {
     "enchantment": "minecraft:piercing",
     "level": 1
-  }
+  },
+  "cost": 1
 }
