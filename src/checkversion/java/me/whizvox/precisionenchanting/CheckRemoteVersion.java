@@ -84,8 +84,7 @@ public class CheckRemoteVersion {
     CommandLineParser parser = new DefaultParser();
     CommandLine cmd = parser.parse(options, args);
 
-    // ignore until repo push
-    //new CheckRemoteVersion().checkRemoteVersion(!cmd.hasOption("e"), !cmd.hasOption("a"));
+    new CheckRemoteVersion().checkRemoteVersion(!cmd.hasOption("e"), !cmd.hasOption("a"));
   }
 
 }
