@@ -222,6 +222,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
       if (!recipesLoaded) {
         if (EnchantmentRecipeManager.INSTANCE.isInitialized()) {
           recipesLoaded = true;
+          lastSearch = null;
           refreshCraftableRecipes();
           updateEnchantmentEntries();
         } else if (!syncFailed) {
