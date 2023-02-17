@@ -151,6 +151,7 @@ public class EnchantmentRecipe {
       buf.writeBoolean(false);
     } else {
       buf.writeBoolean(true);
+      buf.writeShort(cost);
       buf.writeByte(ingredients.size());
       ingredients.forEach(pair -> {
         pair.getLeft().toNetwork(buf);
@@ -183,6 +184,7 @@ public class EnchantmentRecipe {
     ResourceLocation id = buf.readResourceLocation();
     Builder builder = builder().id(id);
     if (buf.readBoolean()) {
+      builder.cost(buf.readShort());
       int numIngredients = buf.readByte();
       for (int j = 0; j < numIngredients; j++) {
         builder.ingredient(Ingredient.fromNetwork(buf), buf.readByte());
