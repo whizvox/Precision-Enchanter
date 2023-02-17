@@ -231,7 +231,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
         }
         return true;
       } else {
-        PELog.LOGGER.warn(PELog.side(),
+        PELog.LOGGER.warn(
             "Resulting and actual inventory sizes don't match up: inRes={}, inAct={}, outRes={}, outAct={}",
             result.inputInventory().getSlots(), inputInventory.getSlots(), result.outputInventory(),
             ingredientInputSlots.getSlots()
@@ -276,7 +276,7 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
     if (id > -1) {
       Enchantment enchantment = PEEnchantmentHelper.INSTANCE.get(enchantmentId.get());
       if (enchantment == null) {
-        PELog.LOGGER.warn(PELog.side(), "Could not determine enchantment from numerical ID: {}", id);
+        PELog.LOGGER.warn("Could not determine enchantment from numerical ID: {}", id);
       } else {
         return new EnchantmentInstance(enchantment, enchantmentLevel.get());
       }

@@ -70,7 +70,7 @@ public class EnchantmentStorageManager {
     InterModComms.getMessages(PrecisionEnchanter.MOD_ID, s -> s.equals("RegisterEnchantmentStorage")).forEach(imcMsg -> {
       Object rawMsg = imcMsg.messageSupplier().get();
       if (rawMsg == null || !RegisterEnchantmentStorageMessage.class.isAssignableFrom(rawMsg.getClass())) {
-        PELog.LOGGER.warn(PELog.side(), "Attempted to register a bad codec");
+        PELog.LOGGER.warn("Attempted to register a bad codec");
       } else {
         RegisterEnchantmentStorageMessage msg = (RegisterEnchantmentStorageMessage) rawMsg;
         INSTANCE.register(msg);

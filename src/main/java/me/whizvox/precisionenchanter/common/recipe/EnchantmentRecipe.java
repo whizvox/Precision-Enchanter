@@ -212,7 +212,6 @@ public class EnchantmentRecipe {
         if (enchantment == null) {
           problems.add("result not defined");
         }
-        PELog.LOGGER.warn(PELog.M_SERVER, "Invalid precision enchantment recipe ({}): {}", id, String.join(", ", problems));
       }
     }
 

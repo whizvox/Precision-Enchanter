@@ -57,7 +57,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   private void add(EnchantmentRecipe recipe) {
     recipe = recipe.immutable();
     if (recipe.isInvalid()) {
-      PELog.LOGGER.warn(PELog.side(), "Attempted to register invalid recipe (no ingredients, unset enchantment, or unset ID): {}", recipe.getId());
+      PELog.LOGGER.warn("Attempted to register invalid recipe (no ingredients, unset enchantment, or unset ID): {}", recipe.getId());
     } else {
       recipes.put(recipe.getId(), recipe);
       byEnchantment.computeIfAbsent(recipe.getEnchantment(), enchantment -> new Int2ObjectArrayMap<>()).put(recipe.getLevel(), recipe);
