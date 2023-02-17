@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.3-1.0.0-rc2'
+version = '1.19.3-dev-20230217'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -31,7 +31,7 @@ minecraft {
     }
 
     server {
-      workingDirectory project.file('run')
+      workingDirectory project.file('runserver')
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'

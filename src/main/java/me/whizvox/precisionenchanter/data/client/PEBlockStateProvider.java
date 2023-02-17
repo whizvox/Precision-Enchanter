@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.data.client;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.block.PrecisionGrindstoneBlock;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.core.Direction;

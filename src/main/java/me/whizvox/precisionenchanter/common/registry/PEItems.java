@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.common.registry;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.item.EnchantedQuillItem;
 import me.whizvox.precisionenchanter.common.item.QuillItem;
 import me.whizvox.precisionenchanter.common.lib.PELang;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static me.whizvox.precisionenchanter.common.PrecisionEnchanter.modLoc;
+import static me.whizvox.precisionenchanter.PrecisionEnchanter.modLoc;
 
 public class PEItems {
 

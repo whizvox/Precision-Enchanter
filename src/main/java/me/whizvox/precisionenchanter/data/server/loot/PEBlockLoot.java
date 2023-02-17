@@ -1,7 +1,7 @@
 package me.whizvox.precisionenchanter.data.server.loot;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;

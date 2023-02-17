@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.data.server.tag;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

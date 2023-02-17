@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.common.api;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.api.internal.BookEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.api.internal.EnchantableItemEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.api.internal.EnchantedBookEnchantmentStorage;

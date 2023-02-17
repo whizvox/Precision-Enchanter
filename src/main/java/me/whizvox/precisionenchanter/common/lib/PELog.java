@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.common.lib;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import net.minecraftforge.fml.DistExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

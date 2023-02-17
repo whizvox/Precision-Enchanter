@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.data;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.data.client.PEBlockStateProvider;
 import me.whizvox.precisionenchanter.data.client.PEItemModelProvider;
 import me.whizvox.precisionenchanter.data.client.PELanguageProvider;

@@ -20,6 +20,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.Pair;
@@ -164,8 +165,8 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       });
       markInitialized();
     }
-    // apparently a reload happens upon a server shutting down, so we first have to check if the server is still online
-    if (ServerLifecycleHooks.getCurrentServer() != null) {
+    // check if both the server is still online and if it isn't an embedded singleplayer server
+    if (ServerLifecycleHooks.getCurrentServer() != null && !FMLEnvironment.dist.isClient()) {
       PENetwork.broadcast(SimpleClientBoundMessage.ENCHANTMENT_RECIPES_RELOADED);
     }
   }
