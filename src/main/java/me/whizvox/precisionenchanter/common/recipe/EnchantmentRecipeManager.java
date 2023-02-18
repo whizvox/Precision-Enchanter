@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.recipe;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
@@ -57,7 +58,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   private void add(EnchantmentRecipe recipe) {
     recipe = recipe.immutable();
     if (recipe.isInvalid()) {
-      PELog.LOGGER.warn("Attempted to register invalid recipe (no ingredients, unset enchantment, or unset ID): {}", recipe.getId());
+      PELog.LOGGER.warn("Skipping invalid recipe: {}", recipe.getId());
     } else {
       recipes.put(recipe.getId(), recipe);
       byEnchantment.computeIfAbsent(recipe.getEnchantment(), enchantment -> new Int2ObjectArrayMap<>()).put(recipe.getLevel(), recipe);
@@ -145,9 +146,14 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     clear();
     synchronized (this) {
       entries.forEach((location, json) -> {
-        EnchantmentRecipe recipe = deserialize(json);
-        recipe.setId(location);
-        add(recipe.immutable());
+        try {
+          EnchantmentRecipe recipe = deserialize(json);
+          recipe.setId(location);
+          add(recipe.immutable());
+        } catch (JsonParseException e) {
+          // don't crash if parsing went wrong. just log it.
+          PELog.LOGGER.warn("Could not deserialize enchantment recipe {}: {}", location, e.getMessage());
+        }
       });
       PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded", recipes.size());
       ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {

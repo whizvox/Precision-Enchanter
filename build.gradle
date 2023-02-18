@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.3-dev-20230217.3'
+version = '1.19.3-dev-20230217.4'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -81,6 +81,16 @@ sourceSets.main.resources {
 }
 
 repositories {
+  maven {
+    url = "https://modmaven.dev/"
+  }
+  maven {
+    name 'CurseMaven'
+    url "https://www.cursemaven.com"
+    content {
+      includeGroup "curse.maven"
+    }
+  }
 }
 
 sourceSets {
@@ -92,7 +102,9 @@ sourceSets {
 }
 
 dependencies {
-  minecraft 'net.minecraftforge:forge:1.19.3-44.1.0'
+  minecraft 'net.minecraftforge:forge:1.19.3-44.1.1'
+
+  implementation fg.deobf("teamtwilight:twilightforest:4.2.1549:universal")
 
   checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }
@@ -112,6 +124,11 @@ jar {
 }
 
 jar.finalizedBy('reobfJar')
+
+jar {
+  // don't include data generation package in final JAR file
+  exclude 'me/whizvox/precisionenchanter/data/**'
+}
 
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation

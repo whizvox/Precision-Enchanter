@@ -50,16 +50,31 @@ public class EnchantmentRecipeProvider implements DataProvider {
     return "EnchantmentRecipes";
   }
 
-  public EnchantmentRecipe.Builder builder(Enchantment result, int level) {
+  protected String createPath(Enchantment enchantment, int level) {
+    ResourceLocation id = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
+    String path = id.getPath();
+    if (enchantment.getMaxLevel() > 1) {
+      path += "_" + level;
+    }
+    // if the enchantment comes from another mod, put it in a subdirectory
+    if (!id.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
+      path = id.getNamespace() + "/" + path;
+    }
+    return path;
+  }
+
+  public EnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
     return EnchantmentRecipe.builder()
-        .id(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath() + "_" + level))
+        .id(new ResourceLocation(modId, path))
         .result(result, level);
   }
 
+  public EnchantmentRecipe.Builder builder(Enchantment result, int level) {
+    return builder(result, level, createPath(result, level));
+  }
+
   public EnchantmentRecipe.Builder builder(Enchantment result) {
-    return EnchantmentRecipe.builder()
-        .id(new ResourceLocation(modId, ForgeRegistries.ENCHANTMENTS.getKey(result).getPath()))
-        .result(result, 1);
+    return builder(result, 1, createPath(result, 1));
   }
 
   public void buildRecipes(Consumer<EnchantmentRecipe> output) {

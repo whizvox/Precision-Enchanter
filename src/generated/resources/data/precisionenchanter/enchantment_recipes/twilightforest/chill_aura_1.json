@@ -1,0 +1,27 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "minecraft:ice"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "twilightforest:alpha_yeti_fur"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "twilightforest:chill_aura",
+    "level": 1
+  }
+}
