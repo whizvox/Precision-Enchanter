@@ -1,0 +1,33 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:target"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:spectral_arrow"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:ingots/iron"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:homing",
+    "level": 1
+  }
+}

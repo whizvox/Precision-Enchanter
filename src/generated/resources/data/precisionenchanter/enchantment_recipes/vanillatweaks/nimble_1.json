@@ -1,0 +1,27 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_boots"
+      }
+    },
+    {
+      "count": 3,
+      "ingredient": {
+        "tag": "forge:feathers"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "item": "minecraft:sugar"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:nimble",
+    "level": 1
+  }
+}

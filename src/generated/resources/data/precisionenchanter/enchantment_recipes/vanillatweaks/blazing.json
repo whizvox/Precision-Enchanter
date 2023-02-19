@@ -1,0 +1,33 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:blast_furnace"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:lava_bucket"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:blaze_powder"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:blazing",
+    "level": 1
+  }
+}

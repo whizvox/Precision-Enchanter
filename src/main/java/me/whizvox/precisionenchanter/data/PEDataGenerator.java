@@ -7,6 +7,7 @@ import me.whizvox.precisionenchanter.data.client.PELanguageProvider;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.PERecipeProvider;
 import me.whizvox.precisionenchanter.data.server.compat.TwilightForestEnchantmentRecipeProvider;
+import me.whizvox.precisionenchanter.data.server.compat.VanillaTweaksEnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.loot.PELootTableProvider;
 import me.whizvox.precisionenchanter.data.server.tag.PEBlockTagProvider;
 import net.minecraft.data.DataGenerator;
@@ -47,6 +48,7 @@ public class PEDataGenerator {
     gen.addProvider(includeServer, PELootTableProvider.create(output));
     gen.addProvider(includeServer, new EnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
     gen.addProvider(includeServer, new TwilightForestEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+    gen.addProvider(includeServer, new VanillaTweaksEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
   }
 
 }

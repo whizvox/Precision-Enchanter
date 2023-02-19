@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.3-dev-20230217.4'
+version = '1.19.3-dev-20230218'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -85,6 +85,10 @@ repositories {
     url = "https://modmaven.dev/"
   }
   maven {
+    name = "Jared's maven"
+    url = "https://maven.blamejared.com/"
+  }
+  maven {
     name 'CurseMaven'
     url "https://www.cursemaven.com"
     content {
@@ -104,7 +108,10 @@ sourceSets {
 dependencies {
   minecraft 'net.minecraftforge:forge:1.19.3-44.1.1'
 
-  implementation fg.deobf("teamtwilight:twilightforest:4.2.1549:universal")
+  implementation fg.deobf('teamtwilight:twilightforest:4.2.1549:universal')
+  implementation fg.deobf('curse.maven:vanillatweaks-272637:4166442')
+
+  runtimeOnly fg.deobf('mezz.jei:jei-1.19.3-forge:12.2.0.16')
 
   checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }

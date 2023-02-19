@@ -1,0 +1,21 @@
+{
+  "cost": 1,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "minecraft:glistering_melon_slice"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:vigor",
+    "level": 1
+  }
+}
