@@ -1,0 +1,27 @@
+{
+  "cost": 5,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "tag": "forge:ingots/copper"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:gems/emerald"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:damage_illager",
+    "level": 4
+  }
+}

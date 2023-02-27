@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:diamond_axe"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      }
+    },
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:instigating",
+    "level": 1
+  }
+}

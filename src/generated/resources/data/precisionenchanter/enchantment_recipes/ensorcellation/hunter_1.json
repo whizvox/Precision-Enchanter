@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 30,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:hunter",
+    "level": 1
+  }
+}

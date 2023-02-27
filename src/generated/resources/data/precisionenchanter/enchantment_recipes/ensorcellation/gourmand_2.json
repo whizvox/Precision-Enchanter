@@ -1,0 +1,33 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:cake"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:rabbit_stew"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_apple"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:gourmand",
+    "level": 2
+  }
+}

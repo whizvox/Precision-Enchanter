@@ -1,0 +1,33 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "minecraft:glistering_melon_slice"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:bones"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:leech",
+    "level": 2
+  }
+}

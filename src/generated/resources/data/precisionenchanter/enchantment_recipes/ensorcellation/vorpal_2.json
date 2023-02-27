@@ -1,0 +1,27 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_axe"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:vorpal",
+    "level": 2
+  }
+}

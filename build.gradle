@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.2-1.0.0-rc2'
+version = '1.19.2-dev-20230227'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -78,6 +78,25 @@ sourceSets.main.resources {
 }
 
 repositories {
+  maven {
+    url = "https://modmaven.dev/"
+  }
+  maven {
+    // location of the maven that hosts JEI files
+    name = "Progwml6 maven"
+    url = "https://dvs1.progwml6.com/files/maven/"
+  }
+  maven {
+    name = "Jared's maven"
+    url = "https://maven.blamejared.com/"
+  }
+  maven {
+    name 'CurseMaven'
+    url "https://www.cursemaven.com"
+    content {
+      includeGroup "curse.maven"
+    }
+  }
 }
 
 sourceSets {
@@ -90,6 +109,12 @@ sourceSets {
 
 dependencies {
   minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+
+  implementation fg.deobf('com.teamcofh:cofh_core:1.19.2-10.2.0.38')
+  // for some reason the ensorcellation artifact isn't updated on modmaven, so we have to pull from curse maven instead
+  implementation fg.deobf('curse.maven:ensorcellation-349447:4382362')
+
+  runtimeOnly fg.deobf('mezz.jei:jei-1.19.2-forge:11.6.0.1011')
 
   checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }
@@ -109,6 +134,11 @@ jar {
 }
 
 jar.finalizedBy('reobfJar')
+
+jar {
+  // don't include data generation package in final JAR file
+  exclude 'me/whizvox/precisionenchanter/data/**'
+}
 
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation

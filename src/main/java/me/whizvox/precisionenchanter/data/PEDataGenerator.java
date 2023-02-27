@@ -6,6 +6,8 @@ import me.whizvox.precisionenchanter.data.client.PEItemModelProvider;
 import me.whizvox.precisionenchanter.data.client.PELanguageProvider;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.PERecipeProvider;
+import me.whizvox.precisionenchanter.data.server.compat.CoFHCoreEnchantmentRecipeProvider;
+import me.whizvox.precisionenchanter.data.server.compat.EnsorcellationEnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.loot.PELootTableProvider;
 import me.whizvox.precisionenchanter.data.server.tag.PEBlockTagProvider;
 import net.minecraft.data.DataGenerator;
@@ -32,6 +34,8 @@ public class PEDataGenerator {
     gen.addProvider(includeServer, new PEBlockTagProvider(gen, fileHelper));
     gen.addProvider(includeServer, new PELootTableProvider(gen));
     gen.addProvider(includeServer, new EnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+    gen.addProvider(includeServer, new CoFHCoreEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+    gen.addProvider(includeServer, new EnsorcellationEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
   }
 
 }

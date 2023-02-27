@@ -1,0 +1,27 @@
+{
+  "cost": 3,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:ender_pearls"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:chain"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:damage_ender",
+    "level": 2
+  }
+}

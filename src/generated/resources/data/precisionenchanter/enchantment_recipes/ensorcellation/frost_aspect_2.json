@@ -1,0 +1,27 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:powder_snow_bucket"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:frost_aspect",
+    "level": 2
+  }
+}

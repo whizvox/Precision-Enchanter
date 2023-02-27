@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:ender_pearls"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:chorus_fruit"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:displacement",
+    "level": 2
+  }
+}

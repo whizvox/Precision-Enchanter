@@ -1,0 +1,21 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:sugar"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:quick_draw",
+    "level": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      }
+    },
+    {
+      "count": 48,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:heart_of_the_sea"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:angler",
+    "level": 2
+  }
+}

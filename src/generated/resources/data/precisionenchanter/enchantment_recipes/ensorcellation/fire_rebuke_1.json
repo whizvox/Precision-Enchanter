@@ -1,0 +1,27 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "minecraft:fire_charge"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:piston"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:fire_rebuke",
+    "level": 1
+  }
+}

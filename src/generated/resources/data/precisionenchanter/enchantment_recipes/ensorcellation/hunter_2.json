@@ -1,0 +1,27 @@
+{
+  "cost": 8,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 60,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:heart_of_the_sea"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:hunter",
+    "level": 2
+  }
+}

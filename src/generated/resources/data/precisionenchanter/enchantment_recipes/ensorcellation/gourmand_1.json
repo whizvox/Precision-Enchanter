@@ -1,0 +1,33 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:cooked_beef"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:baked_potato"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:mushrooms"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:gourmand",
+    "level": 1
+  }
+}

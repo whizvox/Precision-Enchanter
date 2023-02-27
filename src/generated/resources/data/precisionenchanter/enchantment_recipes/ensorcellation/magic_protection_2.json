@@ -1,0 +1,27 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:ingots/copper"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/glowstone"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:magic_protection",
+    "level": 2
+  }
+}

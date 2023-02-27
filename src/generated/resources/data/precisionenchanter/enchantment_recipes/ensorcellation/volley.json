@@ -1,0 +1,27 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:arrow"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:chests/ender"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:volley",
+    "level": 1
+  }
+}

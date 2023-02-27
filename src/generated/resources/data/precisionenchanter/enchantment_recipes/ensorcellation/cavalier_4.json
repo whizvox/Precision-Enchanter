@@ -1,0 +1,27 @@
+{
+  "cost": 8,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:diamond_horse_armor"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:storage_blocks/quartz"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:cavalier",
+    "level": 4
+  }
+}

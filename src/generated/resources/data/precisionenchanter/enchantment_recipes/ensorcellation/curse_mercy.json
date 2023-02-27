@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:stone_sword"
+      }
+    },
+    {
+      "count": 5,
+      "ingredient": {
+        "tag": "minecraft:wool"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:chain"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:curse_mercy",
+    "level": 1
+  }
+}

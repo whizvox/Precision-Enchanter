@@ -157,7 +157,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
           int maxLevel = enchantment.getMaxLevel();
           for (int i = 1; i <= maxLevel; i++) {
             if (!byLevel.containsKey(i)) {
-              PELog.LOGGER.debug(PELog.M_SERVER, "Enchantment {} is missing a recipe at level {}", ForgeRegistries.ENCHANTMENTS.getKey(enchantment), i + 1);
+              PELog.LOGGER.debug(PELog.M_SERVER, "Enchantment {} is missing a recipe at level {}", ForgeRegistries.ENCHANTMENTS.getKey(enchantment), i);
             }
           }
         }

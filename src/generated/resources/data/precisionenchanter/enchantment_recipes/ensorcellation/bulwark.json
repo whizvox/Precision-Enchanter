@@ -1,0 +1,27 @@
+{
+  "cost": 5,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:shield"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "minecraft:anvil"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:chain"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:bulwark",
+    "level": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 5,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:soul_lantern"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:respawn_anchor"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:chain"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:soulbound",
+    "level": 1
+  }
+}

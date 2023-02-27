@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:bricks"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "minecraft:poisonous_potato"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:curse_fool",
+    "level": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 3,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fishing_rod"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:angler",
+    "level": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_horse_armor"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:cavalier",
+    "level": 3
+  }
+}

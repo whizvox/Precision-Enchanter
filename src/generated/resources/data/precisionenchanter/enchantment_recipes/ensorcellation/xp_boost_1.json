@@ -1,0 +1,33 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_hoe"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:heads"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:xp_boost",
+    "level": 1
+  }
+}

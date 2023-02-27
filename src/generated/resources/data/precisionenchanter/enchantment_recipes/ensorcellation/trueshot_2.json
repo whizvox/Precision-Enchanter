@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:target"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:dispenser"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:feathers"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:trueshot",
+    "level": 2
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:magic_edge",
+    "level": 2
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:piston"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:frost_rebuke",
+    "level": 1
+  }
+}

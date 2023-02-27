@@ -1,0 +1,27 @@
+{
+  "cost": 2,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_chestplate"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:soul_lantern"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:glistering_melon_slice"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:vitality",
+    "level": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:feathers"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "item": "minecraft:sugar"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:air_affinity",
+    "level": 1
+  }
+}
