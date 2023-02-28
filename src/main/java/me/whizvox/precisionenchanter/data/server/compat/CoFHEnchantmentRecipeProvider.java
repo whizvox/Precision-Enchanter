@@ -1,22 +1,32 @@
 package me.whizvox.precisionenchanter.data.server.compat;
 
 import cofh.core.init.CoreEnchantments;
+import me.whizvox.precisionenchanter.common.api.condition.Condition;
+import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-public class CoFHCoreEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
+public class CoFHEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
 
-  public CoFHCoreEnchantmentRecipeProvider(DataGenerator gen, String modId) {
+  protected static final Condition COFH_LOADED = Condition.modLoaded("cofh_core");
+
+  public CoFHEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
   }
 
   @Override
   public String getName() {
-    return super.getName() + "CoFHCore";
+    return super.getName() + "_CoFHCore";
+  }
+
+  @Override
+  public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
+    return super.builder(result, level, path).condition(Condition.and(COFH_LOADED, Condition.cofhEnchantmentEnabled(result)));
   }
 
   @Override

@@ -1,16 +1,23 @@
 package me.whizvox.precisionenchanter.data.server.compat;
 
 import cofh.ensorcellation.init.EnsorcEnchantments;
+import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.common.api.condition.Condition;
+import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
-import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-public class EnsorcellationEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
+public class EnsorcellationEnchantmentRecipeProvider extends CoFHEnchantmentRecipeProvider {
+
+  private static final Condition ENSORC_LOADED = Condition.modLoaded("ensorcellation");
 
   public EnsorcellationEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
@@ -19,6 +26,11 @@ public class EnsorcellationEnchantmentRecipeProvider extends EnchantmentRecipePr
   @Override
   public String getName() {
     return super.getName() + "_Ensorcellation";
+  }
+
+  @Override
+  public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
+    return super.builder(result, level, path).condition(Condition.and(ENSORC_LOADED, Condition.cofhEnchantmentEnabled(result)));
   }
 
   @Override
@@ -542,6 +554,18 @@ public class EnsorcellationEnchantmentRecipeProvider extends EnchantmentRecipePr
         .ingredient(ItemTags.WOOL, 5)
         .ingredient(Items.CHAIN, 8)
         .standardCost()
+        .build());
+
+    // Thorns IV (the vanilla Thorns enchantment gets boosted a level)
+    output.accept(ConditionalEnchantmentRecipe.builder()
+        .id(new ResourceLocation(PrecisionEnchanter.MOD_ID, "ensorcellation/thorns_4"))
+        .condition(ENSORC_LOADED)
+        .result(Enchantments.THORNS, 4)
+        .ingredient(Items.CACTUS, 64)
+        .ingredient(Items.CACTUS, 64)
+        .ingredient(Items.MOSS_BLOCK, 48)
+        .ingredient(Items.END_CRYSTAL, 8)
+        .cost(10)
         .build());
 
   }

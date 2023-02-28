@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
+import me.whizvox.precisionenchanter.common.api.condition.ConditionFailedException;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.SimpleClientBoundMessage;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.Pair;
@@ -36,6 +38,8 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   private static final Gson GSON = new GsonBuilder()
       .registerTypeAdapter(EnchantmentRecipe.class, EnchantmentRecipe.SERIALIZER)
       .registerTypeAdapter(EnchantmentRecipe.Immutable.class, EnchantmentRecipe.SERIALIZER)
+      .registerTypeAdapter(ConditionalEnchantmentRecipe.class, ConditionalEnchantmentRecipe.SERIALIZER)
+      .registerTypeAdapter(ConditionalEnchantmentRecipe.Immutable.class, ConditionalEnchantmentRecipe.SERIALIZER)
       .create();
 
   private boolean initialized;
@@ -144,9 +148,13 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     clear();
     synchronized (this) {
       entries.forEach((location, json) -> {
-        EnchantmentRecipe recipe = deserialize(json);
-        recipe.setId(location);
-        add(recipe.immutable());
+        try {
+          EnchantmentRecipe recipe = deserialize(json);
+          recipe.setId(location);
+          add(recipe.immutable());
+        } catch (ConditionFailedException e) {
+          PELog.LOGGER.debug("Skipping enchantment recipe {} due to failed condition", location);
+        }
       });
       PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded", recipes.size());
       ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
@@ -165,7 +173,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       markInitialized();
     }
     // apparently a reload happens upon a server shutting down, so we first have to check if the server is still online
-    if (ServerLifecycleHooks.getCurrentServer() != null) {
+    if (ServerLifecycleHooks.getCurrentServer() != null && FMLEnvironment.dist.isDedicatedServer()) {
       PENetwork.broadcast(SimpleClientBoundMessage.ENCHANTMENT_RECIPES_RELOADED);
     }
   }
@@ -241,7 +249,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   public static EnchantmentRecipe deserialize(JsonElement json) {
-    return GSON.fromJson(json, EnchantmentRecipe.class);
+    return GSON.fromJson(json, ConditionalEnchantmentRecipe.class);
   }
 
 }

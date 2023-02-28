@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    }
+  ],
+  "cost": 10,
+  "ingredients": [
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:cactus"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:cactus"
+      }
+    },
+    {
+      "count": 48,
+      "ingredient": {
+        "item": "minecraft:moss_block"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:end_crystal"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "minecraft:thorns",
+    "level": 4
+  }
+}

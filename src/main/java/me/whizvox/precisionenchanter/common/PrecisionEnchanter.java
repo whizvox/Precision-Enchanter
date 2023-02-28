@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common;
 import me.whizvox.precisionenchanter.client.screen.EnchantersWorkbenchScreen;
 import me.whizvox.precisionenchanter.client.screen.PrecisionGrindstoneScreen;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
+import me.whizvox.precisionenchanter.common.compat.cofh.CoFHCompatProxy;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
@@ -41,6 +42,7 @@ public class PrecisionEnchanter {
     PENetwork.register();
     EnchantmentStorageManager.register(modBus);
     modBus.addListener(this::onClientSetup);
+    CoFHCompatProxy.init();
 
     PEEnchantmentHelper.register(forgeBus);
     forgeBus.addListener(this::onRegisterCommands);

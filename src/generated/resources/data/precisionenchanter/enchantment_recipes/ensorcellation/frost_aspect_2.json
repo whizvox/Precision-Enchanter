@@ -1,4 +1,14 @@
 {
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:frost_aspect"
+    }
+  ],
   "cost": 6,
   "ingredients": [
     {
