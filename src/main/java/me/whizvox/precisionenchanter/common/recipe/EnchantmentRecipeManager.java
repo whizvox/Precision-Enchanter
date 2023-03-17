@@ -43,18 +43,22 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       .create();
 
   private boolean initialized;
+  private boolean deferredRecipesChecked;
   private final Map<ResourceLocation, EnchantmentRecipe> recipes;
   private final List<EnchantmentRecipe> byNumId;
   private final Map<ResourceLocation, Integer> reverseByNumId;
   private final Map<Enchantment, Map<Integer, EnchantmentRecipe>> byEnchantment;
+  private final Map<ResourceLocation, ConditionalEnchantmentRecipe> deferredRecipes;
 
   public EnchantmentRecipeManager() {
     super(GSON, "enchantment_recipes");
     initialized = false;
+    deferredRecipesChecked = false;
     recipes = new HashMap<>();
     byNumId = new ArrayList<>();
     reverseByNumId = new HashMap<>();
     byEnchantment = new HashMap<>();
+    deferredRecipes = new HashMap<>();
   }
 
   private void add(EnchantmentRecipe recipe) {
@@ -67,11 +71,38 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       int numId = byNumId.size();
       byNumId.add(recipe);
       reverseByNumId.put(recipe.getId(), numId);
+      if (recipe instanceof ConditionalEnchantmentRecipe condRecipe && condRecipe.condition.shouldDefer()) {
+        deferredRecipes.put(recipe.getId(), condRecipe);
+      }
     }
   }
 
   private void markInitialized() {
     initialized = true;
+    if (deferredRecipes.isEmpty()) {
+      deferredRecipesChecked = true;
+    }
+  }
+
+  private void checkDeferredRecipes() {
+    if (initialized && !deferredRecipesChecked) {
+      synchronized (this) {
+        int initialSize = recipes.size();
+        PELog.LOGGER.debug("Beginning deferred test of {} recipes", deferredRecipes.size());
+        deferredRecipes.forEach((id, recipe) -> {
+          if (!recipe.condition.test()) {
+            recipes.remove(id);
+            PELog.LOGGER.debug("Removed recipe {} due to failed condition", id);
+          }
+        });
+        if (recipes.size() == initialSize) {
+          PELog.LOGGER.debug("Removed 0 recipes");
+        } else {
+          PELog.LOGGER.info("Removed {} recipes", initialSize - recipes.size());
+        }
+        deferredRecipesChecked = true;
+      }
+    }
   }
 
   /**
@@ -85,12 +116,14 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   public SyncEnchantmentRecipesMessage createSyncMessage() {
+    checkDeferredRecipes();
     return new SyncEnchantmentRecipesMessage(List.copyOf(recipes.values()));
   }
 
   @Nullable
   public EnchantmentRecipe get(ResourceLocation id) {
     if (isInitialized()) {
+      checkDeferredRecipes();
       return recipes.get(id);
     }
     return null;
@@ -99,6 +132,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   @Nullable
   public EnchantmentRecipe get(int id) {
     if (isInitialized()) {
+      checkDeferredRecipes();
       return byNumId.get(id);
     }
     return null;
@@ -107,6 +141,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   @Nullable
   public Integer getNumericalId(ResourceLocation id) {
     if (isInitialized()) {
+      checkDeferredRecipes();
       return reverseByNumId.get(id);
     }
     return null;
@@ -122,11 +157,18 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
 
   @Nullable
   public EnchantmentRecipe get(Enchantment enchantment, int level) {
+    checkDeferredRecipes();
     return byEnchantment.getOrDefault(enchantment, Map.of()).getOrDefault(level, null);
   }
 
-  public Stream<Map.Entry<ResourceLocation, EnchantmentRecipe>> stream() {
+  public Stream<Map.Entry<ResourceLocation, EnchantmentRecipe>> entryStream() {
+    checkDeferredRecipes();
     return recipes.entrySet().stream();
+  }
+
+  public Stream<EnchantmentRecipe> stream() {
+    checkDeferredRecipes();
+    return recipes.values().stream();
   }
 
   /**
@@ -138,7 +180,9 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       byNumId.clear();
       reverseByNumId.clear();
       byEnchantment.clear();
+      deferredRecipes.clear();
       initialized = false;
+      deferredRecipesChecked = false;
     }
   }
 
@@ -149,14 +193,14 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     synchronized (this) {
       entries.forEach((location, json) -> {
         try {
-          EnchantmentRecipe recipe = deserialize(json);
+          ConditionalEnchantmentRecipe recipe = deserialize(json);
           recipe.setId(location);
           add(recipe.immutable());
         } catch (ConditionFailedException e) {
           PELog.LOGGER.debug("Skipping enchantment recipe {} due to failed condition", location);
         }
       });
-      PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded", recipes.size());
+      PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded ({} deferred)", recipes.size(), deferredRecipes.size());
       ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
         var byLevel = byEnchantment.get(enchantment);
         if (byLevel == null) {
@@ -186,7 +230,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
    * @return All enchantment recipes that are impossible to craft
    */
   public List<EnchantmentRecipe> findImpossibleRecipes() {
-    return recipes.values().stream().filter(recipe -> recipe.getIngredients().stream().anyMatch(pair -> {
+    return stream().filter(recipe -> recipe.getIngredients().stream().anyMatch(pair -> {
       boolean impossible = true;
       for (ItemStack item : pair.getLeft().getItems()) {
         if (item.getItem().getMaxStackSize(item) >= pair.getRight()) {
@@ -199,7 +243,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   public List<EnchantmentRecipe> findFreeRecipes() {
-    return recipes.values().stream()
+    return stream()
         .filter(recipe -> recipe.getCost() <= 0)
         .toList();
   }
@@ -219,7 +263,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   }
 
   public List<EnchantmentRecipe> match(Container container) {
-    return recipes.values().stream().filter(recipe -> !recipe.isInvalid() && recipe.match(container)).toList();
+    return stream().filter(recipe -> !recipe.isInvalid() && recipe.match(container)).toList();
   }
 
   public List<Pair<EnchantmentRecipe, EnchantmentRecipe.MatchResult>> match(ItemStack stackToEnchant, Container container) {
@@ -228,7 +272,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       return List.of();
     }
     List<Pair<EnchantmentRecipe, EnchantmentRecipe.MatchResult>> matchedRecipes = new ArrayList<>();
-    recipes.values().stream()
+    stream()
         .filter(recipe -> !recipe.isInvalid())
         .forEach(recipe -> {
           EnchantmentInstance instance = new EnchantmentInstance(recipe.getEnchantment(), recipe.getLevel());
@@ -248,7 +292,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
     return GSON.toJsonTree(recipe);
   }
 
-  public static EnchantmentRecipe deserialize(JsonElement json) {
+  public static ConditionalEnchantmentRecipe deserialize(JsonElement json) {
     return GSON.fromJson(json, ConditionalEnchantmentRecipe.class);
   }
 

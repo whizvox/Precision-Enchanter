@@ -9,22 +9,22 @@
       "enchantment": "cofh_core:holding"
     }
   ],
-  "cost": 5,
+  "cost": 10,
   "ingredients": [
     {
-      "count": 4,
+      "count": 16,
       "ingredient": {
         "tag": "forge:storage_blocks/copper"
       }
     },
     {
-      "count": 8,
+      "count": 32,
       "ingredient": {
         "tag": "forge:storage_blocks/redstone"
       }
     },
     {
-      "count": 8,
+      "count": 32,
       "ingredient": {
         "tag": "forge:obsidian"
       }
@@ -32,6 +32,6 @@
   ],
   "result": {
     "enchantment": "cofh_core:holding",
-    "level": 2
+    "level": 4
   }
 }

@@ -36,19 +36,25 @@ public class CoFHEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
         .ingredient(Tags.Items.STORAGE_BLOCKS_COPPER, 2)
         .ingredient(Tags.Items.STORAGE_BLOCKS_REDSTONE, 4)
         .ingredient(Tags.Items.OBSIDIAN, 4)
-        .cost(3)
+        .cost(2)
         .build());
     output.accept(builder(CoreEnchantments.HOLDING.get(), 2)
         .ingredient(Tags.Items.STORAGE_BLOCKS_COPPER, 4)
         .ingredient(Tags.Items.STORAGE_BLOCKS_REDSTONE, 8)
         .ingredient(Tags.Items.OBSIDIAN, 8)
-        .cost(6)
+        .cost(5)
         .build());
     output.accept(builder(CoreEnchantments.HOLDING.get(), 3)
         .ingredient(Tags.Items.STORAGE_BLOCKS_COPPER, 8)
         .ingredient(Tags.Items.STORAGE_BLOCKS_REDSTONE, 16)
         .ingredient(Tags.Items.OBSIDIAN, 16)
-        .cost(9)
+        .cost(7)
+        .build());
+    output.accept(builder(CoreEnchantments.HOLDING.get(), 4)
+        .ingredient(Tags.Items.STORAGE_BLOCKS_COPPER, 16)
+        .ingredient(Tags.Items.STORAGE_BLOCKS_REDSTONE, 32)
+        .ingredient(Tags.Items.OBSIDIAN, 32)
+        .cost(10)
         .build());
   }
 

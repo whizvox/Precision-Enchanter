@@ -15,6 +15,12 @@ public class CoFHEnabledCondition implements Condition {
   }
 
   @Override
+  public boolean shouldDefer() {
+    // configuration files are not read until after data loading is complete during initial world load
+    return true;
+  }
+
+  @Override
   public boolean test() {
     Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(enchantmentId);
     if (enchantment != null) {

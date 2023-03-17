@@ -154,7 +154,8 @@ public class ConditionalEnchantmentRecipe extends EnchantmentRecipe {
     public ConditionalEnchantmentRecipe deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
       JsonObject obj = json.getAsJsonObject();
       Condition condition = PEConditionCodecContext.INSTANCE.parseAllConditions(obj);
-      if (!condition.test()) {
+      // don't yet test the condition if it's marked as "deferred"
+      if (!condition.shouldDefer() && !condition.test()) {
         throw new ConditionFailedException();
       }
       return new ConditionalEnchantmentRecipe(EnchantmentRecipe.SERIALIZER.deserialize(json, type, context), condition);

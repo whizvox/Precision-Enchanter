@@ -135,7 +135,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
       lastSearch = search;
       filteredRecipes.clear();
       String filter = search.toLowerCase(Locale.getDefault());
-      Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.stream()
+      Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.entryStream()
           .map(entry -> new EnchantmentRecipeInfo(entry.getKey(), entry.getValue(), entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).getString()));
       if (!filter.isEmpty()) {
         stream = stream.filter(info -> info.translatedString.toLowerCase(Locale.getDefault()).contains(filter));

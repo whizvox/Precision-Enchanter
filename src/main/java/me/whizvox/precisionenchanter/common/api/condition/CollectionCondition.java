@@ -15,6 +15,11 @@ public abstract class CollectionCondition implements Condition {
     this.terms = terms;
   }
 
+  @Override
+  public boolean shouldDefer() {
+    return terms.stream().anyMatch(Condition::shouldDefer);
+  }
+
   public boolean hasTerms() {
     return !terms.isEmpty();
   }
