@@ -13,8 +13,6 @@ import java.util.function.Consumer;
 
 public class CoFHEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
 
-  protected static final Condition COFH_LOADED = Condition.modLoaded("cofh_core");
-
   public CoFHEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
   }
@@ -26,7 +24,7 @@ public class CoFHEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
 
   @Override
   public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
-    return super.builder(result, level, path).condition(Condition.and(COFH_LOADED, Condition.cofhEnchantmentEnabled(result)));
+    return super.builder(result, level, path).condition(Condition.cofhEnchantmentEnabled(result));
   }
 
   @Override

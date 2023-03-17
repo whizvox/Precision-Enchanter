@@ -3,7 +3,7 @@ package me.whizvox.precisionenchanter.common.recipe;
 import com.google.gson.*;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
-import me.whizvox.precisionenchanter.common.api.condition.Condition;
+import me.whizvox.precisionenchanter.common.api.NoSuchEnchantmentException;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -353,7 +353,7 @@ public class EnchantmentRecipe {
         }
         Enchantment result = ForgeRegistries.ENCHANTMENTS.getValue(enchId);
         if (result == null) {
-          PELog.LOGGER.warn(PELog.M_SERVER, "Unknown enchantment while parsing recipe: {}", enchId);
+          throw new NoSuchEnchantmentException(enchId);
         } else {
           int level = resultJson.get("level").getAsInt();
           builder.result(result, level);

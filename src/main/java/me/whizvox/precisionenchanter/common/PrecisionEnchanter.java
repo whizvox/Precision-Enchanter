@@ -10,7 +10,6 @@ import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEItems;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
-import me.whizvox.precisionenchanter.data.PEDataGenerator;
 import me.whizvox.precisionenchanter.server.PECommand;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
@@ -38,7 +37,6 @@ public class PrecisionEnchanter {
     PEBlocks.register(modBus);
     PEItems.register(modBus);
     PEMenus.register(modBus);
-    PEDataGenerator.register(modBus);
     PENetwork.register();
     EnchantmentStorageManager.register(modBus);
     modBus.addListener(this::onClientSetup);

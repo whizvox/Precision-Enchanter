@@ -13,15 +13,14 @@ import me.whizvox.precisionenchanter.data.server.tag.PEBlockTagProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = PrecisionEnchanter.MOD_ID)
 public class PEDataGenerator {
 
-  public static void register(IEventBus bus) {
-    bus.addListener(PEDataGenerator::onGatherData);
-  }
-
-  private static void onGatherData(final GatherDataEvent event) {
+  @SubscribeEvent
+  public static void onGatherData(final GatherDataEvent event) {
     DataGenerator gen = event.getGenerator();
     ExistingFileHelper fileHelper = event.getExistingFileHelper();
     boolean includeClient = event.includeClient();

@@ -7,6 +7,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.api.condition.ConditionFailedException;
+import me.whizvox.precisionenchanter.common.api.NoSuchEnchantmentException;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.SimpleClientBoundMessage;
@@ -198,6 +199,8 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
           add(recipe.immutable());
         } catch (ConditionFailedException e) {
           PELog.LOGGER.debug("Skipping enchantment recipe {} due to failed condition", location);
+        } catch (NoSuchEnchantmentException e) {
+          PELog.LOGGER.warn("Unknown enchantment while parsing recipe: {}", e.id);
         }
       });
       PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded ({} deferred)", recipes.size(), deferredRecipes.size());

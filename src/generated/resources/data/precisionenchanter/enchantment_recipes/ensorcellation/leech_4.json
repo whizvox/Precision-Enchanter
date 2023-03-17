@@ -1,10 +1,6 @@
 {
   "conditions": [
     {
-      "condition": "mod_loaded",
-      "mod_id": "ensorcellation"
-    },
-    {
       "condition": "cofh_enabled",
       "enchantment": "ensorcellation:leech"
     }
