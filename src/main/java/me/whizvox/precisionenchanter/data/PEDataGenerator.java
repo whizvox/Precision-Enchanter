@@ -6,6 +6,7 @@ import me.whizvox.precisionenchanter.data.client.PEItemModelProvider;
 import me.whizvox.precisionenchanter.data.client.PELanguageProvider;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.PERecipeProvider;
+import me.whizvox.precisionenchanter.data.server.compat.ApotheosisEnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.compat.CoFHEnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.compat.EnsorcellationEnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.loot.PELootTableProvider;
@@ -35,6 +36,7 @@ public class PEDataGenerator {
     gen.addProvider(includeServer, new EnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
     gen.addProvider(includeServer, new CoFHEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
     gen.addProvider(includeServer, new EnsorcellationEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+    gen.addProvider(includeServer, new ApotheosisEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
   }
 
 }

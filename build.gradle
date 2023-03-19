@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.2-dev-20230317.1'
+version = '1.19.2-dev-20230318'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -19,7 +19,9 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
-
+      // apparently these 2 lines are required for some mod mixins to work
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -32,6 +34,8 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -44,6 +48,8 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -56,6 +62,8 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       args '--mod', 'precisionenchanter', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -108,11 +116,14 @@ sourceSets {
 }
 
 dependencies {
-  minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+  minecraft 'net.minecraftforge:forge:1.19.2-43.2.6'
 
   implementation fg.deobf('com.teamcofh:cofh_core:1.19.2-10.2.0.38')
-  // for some reason the ensorcellation artifact isn't updated on modmaven, so we have to pull from curse maven instead
-  implementation fg.deobf('curse.maven:ensorcellation-349447:4382362')
+  implementation fg.deobf('curse.maven:ensorcellation-349447:4382362') // on modmaven, but not updated to 1.19.2
+  implementation fg.deobf('curse.maven:placebo-283644:4441950') // apotheosis library mod
+  implementation fg.deobf('curse.maven:apotheosis-313970:4443341')
+  implementation fg.deobf('curse.maven:vanillatweaks-272637:4013671')
+  implementation fg.deobf('teamtwilight:twilightforest:4.2.1518:universal')
 
   runtimeOnly fg.deobf('mezz.jei:jei-1.19.2-forge:11.6.0.1011')
 
