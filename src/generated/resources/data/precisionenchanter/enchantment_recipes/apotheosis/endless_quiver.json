@@ -6,6 +6,10 @@
     },
     {
       "condition": "apotheosis_module",
+      "module": "enchanting"
+    },
+    {
+      "condition": "apotheosis_module",
       "module": "adventure"
     }
   ],
@@ -18,7 +22,7 @@
       }
     },
     {
-      "count": 24,
+      "count": 12,
       "ingredient": {
         "item": "apotheosis:gem_dust"
       }

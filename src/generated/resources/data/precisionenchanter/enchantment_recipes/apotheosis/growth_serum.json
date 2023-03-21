@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 5,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:shears"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "minecraft:wool"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "item": "minecraft:bone_meal"
+      }
+    },
+    {
+      "count": 12,
+      "ingredient": {
+        "item": "minecraft:moss_block"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:growth_serum",
+    "level": 1
+  }
+}

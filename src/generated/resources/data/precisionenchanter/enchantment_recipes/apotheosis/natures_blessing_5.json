@@ -1,0 +1,31 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 10,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_hoe"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:bone_meal"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:natures_blessing",
+    "level": 5
+  }
+}

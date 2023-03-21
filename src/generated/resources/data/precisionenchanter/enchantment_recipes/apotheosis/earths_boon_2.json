@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:heart_of_the_sea"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:stone"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:earths_boon",
+    "level": 2
+  }
+}

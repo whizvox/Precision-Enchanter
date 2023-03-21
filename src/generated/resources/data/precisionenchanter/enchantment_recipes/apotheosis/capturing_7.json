@@ -6,7 +6,7 @@
     },
     {
       "condition": "apotheosis_module",
-      "module": "adventure"
+      "module": "spawner"
     }
   ],
   "cost": 28,
@@ -24,15 +24,15 @@
       }
     },
     {
-      "count": 8,
+      "count": 64,
       "ingredient": {
-        "item": "apotheosis:common_material"
+        "tag": "forge:dusts/glowstone"
       }
     },
     {
-      "count": 4,
+      "count": 64,
       "ingredient": {
-        "item": "apotheosis:uncommon_material"
+        "tag": "forge:dusts/redstone"
       }
     }
   ],

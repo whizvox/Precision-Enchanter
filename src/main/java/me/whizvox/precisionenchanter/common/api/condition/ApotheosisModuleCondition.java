@@ -1,18 +1,15 @@
 package me.whizvox.precisionenchanter.common.api.condition;
 
 import com.google.gson.JsonObject;
-import shadows.apotheosis.Apotheosis;
+import me.whizvox.precisionenchanter.common.compat.apotheosis.ApotheosisCompatProxy;
 
-import java.util.Map;
-import java.util.function.Supplier;
-
-public record ApotheosisModuleCondition(String module) implements Condition {
+public record ApotheosisModuleCondition(String module) implements NonDeferredCondition {
 
   public static final String
       MODULE_SPAWNER = "spawner",
       MODULE_GARDEN = "garden",
       MODULE_ADVENTURE = "adventure",
-      MODULE_ENCHANTMENT = "enchantment",
+      MODULE_ENCHANTING = "enchanting",
       MODULE_POTION = "potion",
       MODULE_VILLAGE = "village";
 
@@ -20,29 +17,16 @@ public record ApotheosisModuleCondition(String module) implements Condition {
       SPAWNER = new ApotheosisModuleCondition(MODULE_SPAWNER),
       GARDEN = new ApotheosisModuleCondition(MODULE_GARDEN),
       ADVENTURE = new ApotheosisModuleCondition(MODULE_ADVENTURE),
-      ENCHANTMENT = new ApotheosisModuleCondition(MODULE_ENCHANTMENT),
+      ENCHANTING = new ApotheosisModuleCondition(MODULE_ENCHANTING),
       POTION = new ApotheosisModuleCondition(MODULE_POTION),
       VILLAGE = new ApotheosisModuleCondition(MODULE_VILLAGE);
 
-  private static final Map<String, Supplier<Boolean>> MODULES = Map.of(
-      MODULE_SPAWNER, () -> Apotheosis.enableSpawner,
-      MODULE_GARDEN, () -> Apotheosis.enableGarden,
-      MODULE_ADVENTURE, () -> Apotheosis.enableAdventure,
-      MODULE_ENCHANTMENT, () -> Apotheosis.enableEnch,
-      MODULE_POTION, () -> Apotheosis.enablePotion,
-      MODULE_VILLAGE, () -> Apotheosis.enableVillage
-  );
-
   @Override
-  public boolean test(LoadStage stage) {
-    var supplier = MODULES.get(module);
-    if (supplier == null) {
-      throw new IllegalArgumentException("Unknown Apotheosis module: " + module);
-    }
-    return supplier.get();
+  public boolean test() {
+    return ApotheosisCompatProxy.getInstance().isModuleEnabled(module);
   }
 
-  public static final Codec<ApotheosisModuleCondition> CODEC = new Codec<ApotheosisModuleCondition>() {
+  public static final Codec<ApotheosisModuleCondition> CODEC = new Codec<>() {
 
     @Override
     public void encode(ConditionCodecContext ctx, ApotheosisModuleCondition condition, JsonObject out) {
@@ -52,9 +36,6 @@ public record ApotheosisModuleCondition(String module) implements Condition {
     @Override
     public ApotheosisModuleCondition decode(ConditionCodecContext ctx, JsonObject in) {
       String module = in.get("module").getAsString();
-      if (!MODULES.containsKey(module)) {
-        throw new IllegalArgumentException("Unknown Apotheosis module: " + module);
-      }
       return new ApotheosisModuleCondition(module);
     }
 

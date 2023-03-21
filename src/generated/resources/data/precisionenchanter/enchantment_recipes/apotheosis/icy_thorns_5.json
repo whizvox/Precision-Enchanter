@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 11,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:cactus"
+      }
+    },
+    {
+      "count": 28,
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:icy_thorns",
+    "level": 5
+  }
+}

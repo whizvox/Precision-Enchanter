@@ -6,7 +6,7 @@
     },
     {
       "condition": "apotheosis_module",
-      "module": "adventure"
+      "module": "spawner"
     }
   ],
   "cost": 36,
@@ -24,15 +24,15 @@
       }
     },
     {
-      "count": 8,
+      "count": 64,
       "ingredient": {
-        "item": "apotheosis:rare_material"
+        "item": "minecraft:glowstone"
       }
     },
     {
-      "count": 4,
+      "count": 28,
       "ingredient": {
-        "item": "apotheosis:epic_material"
+        "tag": "forge:storage_blocks/redstone"
       }
     }
   ],

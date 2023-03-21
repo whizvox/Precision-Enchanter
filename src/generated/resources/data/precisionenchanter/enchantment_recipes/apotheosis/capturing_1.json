@@ -6,7 +6,7 @@
     },
     {
       "condition": "apotheosis_module",
-      "module": "adventure"
+      "module": "spawner"
     }
   ],
   "cost": 4,

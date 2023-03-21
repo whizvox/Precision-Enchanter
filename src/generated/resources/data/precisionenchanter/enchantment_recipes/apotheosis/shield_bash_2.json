@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:shield"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:diamond_sword"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:shield_bash",
+    "level": 2
+  }
+}

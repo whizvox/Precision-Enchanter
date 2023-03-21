@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 5,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_hoe"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:carrot_on_a_stick"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "item": "minecraft:wheat"
+      }
+    },
+    {
+      "count": 32,
+      "ingredient": {
+        "tag": "forge:seeds"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:tempting",
+    "level": 1
+  }
+}

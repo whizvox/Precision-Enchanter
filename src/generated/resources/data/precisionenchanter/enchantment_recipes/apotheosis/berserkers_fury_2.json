@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "cost": 6,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_axe"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "item": "minecraft:chain"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "minecraft:paper"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:berserkers_fury",
+    "level": 2
+  }
+}
