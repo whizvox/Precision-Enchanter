@@ -12,6 +12,7 @@ import me.whizvox.precisionenchanter.common.network.message.MatchThenMoveEnchant
 import me.whizvox.precisionenchanter.common.network.message.SimpleServerBoundMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractButton;
@@ -136,11 +137,20 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
       filteredRecipes.clear();
       String filter = search.toLowerCase(Locale.getDefault());
       Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.entryStream()
-          .map(entry -> new EnchantmentRecipeInfo(entry.getKey(), entry.getValue(), entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).getString()));
+          .map(entry -> new EnchantmentRecipeInfo(
+              entry.getKey(),
+              entry.getValue(),
+              Component.translatable(entry.getValue().getEnchantment().getDescriptionId()).getString(),
+              entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).copy().withStyle(ChatFormatting.RESET)));
       if (!filter.isEmpty()) {
-        stream = stream.filter(info -> info.translatedString.toLowerCase(Locale.getDefault()).contains(filter));
+        stream = stream.filter(info -> info.fullName.getString().toLowerCase(Locale.getDefault()).contains(filter));
       }
-      stream.sorted(Comparator.comparing(o -> o.translatedString))
+      stream
+          .sorted((o1, o2) ->
+              Comparator.comparing(EnchantmentRecipeInfo::baseTranslatedName)
+                  .thenComparing(info -> info.recipe.getLevel())
+                  .compare(o1, o2)
+          )
           .forEach(filteredRecipes::add);
     }
     if (isShowingOnlyCraftable()) {
@@ -347,7 +357,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     }
   }
 
-  private record EnchantmentRecipeInfo(ResourceLocation id, EnchantmentRecipe recipe, String translatedString) {}
+  private record EnchantmentRecipeInfo(ResourceLocation id, EnchantmentRecipe recipe, String baseTranslatedName, Component fullName) {}
 
   private class EnchantmentEntry extends AbstractButton {
 
@@ -355,7 +365,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     boolean craftable;
 
     public EnchantmentEntry(int y, EnchantmentRecipeInfo info) {
-      super(leftPos + 3, topPos + y, 142, 19, Component.literal(info.translatedString));
+      super(leftPos + 3, topPos + y, 142, 19, info.fullName);
       this.info = info;
       craftable = false;
     }

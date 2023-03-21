@@ -9,18 +9,30 @@
       "module": "spawner"
     }
   ],
-  "cost": 16,
+  "cost": 8,
   "ingredients": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:ender_eye"
+        "item": "minecraft:lead"
       }
     },
     {
-      "count": 32,
+      "count": 16,
       "ingredient": {
         "tag": "forge:eggs"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:dusts/glowstone"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
       }
     }
   ],

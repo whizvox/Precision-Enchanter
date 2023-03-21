@@ -9,12 +9,12 @@
       "module": "spawner"
     }
   ],
-  "cost": 24,
+  "cost": 13,
   "ingredients": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:ender_eye"
+        "item": "minecraft:lead"
       }
     },
     {
