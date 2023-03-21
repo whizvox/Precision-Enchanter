@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.2-dev-20230318'
+version = '1.19.2-dev-20230321'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -86,18 +86,21 @@ sourceSets.main.resources {
 }
 
 repositories {
+  // CoFH Core, Twilight Forest
   maven {
     url = "https://modmaven.dev/"
   }
   maven {
-    // location of the maven that hosts JEI files
+    // JEI
     name = "Progwml6 maven"
     url = "https://dvs1.progwml6.com/files/maven/"
   }
+  // Patchouli
   maven {
     name = "Jared's maven"
     url = "https://maven.blamejared.com/"
   }
+  // everything else
   maven {
     name 'CurseMaven'
     url "https://www.cursemaven.com"
@@ -126,6 +129,7 @@ dependencies {
   implementation fg.deobf('teamtwilight:twilightforest:4.2.1518:universal')
 
   runtimeOnly fg.deobf('mezz.jei:jei-1.19.2-forge:11.6.0.1011')
+  runtimeOnly fg.deobf('vazkii.patchouli:Patchouli:1.19.2-77')
 
   checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }

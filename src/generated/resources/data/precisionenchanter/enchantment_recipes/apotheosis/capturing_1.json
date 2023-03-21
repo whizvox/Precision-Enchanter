@@ -1,0 +1,31 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "adventure"
+    }
+  ],
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:ender_eye"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:eggs"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:capturing",
+    "level": 1
+  }
+}

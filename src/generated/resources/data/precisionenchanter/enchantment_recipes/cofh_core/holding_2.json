@@ -1,6 +1,10 @@
 {
   "conditions": [
     {
+      "condition": "mod_loaded",
+      "mod_id": "cofh_core"
+    },
+    {
       "condition": "cofh_enabled",
       "enchantment": "cofh_core:holding"
     }

@@ -5,6 +5,7 @@ import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.api.condition.Condition;
 import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
+import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -15,7 +16,9 @@ import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-public class EnsorcellationEnchantmentRecipeProvider extends CoFHEnchantmentRecipeProvider {
+public class EnsorcellationEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
+
+  private static final Condition ENSORC_LOADED = Condition.modLoaded("ensorcellation");
 
   public EnsorcellationEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
@@ -28,7 +31,9 @@ public class EnsorcellationEnchantmentRecipeProvider extends CoFHEnchantmentReci
 
   @Override
   public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
-    return super.builder(result, level, path).condition(Condition.cofhEnchantmentEnabled(result));
+    return super.builder(result, level, path)
+        .condition(ENSORC_LOADED)
+        .condition(Condition.cofhEnchantmentEnabled(result));
   }
 
   @Override
@@ -557,7 +562,7 @@ public class EnsorcellationEnchantmentRecipeProvider extends CoFHEnchantmentReci
     // Thorns IV (the vanilla Thorns enchantment gets boosted a level)
     output.accept(ConditionalEnchantmentRecipe.builder()
         .id(new ResourceLocation(PrecisionEnchanter.MOD_ID, "ensorcellation/thorns_4"))
-        .condition(Condition.modLoaded("ensorcellation"))
+        .condition(ENSORC_LOADED)
         .result(Enchantments.THORNS, 4)
         .ingredient(Items.CACTUS, 64)
         .ingredient(Items.CACTUS, 64)

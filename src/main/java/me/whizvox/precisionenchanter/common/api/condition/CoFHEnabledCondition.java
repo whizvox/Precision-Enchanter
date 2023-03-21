@@ -6,18 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class CoFHEnabledCondition implements Condition {
+public class CoFHEnabledCondition implements DeferredCondition {
 
   private final ResourceLocation enchantmentId;
 
   public CoFHEnabledCondition(ResourceLocation enchantmentId) {
     this.enchantmentId = enchantmentId;
-  }
-
-  @Override
-  public boolean shouldDefer() {
-    // configuration files are not read until after data loading is complete during initial world load
-    return true;
   }
 
   @Override

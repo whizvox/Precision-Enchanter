@@ -9,13 +9,13 @@ public class XorCondition extends CollectionCondition {
   }
 
   @Override
-  public boolean test() {
+  public boolean test(LoadStage stage) {
     if (!hasTerms()) {
       return false;
     }
-    boolean result = terms.get(0).test();
+    boolean result = terms.get(0).test(stage);
     for (int i = 1; i < terms.size(); i++) {
-      if (result != terms.get(i).test()) {
+      if (result != terms.get(i).test(stage)) {
         return false;
       }
     }

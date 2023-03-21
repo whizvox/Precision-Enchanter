@@ -8,6 +8,7 @@ import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.api.condition.ConditionFailedException;
 import me.whizvox.precisionenchanter.common.api.NoSuchEnchantmentException;
+import me.whizvox.precisionenchanter.common.api.condition.LoadStage;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.SimpleClientBoundMessage;
@@ -91,7 +92,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
         int initialSize = recipes.size();
         PELog.LOGGER.debug("Beginning deferred test of {} recipes", deferredRecipes.size());
         deferredRecipes.forEach((id, recipe) -> {
-          if (!recipe.condition.test()) {
+          if (!recipe.condition.test(LoadStage.POST_LOAD)) {
             recipes.remove(id);
             PELog.LOGGER.debug("Removed recipe {} due to failed condition", id);
           }

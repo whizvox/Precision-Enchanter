@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "adventure"
+    }
+  ],
+  "cost": 28,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:ender_eye"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "forge:eggs"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "apotheosis:common_material"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "apotheosis:uncommon_material"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:capturing",
+    "level": 7
+  }
+}

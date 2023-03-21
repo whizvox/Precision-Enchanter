@@ -9,14 +9,14 @@ import java.util.Arrays;
 
 public interface Condition {
 
-  boolean test();
+  boolean test(LoadStage stage);
 
   /**
    * There are some conditions where testing should not happen during a data load, but afterwards. If this condition's
    * test is to be "deferred", then a kind of lazy testing is done instead, where the test is stored, rather than acted
    * upon, during data loading. Later, when some procedure needs to access the enchantment recipe this condition is
    * bound to, that is when all deferred tests are done.
-   * @return <code>false</code> if {@link #test()} is called and acted upon during data loading, or <code>true</code>
+   * @return <code>false</code> if {@link #test(LoadStage)} is called and acted upon during data loading, or <code>true</code>
    * should the test instead be deferred until later.
    */
   default boolean shouldDefer() {
@@ -31,9 +31,9 @@ public interface Condition {
 
   }
 
-  Condition TAUTOLOGY = () -> true;
+  Condition TAUTOLOGY = (stage) -> true;
 
-  Condition CONTRADICTION = () -> false;
+  Condition CONTRADICTION = (stage) -> false;
 
   static Condition not(Condition condition) {
     return new NotCondition(condition);

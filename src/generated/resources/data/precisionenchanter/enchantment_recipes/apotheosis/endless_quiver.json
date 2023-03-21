@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "adventure"
+    }
+  ],
+  "cost": 9,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      }
+    },
+    {
+      "count": 24,
+      "ingredient": {
+        "item": "apotheosis:gem_dust"
+      }
+    },
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "minecraft:arrow"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:endless_quiver",
+    "level": 1
+  }
+}

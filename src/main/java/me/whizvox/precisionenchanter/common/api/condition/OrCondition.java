@@ -9,8 +9,8 @@ public class OrCondition extends CollectionCondition {
   }
 
   @Override
-  public boolean test() {
-    return terms.stream().anyMatch(Condition::test);
+  public boolean test(LoadStage stage) {
+    return terms.stream().anyMatch(condition -> condition.test(stage));
   }
 
   public static final Codec<OrCondition> CODEC = CollectionCondition.createCodec(OrCondition::new);

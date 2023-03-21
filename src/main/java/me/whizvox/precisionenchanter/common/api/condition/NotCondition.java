@@ -5,8 +5,16 @@ import com.google.gson.JsonObject;
 public record NotCondition(Condition term) implements Condition {
 
   @Override
-  public boolean test() {
-    return !term.test();
+  public boolean test(LoadStage stage) {
+    if (shouldDefer() && stage == LoadStage.LOAD) {
+      return true;
+    }
+    return !term.test(stage);
+  }
+
+  @Override
+  public boolean shouldDefer() {
+    return term.shouldDefer();
   }
 
   public static final Codec<NotCondition> CODEC = new Codec<>() {

@@ -3,7 +3,7 @@ package me.whizvox.precisionenchanter.common.api.condition;
 import com.google.gson.JsonObject;
 import net.minecraftforge.fml.ModList;
 
-public class ModLoadedCondition implements Condition {
+public class ModLoadedCondition implements NonDeferredCondition {
 
   private final String modId;
 

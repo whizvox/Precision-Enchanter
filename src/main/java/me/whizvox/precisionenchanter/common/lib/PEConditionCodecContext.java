@@ -12,6 +12,8 @@ public class PEConditionCodecContext extends ConditionCodecContext {
     register("or", OrCondition.CODEC, OrCondition.class);
     register("xor", XorCondition.CODEC, XorCondition.class);
     register("mod_loaded", ModLoadedCondition.CODEC, ModLoadedCondition.class);
+    register("apotheosis_module", ApotheosisModuleCondition.CODEC, ApotheosisModuleCondition.class);
+    register("tag_exists", TagExistsCondition.CODEC, TagExistsCondition.class);
     register("cofh_enabled", CoFHEnabledCondition.CODEC, CoFHEnabledCondition.class);
   }
 

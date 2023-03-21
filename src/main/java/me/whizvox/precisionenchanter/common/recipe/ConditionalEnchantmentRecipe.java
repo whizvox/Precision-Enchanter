@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.recipe;
 import com.google.gson.*;
 import me.whizvox.precisionenchanter.common.api.condition.Condition;
 import me.whizvox.precisionenchanter.common.api.condition.ConditionFailedException;
+import me.whizvox.precisionenchanter.common.api.condition.LoadStage;
 import me.whizvox.precisionenchanter.common.lib.PEConditionCodecContext;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import net.minecraft.resources.ResourceLocation;
@@ -75,9 +76,9 @@ public class ConditionalEnchantmentRecipe extends EnchantmentRecipe {
   }
 
   public static final class Builder extends EnchantmentRecipe.Builder {
-    private Condition condition;
+    private List<Condition> conditions;
     public Builder() {
-      condition = Condition.TAUTOLOGY;
+      conditions = new ArrayList<>();
     }
     @Override
     public Builder id(ResourceLocation id) {
@@ -135,12 +136,14 @@ public class ConditionalEnchantmentRecipe extends EnchantmentRecipe {
       return this;
     }
     public Builder condition(Condition condition) {
-      this.condition = condition;
+      this.conditions.add(condition);
       return this;
     }
     @Override
     public ConditionalEnchantmentRecipe buildMutable() {
-      return new ConditionalEnchantmentRecipe(super.buildMutable(), condition);
+      // if no conditions are supplied, default to tautology. else, combine all of them into an AND condition
+      return new ConditionalEnchantmentRecipe(super.buildMutable(), conditions.isEmpty() ?
+          Condition.TAUTOLOGY : Condition.and(conditions.toArray(Condition[]::new)));
     }
     @Override
     public ConditionalEnchantmentRecipe build() {
@@ -154,8 +157,9 @@ public class ConditionalEnchantmentRecipe extends EnchantmentRecipe {
     public ConditionalEnchantmentRecipe deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
       JsonObject obj = json.getAsJsonObject();
       Condition condition = PEConditionCodecContext.INSTANCE.parseAllConditions(obj);
-      // don't yet test the condition if it's marked as "deferred"
-      if (!condition.shouldDefer() && !condition.test()) {
+      // fail loading if the condition tests false
+      // is there a better way to do this rather than assuming that the load stage is always LOAD at this point?
+      if (!condition.test(LoadStage.LOAD)) {
         throw new ConditionFailedException();
       }
       return new ConditionalEnchantmentRecipe(EnchantmentRecipe.SERIALIZER.deserialize(json, type, context), condition);
