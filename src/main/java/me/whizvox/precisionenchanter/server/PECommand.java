@@ -13,8 +13,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public class PECommand {
 
@@ -72,12 +78,48 @@ public class PECommand {
     return 1;
   }
 
-  private static int checkRecipes(CommandSourceStack src) {
-    int ret;
-    if ((ret = checkForImpossibleRecipes(src)) != 1) {
-      return ret;
+  private static final ResourceLocation[] IGNORED_ENCHANTMENTS = new ResourceLocation[] {
+      new ResourceLocation("apotheosis", "infusion") // placeholder enchantment for Apotheosis
+  };
+
+  /*static {
+    Arrays.sort(IGNORED_ENCHANTMENTS);
+  }*/
+
+  private static int checkForUnavailableRecipes(CommandSourceStack src) {
+    List<EnchantmentInstance> unavailable = new ArrayList<>();
+    ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment -> {
+      ResourceLocation id = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
+      if (Arrays.binarySearch(IGNORED_ENCHANTMENTS, id) < 0) {
+        for (int level = 1; level <= enchantment.getMaxLevel(); level++) {
+          if (EnchantmentRecipeManager.INSTANCE.get(enchantment, level) == null) {
+            unavailable.add(new EnchantmentInstance(enchantment, level));
+          }
+        }
+      }
+    });
+    if (unavailable.isEmpty()) {
+      src.sendSystemMessage(PELang.NO_MISSING_RECIPES);
+    } else {
+      src.sendSystemMessage(PELang.foundMissingRecipes(unavailable.size()));
+      listItems(src, unavailable.stream().map(inst -> ForgeRegistries.ENCHANTMENTS.getKey(inst.enchantment) + " " + inst.level).toList(), MAX_LIST_COUNT, Style.EMPTY.withColor(ChatUtil.SECONDARY));
     }
-    return checkForFreeRecipes(src);
+    return SUCCESS;
+  }
+
+  @SafeVarargs
+  private static int runMultiple(CommandSourceStack src, Function<CommandSourceStack, Integer>... commands) {
+    for (Function<CommandSourceStack, Integer> command : commands) {
+      int ret = command.apply(src);
+      if (ret != SUCCESS) {
+        return ret;
+      }
+    }
+    return SUCCESS;
+  }
+
+  private static int checkRecipes(CommandSourceStack src) {
+    return runMultiple(src, PECommand::checkForImpossibleRecipes, PECommand::checkForFreeRecipes, PECommand::checkForUnavailableRecipes);
   }
 
   public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -85,6 +127,9 @@ public class PECommand {
             .then(Commands.literal("checkrecipes")
                 .requires(src -> src.hasPermission(1))
                 .executes(ctx -> checkRecipes(ctx.getSource()))
+                .then(Commands.literal("impossible").executes(ctx -> checkForImpossibleRecipes(ctx.getSource())))
+                .then(Commands.literal("free").executes(ctx -> checkForFreeRecipes(ctx.getSource())))
+                .then(Commands.literal("unavailable").executes(ctx -> checkForUnavailableRecipes(ctx.getSource())))
             );
     dispatcher.register(mainCommand);
   }

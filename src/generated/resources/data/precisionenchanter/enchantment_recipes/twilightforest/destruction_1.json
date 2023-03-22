@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "twilightforest"
+    }
+  ],
   "cost": 1,
   "ingredients": [
     {

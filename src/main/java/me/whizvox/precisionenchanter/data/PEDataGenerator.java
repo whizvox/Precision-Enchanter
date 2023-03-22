@@ -47,6 +47,8 @@ public class PEDataGenerator {
     gen.addProvider(includeServer, new PEBlockTagProvider(output, lookupProvider, fileHelper));
     gen.addProvider(includeServer, PELootTableProvider.create(output));
     gen.addProvider(includeServer, new EnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+
+    // mod compatibility recipes
     gen.addProvider(includeServer, new TwilightForestEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
     gen.addProvider(includeServer, new VanillaTweaksEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
   }

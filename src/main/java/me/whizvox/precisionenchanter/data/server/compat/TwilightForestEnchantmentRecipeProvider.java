@@ -1,15 +1,21 @@
 package me.whizvox.precisionenchanter.data.server.compat;
 
+import me.whizvox.precisionenchanter.common.api.condition.Condition;
+import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import twilightforest.TwilightForestMod;
 import twilightforest.init.TFEnchantments;
 import twilightforest.init.TFItems;
 
 import java.util.function.Consumer;
 
 public class TwilightForestEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
+
+  private static final Condition TWILIGHT_FOREST_LOADED = Condition.modLoaded(TwilightForestMod.ID);
 
   public TwilightForestEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
@@ -18,6 +24,11 @@ public class TwilightForestEnchantmentRecipeProvider extends EnchantmentRecipePr
   @Override
   public String getName() {
     return super.getName() + "_TwilightForest";
+  }
+
+  @Override
+  public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
+    return super.builder(result, level, path).condition(TWILIGHT_FOREST_LOADED);
   }
 
   @Override

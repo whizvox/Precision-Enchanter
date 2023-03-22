@@ -1,6 +1,9 @@
 package me.whizvox.precisionenchanter.data.server.compat;
 
+import io.github.strikerrocker.vt.VanillaTweaks;
 import io.github.strikerrocker.vt.enchantments.EnchantmentInit;
+import me.whizvox.precisionenchanter.common.api.condition.Condition;
+import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import net.minecraft.data.DataGenerator;
@@ -13,6 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Consumer;
 
 public class VanillaTweaksEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
+
+  private static final Condition VANILLA_TWEAKS_LOADED = Condition.modLoaded(VanillaTweaks.MOD_ID);
 
   public VanillaTweaksEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
@@ -27,12 +32,14 @@ public class VanillaTweaksEnchantmentRecipeProvider extends EnchantmentRecipePro
   // when trying to figure out whether to include the level in the name or not, and config files aren't loaded during
   // data generation.
 
-  private EnchantmentRecipe.Builder vtbuilder(Enchantment enchantment, int level) {
-    return builder(enchantment, level, "vanillatweaks/" + ForgeRegistries.ENCHANTMENTS.getKey(enchantment).getPath() + "_" + level);
+  private ConditionalEnchantmentRecipe.Builder vtbuilder(Enchantment enchantment, int level) {
+    return builder(enchantment, level, "vanillatweaks/" + ForgeRegistries.ENCHANTMENTS.getKey(enchantment).getPath() + "_" + level)
+        .condition(VANILLA_TWEAKS_LOADED);
   }
 
-  private EnchantmentRecipe.Builder vtbuilder(Enchantment enchantment) {
-    return builder(enchantment, 1, "vanillatweaks/" + ForgeRegistries.ENCHANTMENTS.getKey(enchantment).getPath());
+  private ConditionalEnchantmentRecipe.Builder vtbuilder(Enchantment enchantment) {
+    return builder(enchantment, 1, "vanillatweaks/" + ForgeRegistries.ENCHANTMENTS.getKey(enchantment).getPath())
+        .condition(VANILLA_TWEAKS_LOADED);
   }
 
   @Override

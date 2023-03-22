@@ -1,6 +1,7 @@
 package me.whizvox.precisionenchanter.data.server;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import net.minecraft.data.CachedOutput;
@@ -63,17 +64,17 @@ public class EnchantmentRecipeProvider implements DataProvider {
     return path;
   }
 
-  public EnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
-    return EnchantmentRecipe.builder()
+  public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
+    return ConditionalEnchantmentRecipe.builder()
         .id(new ResourceLocation(modId, path))
         .result(result, level);
   }
 
-  public EnchantmentRecipe.Builder builder(Enchantment result, int level) {
+  public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level) {
     return builder(result, level, createPath(result, level));
   }
 
-  public EnchantmentRecipe.Builder builder(Enchantment result) {
+  public ConditionalEnchantmentRecipe.Builder builder(Enchantment result) {
     return builder(result, 1, createPath(result, 1));
   }
 

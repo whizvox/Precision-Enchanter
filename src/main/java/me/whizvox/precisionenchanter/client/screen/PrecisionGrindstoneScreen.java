@@ -3,13 +3,13 @@ package me.whizvox.precisionenchanter.client.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import me.whizvox.precisionenchanter.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.menu.PrecisionGrindstoneMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -53,7 +53,7 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
       if (selectedEnchantment == null) {
         selectedEnchantmentText = null;
       } else {
-        selectedEnchantmentText = ChatUtil.mut(selectedEnchantment.enchantment.getFullname(selectedEnchantment.level)).withStyle(ChatFormatting.RESET);
+        selectedEnchantmentText = ChatUtil.mut(PEClientUtil.getEnchantmentFullName(selectedEnchantment));
       }
 
       boolean flag = menu.hasMultipleEnchantments();
