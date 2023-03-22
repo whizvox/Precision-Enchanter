@@ -90,8 +90,8 @@ repositories {
   maven {
     url = "https://modmaven.dev/"
   }
+  // JEI
   maven {
-    // JEI
     name = "Progwml6 maven"
     url = "https://dvs1.progwml6.com/files/maven/"
   }
@@ -110,14 +110,6 @@ repositories {
   }
 }
 
-sourceSets {
-  checkVersion {
-    java {
-      srcDirs('src/checkversion')
-    }
-  }
-}
-
 dependencies {
   minecraft 'net.minecraftforge:forge:1.19.2-43.2.6'
 
@@ -130,8 +122,6 @@ dependencies {
 
   runtimeOnly fg.deobf('mezz.jei:jei-1.19.2-forge:11.6.0.1011')
   runtimeOnly fg.deobf('vazkii.patchouli:Patchouli:1.19.2-77')
-
-  checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
 }
 
 jar {
@@ -157,11 +147,4 @@ jar {
 
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-
-tasks.register('checkRemoteVersion', JavaExec) {
-  group = 'other'
-  description = 'Compare remote project version with local'
-  classpath = sourceSets.checkVersion.runtimeClasspath
-  mainClass.set('me.whizvox.precisionenchanting.CheckRemoteVersion')
 }
