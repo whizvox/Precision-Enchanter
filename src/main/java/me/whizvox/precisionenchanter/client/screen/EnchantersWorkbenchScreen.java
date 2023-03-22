@@ -30,12 +30,14 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   @Nullable
   private Component selectedEnchantmentText;
   private EnchantmentInstance currentEnchantment;
+  private boolean renderTabletButtonTooltip;
 
   private ChangeSelectionButton selectUpButton, selectDownButton;
   private final EnchantmentRecipeTabletComponent tablet;
 
   public EnchantersWorkbenchScreen(EnchantersWorkbenchMenu menu, Inventory playerInv, Component title) {
     super(menu, playerInv, title);
+    renderTabletButtonTooltip = false;
     selectedEnchantmentText = null;
     currentEnchantment = null;
     tablet = new EnchantmentRecipeTabletComponent();
@@ -93,7 +95,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       selectDownButton.y = topPos + 47;
       updateTabletFocus();
     }, (button, pose, mouseX, mouseY) -> {
-      renderTooltip(pose, tablet.isVisible() ? PELang.WORKBENCH_HIDE_RECIPES : PELang.WORKBENCH_SHOW_RECIPES, mouseX, mouseY);
+      // attempting to render tooltip here creates clashing with recipe tablet component. defer rendering.
+      renderTabletButtonTooltip = true;
     }, PELang.WORKBENCH_SHOW_RECIPES));
 
     selectUpButton.visible = false;
@@ -139,6 +142,15 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       renderCost(pose, menu.getCost(), true);
     } else if (tablet.isVisible() && tablet.getPlaceholderRecipe().hasRecipe()) {
       renderCost(pose, tablet.getPlaceholderRecipe().getRecipe().getCost(), false);
+    }
+  }
+
+  @Override
+  protected void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
+    super.renderTooltip(pose, mouseX, mouseY);
+    if (renderTabletButtonTooltip) {
+      renderTooltip(pose, tablet.isVisible() ? PELang.WORKBENCH_HIDE_RECIPES : PELang.WORKBENCH_SHOW_RECIPES, mouseX, mouseY);
+      renderTabletButtonTooltip = false;
     }
   }
 
