@@ -18,7 +18,7 @@
       }
     },
     {
-      "count": 8,
+      "count": 4,
       "ingredient": {
         "tag": "forge:eggs"
       }
@@ -26,13 +26,13 @@
     {
       "count": 4,
       "ingredient": {
-        "tag": "forge:dusts/glowstone"
+        "item": "minecraft:glowstone"
       }
     },
     {
       "count": 4,
       "ingredient": {
-        "tag": "forge:dusts/redstone"
+        "tag": "forge:storage_blocks/redstone"
       }
     }
   ],

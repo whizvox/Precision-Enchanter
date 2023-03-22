@@ -5,6 +5,8 @@
   "command.precisionenchanter.check_recipes.free.none": "No free recipes found",
   "command.precisionenchanter.check_recipes.impossible.header": "%s impossible recipe(s) found:",
   "command.precisionenchanter.check_recipes.impossible.none": "No impossible recipes found",
+  "command.precisionenchanter.check_recipes.missing.header": "%s missing recipe(s) found:",
+  "command.precisionenchanter.check_recipes.missing.none": "No missing recipes found",
   "command.precisionenchanter.generic.more": "... +%s more",
   "container.precisionenchanter.enchanters_workbench": "Enchanter's Workbench",
   "container.precisionenchanter.precision_grindstone": "Precision Grindstone",

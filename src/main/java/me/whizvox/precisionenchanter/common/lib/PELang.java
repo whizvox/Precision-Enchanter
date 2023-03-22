@@ -33,7 +33,9 @@ public class PELang {
         NO_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.impossible.none"),
         FOUND_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.impossible.header"),
         NO_FREE_RECIPES = withModId("command.%s.check_recipes.free.none"),
-        FOUND_FREE_RECIPES = withModId("command.%s.check_recipes.free.header");
+        FOUND_FREE_RECIPES = withModId("command.%s.check_recipes.free.header"),
+        NO_MISSING_RECIPES = withModId("command.%s.check_recipes.missing.none"),
+        FOUND_MISSING_RECIPES = withModId("command.%s.check_recipes.missing.header");
   }
 
   public static final Component
@@ -50,7 +52,8 @@ public class PELang {
       TABLET_SHOW_ALL = Component.translatable(Keys.TABLET_SHOW_ALL),
       TABLET_SHOW_CRAFTABLE = Component.translatable(Keys.TABLET_SHOW_CRAFTABLE),
       NO_IMPOSSIBLE_RECIPES = Component.translatable(Keys.NO_IMPOSSIBLE_RECIPES),
-      NO_FREE_RECIPES = Component.translatable(Keys.NO_FREE_RECIPES);
+      NO_FREE_RECIPES = Component.translatable(Keys.NO_FREE_RECIPES),
+      NO_MISSING_RECIPES = Component.translatable(Keys.NO_MISSING_RECIPES);
 
   public static MutableComponent nMore(int count) {
     return Component.translatable(Keys.N_MORE, count);
@@ -62,6 +65,10 @@ public class PELang {
 
   public static MutableComponent foundFreeRecipes(int count) {
     return Component.translatable(Keys.FOUND_FREE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
+  }
+
+  public static MutableComponent foundMissingRecipes(int count) {
+    return Component.translatable(Keys.FOUND_MISSING_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
   }
 
 }

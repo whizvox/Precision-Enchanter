@@ -36,6 +36,8 @@ public class PELanguageProvider extends LanguageProvider {
     add(PELang.Keys.FOUND_IMPOSSIBLE_RECIPES, "%s impossible recipe(s) found:");
     add(PELang.Keys.NO_FREE_RECIPES, "No free recipes found");
     add(PELang.Keys.FOUND_FREE_RECIPES, "%s free recipe(s) found:");
+    add(PELang.Keys.NO_MISSING_RECIPES, "No missing recipes found");
+    add(PELang.Keys.FOUND_MISSING_RECIPES, "%s missing recipe(s) found:");
   }
 
 }
