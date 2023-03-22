@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.recipe;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
@@ -202,6 +203,8 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
           PELog.LOGGER.debug("Skipping enchantment recipe {} due to failed condition", location);
         } catch (NoSuchEnchantmentException e) {
           PELog.LOGGER.warn("Unknown enchantment while parsing recipe: {}", e.id);
+        } catch (JsonParseException e) {
+          PELog.LOGGER.warn("Could not deserialize enchantment recipe {}: {}", location, e.getMessage());
         }
       });
       PELog.LOGGER.info(PELog.M_SERVER, "{} enchantment recipes loaded ({} deferred)", recipes.size(), deferredRecipes.size());
