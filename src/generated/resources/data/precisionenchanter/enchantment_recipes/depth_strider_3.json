@@ -16,7 +16,7 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:trident"
+        "tag": "forge:tools/tridents"
       }
     }
   ],

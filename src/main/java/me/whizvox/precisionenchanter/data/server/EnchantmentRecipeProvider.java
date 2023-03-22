@@ -746,7 +746,7 @@ public class EnchantmentRecipeProvider implements DataProvider {
     output.accept(builder(Enchantments.DEPTH_STRIDER, 3)
         .ingredient(Items.LEATHER_BOOTS)
         .ingredient(Items.SUGAR, 8)
-        .ingredient(Items.TRIDENT)
+        .ingredient(Tags.Items.TOOLS_TRIDENTS)
         .cost(6)
         .build());
 
