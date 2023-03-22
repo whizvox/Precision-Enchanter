@@ -1,4 +1,4 @@
-package me.whizvox.precisionenchanter.common;
+package me.whizvox.precisionenchanter;
 
 import me.whizvox.precisionenchanter.client.screen.EnchantersWorkbenchScreen;
 import me.whizvox.precisionenchanter.client.screen.PrecisionGrindstoneScreen;
@@ -28,6 +28,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class PrecisionEnchanter {
 
   public static final String MOD_ID = "precisionenchanter";
+  public static final String MOD_NAME = "Precision Enchanter";
 
   public static ResourceLocation modLoc(String name) {
     return new ResourceLocation(MOD_ID, name);

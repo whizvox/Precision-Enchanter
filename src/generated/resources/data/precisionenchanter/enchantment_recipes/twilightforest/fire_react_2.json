@@ -1,0 +1,33 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "twilightforest"
+    }
+  ],
+  "cost": 4,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "minecraft:magma_block"
+      }
+    },
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "twilightforest:fiery_ingot"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "twilightforest:fire_react",
+    "level": 2
+  }
+}

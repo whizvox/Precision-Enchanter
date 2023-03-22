@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.common.registry;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
 import me.whizvox.precisionenchanter.common.menu.PrecisionGrindstoneMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;

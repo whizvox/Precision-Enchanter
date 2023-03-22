@@ -1,0 +1,27 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "vanillatweaks"
+    }
+  ],
+  "cost": 3,
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:glistering_melon_slice"
+      }
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:vigor",
+    "level": 2
+  }
+}

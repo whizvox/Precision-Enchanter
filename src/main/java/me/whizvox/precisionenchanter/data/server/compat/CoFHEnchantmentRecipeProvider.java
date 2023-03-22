@@ -1,6 +1,7 @@
 package me.whizvox.precisionenchanter.data.server.compat;
 
 import cofh.core.init.CoreEnchantments;
+import cofh.lib.util.constants.ModIds;
 import me.whizvox.precisionenchanter.common.api.condition.Condition;
 import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
@@ -13,7 +14,7 @@ import java.util.function.Consumer;
 
 public class CoFHEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
 
-  private static final Condition COFH_LOADED = Condition.modLoaded("cofh_core");
+  private static final Condition COFH_CORE_LOADED = Condition.modLoaded(ModIds.ID_COFH_CORE);
 
   public CoFHEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
@@ -27,7 +28,7 @@ public class CoFHEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
   @Override
   public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
     return super.builder(result, level, path)
-        .condition(COFH_LOADED)
+        .condition(COFH_CORE_LOADED)
         .condition(Condition.cofhEnchantmentEnabled(result));
   }
 

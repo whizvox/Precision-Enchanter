@@ -1,5 +1,6 @@
 package me.whizvox.precisionenchanter.common;
 
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.registry.PEItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

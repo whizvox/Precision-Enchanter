@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.common.lib;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.api.condition.*;
 import net.minecraft.resources.ResourceLocation;
 

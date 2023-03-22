@@ -12,6 +12,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import shadows.apotheosis.Apoth;
+import shadows.apotheosis.Apotheosis;
 
 import java.util.function.Consumer;
 
@@ -19,7 +20,7 @@ import static me.whizvox.precisionenchanter.common.api.condition.ApotheosisModul
 
 public class ApotheosisEnchantmentRecipeProvider extends EnchantmentRecipeProvider {
 
-  private static final Condition APOTH_LOADED = Condition.modLoaded("apotheosis");
+  private static final Condition APOTHEOSIS_LOADED = Condition.modLoaded(Apotheosis.MODID);
 
   public ApotheosisEnchantmentRecipeProvider(DataGenerator gen, String modId) {
     super(gen, modId);
@@ -32,7 +33,7 @@ public class ApotheosisEnchantmentRecipeProvider extends EnchantmentRecipeProvid
 
   public ConditionalEnchantmentRecipe.Builder builder(Enchantment enchantment, int level, String path) {
     return super.builder(enchantment, level, path)
-        .condition(APOTH_LOADED);
+        .condition(APOTHEOSIS_LOADED);
   }
 
   @Override

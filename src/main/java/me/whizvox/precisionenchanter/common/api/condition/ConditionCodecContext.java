@@ -2,7 +2,7 @@ package me.whizvox.precisionenchanter.common.api.condition;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.resources.ResourceLocation;
 

@@ -1,14 +1,12 @@
 package me.whizvox.precisionenchanter.data;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.data.client.PEBlockStateProvider;
 import me.whizvox.precisionenchanter.data.client.PEItemModelProvider;
 import me.whizvox.precisionenchanter.data.client.PELanguageProvider;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import me.whizvox.precisionenchanter.data.server.PERecipeProvider;
-import me.whizvox.precisionenchanter.data.server.compat.ApotheosisEnchantmentRecipeProvider;
-import me.whizvox.precisionenchanter.data.server.compat.CoFHEnchantmentRecipeProvider;
-import me.whizvox.precisionenchanter.data.server.compat.EnsorcellationEnchantmentRecipeProvider;
+import me.whizvox.precisionenchanter.data.server.compat.*;
 import me.whizvox.precisionenchanter.data.server.loot.PELootTableProvider;
 import me.whizvox.precisionenchanter.data.server.tag.PEBlockTagProvider;
 import net.minecraft.data.DataGenerator;
@@ -34,9 +32,13 @@ public class PEDataGenerator {
     gen.addProvider(includeServer, new PEBlockTagProvider(gen, fileHelper));
     gen.addProvider(includeServer, new PELootTableProvider(gen));
     gen.addProvider(includeServer, new EnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+
+    // mod compatibility data providers
+    gen.addProvider(includeServer, new ApotheosisEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
     gen.addProvider(includeServer, new CoFHEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
     gen.addProvider(includeServer, new EnsorcellationEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
-    gen.addProvider(includeServer, new ApotheosisEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+    gen.addProvider(includeServer, new TwilightForestEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
+    gen.addProvider(includeServer, new VanillaTweaksEnchantmentRecipeProvider(gen, PrecisionEnchanter.MOD_ID));
   }
 
 }

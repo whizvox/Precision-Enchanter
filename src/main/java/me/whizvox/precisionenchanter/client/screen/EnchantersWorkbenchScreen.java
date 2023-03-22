@@ -2,8 +2,8 @@ package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.client.util.PEClientUtil;
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
@@ -76,7 +76,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_SELECT_NEXT, -1);
     addRenderableWidget(selectUpButton);
     addRenderableWidget(selectDownButton);
-    addRenderableWidget(new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, TEXTURE_LOCATION, button -> {
+
+    addRenderableWidget(new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, 20, TEXTURE_LOCATION, 256, 256, button -> {
       tablet.toggleVisibility();
       if (tablet.isVisible()) {
         leftPos = (width - 148) / 2 - 86 + 148;
@@ -91,7 +92,10 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       selectDownButton.x = selectUpButton.x;
       selectDownButton.y = topPos + 47;
       updateTabletFocus();
-    }));
+    }, (button, pose, mouseX, mouseY) -> {
+      renderTooltip(pose, tablet.isVisible() ? PELang.WORKBENCH_HIDE_RECIPES : PELang.WORKBENCH_SHOW_RECIPES, mouseX, mouseY);
+    }, PELang.WORKBENCH_SHOW_RECIPES));
+
     selectUpButton.visible = false;
     selectDownButton.visible = false;
     tablet.init(width, height, false, minecraft, menu);

@@ -66,7 +66,7 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
   private void add(EnchantmentRecipe recipe) {
     recipe = recipe.immutable();
     if (recipe.isInvalid()) {
-      PELog.LOGGER.warn(PELog.side(), "Attempted to register invalid recipe (no ingredients, unset enchantment, or unset ID): {}", recipe.getId());
+      PELog.LOGGER.warn("Attempted to register invalid recipe (no ingredients, unset enchantment, or unset ID): {}", recipe.getId());
     } else {
       recipes.put(recipe.getId(), recipe);
       byEnchantment.computeIfAbsent(recipe.getEnchantment(), enchantment -> new Int2ObjectArrayMap<>()).put(recipe.getLevel(), recipe);
@@ -220,8 +220,8 @@ public class EnchantmentRecipeManager extends SimpleJsonResourceReloadListener {
       });
       markInitialized();
     }
-    // apparently a reload happens upon a server shutting down, so we first have to check if the server is still online
-    if (ServerLifecycleHooks.getCurrentServer() != null && FMLEnvironment.dist.isDedicatedServer()) {
+    // check if both the server is still online and if it isn't an embedded singleplayer server
+    if (ServerLifecycleHooks.getCurrentServer() != null && !FMLEnvironment.dist.isClient()) {
       PENetwork.broadcast(SimpleClientBoundMessage.ENCHANTMENT_RECIPES_RELOADED);
     }
   }
