@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:magic_edge"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      },
+      "count": 64
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 16
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:magic_edge",
+    "level": 3
+  },
+  "cost": 7
+}

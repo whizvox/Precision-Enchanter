@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:angler"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 48
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:heart_of_the_sea"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:angler",
+    "level": 2
+  },
+  "cost": 6
+}

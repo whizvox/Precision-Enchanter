@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:gourmand"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:cake"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_stew"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:golden_apple"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:gourmand",
+    "level": 2
+  },
+  "cost": 4
+}

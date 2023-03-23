@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "minecraft:anvil"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:ghast_tear"
+      },
+      "count": 24
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:life_mending",
+    "level": 3
+  },
+  "cost": 9
+}

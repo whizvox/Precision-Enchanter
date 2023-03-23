@@ -1,0 +1,33 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "vanillatweaks"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_boots"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:feathers"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
+      },
+      "count": 3
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:hops",
+    "level": 1
+  },
+  "cost": 2
+}

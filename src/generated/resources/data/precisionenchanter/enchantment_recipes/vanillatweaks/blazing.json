@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "vanillatweaks"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:blast_furnace"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:lava_bucket"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:blaze_powder"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:blazing",
+    "level": 1
+  },
+  "cost": 6
+}

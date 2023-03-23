@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:iron_axe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/copper"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/emerald"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:bane_of_illagers",
+    "level": 2
+  },
+  "cost": 2
+}

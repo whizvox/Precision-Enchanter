@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:air_affinity"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:feathers"
+      },
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:sugar"
+      },
+      "count": 32
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:air_affinity",
+    "level": 1
+  },
+  "cost": 6
+}

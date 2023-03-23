@@ -1,0 +1,31 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:quick_draw"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:sugar"
+      },
+      "count": 32
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:quick_draw",
+    "level": 2
+  },
+  "cost": 4
+}

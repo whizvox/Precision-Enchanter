@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:leech"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:glistering_melon_slice"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:bones"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "count": 16
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:leech",
+    "level": 1
+  },
+  "cost": 2
+}

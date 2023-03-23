@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:crossbow"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:arrow"
+      },
+      "count": 64
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:ender_eye"
+      },
+      "count": 48
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:crescendo",
+    "level": 5
+  },
+  "cost": 11
+}

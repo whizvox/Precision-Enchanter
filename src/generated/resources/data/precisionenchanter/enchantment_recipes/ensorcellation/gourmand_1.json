@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:gourmand"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:cooked_beef"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:baked_potato"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:mushrooms"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:gourmand",
+    "level": 1
+  },
+  "cost": 2
+}

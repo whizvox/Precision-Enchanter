@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:damage_illager"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:iron_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/copper"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/emerald"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:damage_illager",
+    "level": 1
+  },
+  "cost": 1
+}

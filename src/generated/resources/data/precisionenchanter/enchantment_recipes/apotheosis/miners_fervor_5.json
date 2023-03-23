@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:storage_blocks/redstone"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/glowstone"
+      },
+      "count": 32
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:miners_fervor",
+    "level": 5
+  },
+  "cost": 10
+}

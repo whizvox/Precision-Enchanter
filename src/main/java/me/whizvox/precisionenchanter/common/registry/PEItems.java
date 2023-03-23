@@ -1,7 +1,7 @@
 package me.whizvox.precisionenchanter.common.registry;
 
 import me.whizvox.precisionenchanter.common.PECreativeTab;
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.item.EnchantedQuillItem;
 import me.whizvox.precisionenchanter.common.item.QuillItem;
 import net.minecraft.world.item.BlockItem;

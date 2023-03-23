@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "minecraft:anvil"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:iron_axe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:experience_bottle"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:obliteration",
+    "level": 1
+  },
+  "cost": 8
+}

@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:hunter"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 30
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_foot"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:hunter",
+    "level": 1
+  },
+  "cost": 4
+}

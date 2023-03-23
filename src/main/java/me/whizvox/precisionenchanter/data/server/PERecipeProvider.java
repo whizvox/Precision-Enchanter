@@ -15,7 +15,7 @@ import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-import static me.whizvox.precisionenchanter.common.PrecisionEnchanter.modLoc;
+import static me.whizvox.precisionenchanter.PrecisionEnchanter.modLoc;
 
 public class PERecipeProvider extends RecipeProvider {
 

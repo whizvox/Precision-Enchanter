@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:trueshot"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:target"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:dispenser"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:feathers"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:trueshot",
+    "level": 1
+  },
+  "cost": 2
+}

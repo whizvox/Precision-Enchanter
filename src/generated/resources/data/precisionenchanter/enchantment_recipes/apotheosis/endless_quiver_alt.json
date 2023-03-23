@@ -1,0 +1,44 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    },
+    {
+      "condition": "not",
+      "term": {
+        "condition": "apotheosis_module",
+        "module": "adventure"
+      }
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:fletching_table"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:glowstone_dust"
+      },
+      "count": 24
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:arrow"
+      },
+      "count": 64
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:endless_quiver",
+    "level": 1
+  },
+  "cost": 9
+}

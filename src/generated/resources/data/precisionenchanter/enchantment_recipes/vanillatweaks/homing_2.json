@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "vanillatweaks"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:target"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:spectral_arrow"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      },
+      "count": 32
+    }
+  ],
+  "result": {
+    "enchantment": "vanillatweaks:homing",
+    "level": 2
+  },
+  "cost": 4
+}

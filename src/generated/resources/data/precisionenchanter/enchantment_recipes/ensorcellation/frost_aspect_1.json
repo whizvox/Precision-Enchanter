@@ -1,0 +1,31 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:frost_aspect"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:frost_aspect",
+    "level": 1
+  },
+  "cost": 3
+}

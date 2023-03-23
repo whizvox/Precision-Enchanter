@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:bulwark"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:shield"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "minecraft:anvil"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:chain"
+      },
+      "count": 16
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:bulwark",
+    "level": 1
+  },
+  "cost": 5
+}

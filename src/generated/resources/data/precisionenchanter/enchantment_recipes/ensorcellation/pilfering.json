@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:pilfering"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:fishing_rod"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/iron"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/gold"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 7
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:pilfering",
+    "level": 1
+  },
+  "cost": 4
+}

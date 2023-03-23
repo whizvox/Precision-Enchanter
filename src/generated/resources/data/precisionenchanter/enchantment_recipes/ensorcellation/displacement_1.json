@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:displacement"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ender_pearls"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:chorus_fruit"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:displacement",
+    "level": 1
+  },
+  "cost": 2
+}

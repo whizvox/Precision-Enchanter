@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "spawner"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:lead"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:eggs"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:glowstone"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:storage_blocks/redstone"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:capturing",
+    "level": 2
+  },
+  "cost": 4
+}

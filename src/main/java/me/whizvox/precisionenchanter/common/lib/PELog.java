@@ -1,7 +1,6 @@
 package me.whizvox.precisionenchanter.common.lib;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
-import net.minecraftforge.fml.DistExecutor;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -18,10 +17,5 @@ public class PELog {
       M_CLIENT = MarkerFactory.getMarker("Client"),
       M_COMMON = MarkerFactory.getMarker("Common"),
       M_SERVER = MarkerFactory.getMarker("Server");
-
-  public static Marker side() {
-    // FIXME Crashes if called during mod initialization
-    return DistExecutor.safeRunForDist(() -> () -> M_CLIENT, () -> () -> M_SERVER);
-  }
 
 }

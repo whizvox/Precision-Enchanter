@@ -1,0 +1,33 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "twilightforest"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:iron_block"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:iron_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "twilightforest:knightmetal_ingot"
+      },
+      "count": 20
+    }
+  ],
+  "result": {
+    "enchantment": "twilightforest:destruction",
+    "level": 3
+  },
+  "cost": 5
+}

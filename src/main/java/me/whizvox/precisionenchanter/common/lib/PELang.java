@@ -1,6 +1,6 @@
 package me.whizvox.precisionenchanter.common.lib;
 
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -22,6 +22,8 @@ public class PELang {
         SCREEN_SELECT_PREV = withModId("screen.%s.generic.select_previous"),
         SCREEN_SELECT_NEXT = withModId("screen.%s.generic.select_next"),
         SCREEN_LOADING = withModId("screen.%s.generic.loading"),
+        WORKBENCH_SHOW_RECIPES = withModId("screen.%s.enchanters_workbench.show_recipes"),
+        WORKBENCH_HIDE_RECIPES = withModId("screen.%s.enchanters_workbench.hide_recipes"),
         TABLET_SEARCH_HINT = withModId("screen.%s.enchantment_recipe_tablet.search_hint"),
         TABLET_SYNC_FAILED = withModId("screen.%s.enchantment_recipe_tablet.sync_failed"),
         TABLET_SHOW_ALL = withModId("screen.%s.enchantment_recipe_tablet.show_all"),
@@ -32,7 +34,9 @@ public class PELang {
         NO_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.impossible.none"),
         FOUND_IMPOSSIBLE_RECIPES = withModId("command.%s.check_recipes.impossible.header"),
         NO_FREE_RECIPES = withModId("command.%s.check_recipes.free.none"),
-        FOUND_FREE_RECIPES = withModId("command.%s.check_recipes.free.header");
+        FOUND_FREE_RECIPES = withModId("command.%s.check_recipes.free.header"),
+        NO_MISSING_RECIPES = withModId("command.%s.check_recipes.missing.none"),
+        FOUND_MISSING_RECIPES = withModId("command.%s.check_recipes.missing.header");
   }
 
   public static final Component
@@ -42,12 +46,15 @@ public class PELang {
       SCREEN_SELECT_PREV = new TranslatableComponent(Keys.SCREEN_SELECT_PREV),
       SCREEN_SELECT_NEXT = new TranslatableComponent(Keys.SCREEN_SELECT_NEXT),
       SCREEN_LOADING = new TranslatableComponent(Keys.SCREEN_LOADING),
+      WORKBENCH_SHOW_RECIPES = new TranslatableComponent(Keys.WORKBENCH_SHOW_RECIPES),
+      WORKBENCH_HIDE_RECIPES = new TranslatableComponent(Keys.WORKBENCH_HIDE_RECIPES),
       TABLET_SEARCH_HINT = new TranslatableComponent(Keys.TABLET_SEARCH_HINT),
       TABLET_SYNC_FAILED = new TranslatableComponent(Keys.TABLET_SYNC_FAILED),
       TABLET_SHOW_ALL = new TranslatableComponent(Keys.TABLET_SHOW_ALL),
       TABLET_SHOW_CRAFTABLE = new TranslatableComponent(Keys.TABLET_SHOW_CRAFTABLE),
       NO_IMPOSSIBLE_RECIPES = new TranslatableComponent(Keys.NO_IMPOSSIBLE_RECIPES),
-      NO_FREE_RECIPES = new TranslatableComponent(Keys.NO_FREE_RECIPES);
+      NO_FREE_RECIPES = new TranslatableComponent(Keys.NO_FREE_RECIPES),
+      NO_MISSING_RECIPES = new TranslatableComponent(Keys.NO_MISSING_RECIPES);
 
   public static MutableComponent nMore(int count) {
     return new TranslatableComponent(Keys.N_MORE, count);
@@ -59,6 +66,10 @@ public class PELang {
 
   public static MutableComponent foundFreeRecipes(int count) {
     return new TranslatableComponent(Keys.FOUND_FREE_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
+  }
+
+  public static MutableComponent foundMissingRecipes(int count) {
+    return new TranslatableComponent(Keys.FOUND_MISSING_RECIPES, ChatUtil.mut(count).withStyle(ERROR));
   }
 
 }

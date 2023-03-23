@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:soulbound"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:soul_lantern"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:respawn_anchor"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:chain"
+      },
+      "count": 16
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:soulbound",
+    "level": 1
+  },
+  "cost": 5
+}

@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:instigating"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_axe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:fermented_spider_eye"
+      },
+      "count": 3
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:instigating",
+    "level": 1
+  },
+  "cost": 4
+}

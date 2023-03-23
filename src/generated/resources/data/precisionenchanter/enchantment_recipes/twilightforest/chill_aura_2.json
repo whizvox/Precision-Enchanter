@@ -1,0 +1,33 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "twilightforest"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "item": "twilightforest:alpha_yeti_fur"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "enchantment": "twilightforest:chill_aura",
+    "level": 2
+  },
+  "cost": 4
+}

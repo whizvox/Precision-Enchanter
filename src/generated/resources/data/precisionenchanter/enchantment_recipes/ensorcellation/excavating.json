@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:excavating"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_axe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_shovel"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:storage_blocks/iron"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:excavating",
+    "level": 1
+  },
+  "cost": 6
+}

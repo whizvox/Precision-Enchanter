@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:piston"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:slime_block"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:rebounding",
+    "level": 1
+  },
+  "cost": 2
+}

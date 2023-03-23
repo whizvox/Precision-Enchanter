@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:frost_rebuke"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:packed_ice"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:piston"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:frost_rebuke",
+    "level": 1
+  },
+  "cost": 2
+}

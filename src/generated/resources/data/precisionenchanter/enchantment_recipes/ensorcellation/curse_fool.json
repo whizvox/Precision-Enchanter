@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:curse_fool"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:bricks"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:poisonous_potato"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:curse_fool",
+    "level": 1
+  },
+  "cost": 4
+}

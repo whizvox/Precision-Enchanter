@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:magic_protection"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_chestplate"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/copper"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/glowstone"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:magic_protection",
+    "level": 4
+  },
+  "cost": 5
+}

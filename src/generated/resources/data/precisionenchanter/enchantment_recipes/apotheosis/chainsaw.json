@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:netherite_axe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "minecraft:logs"
+      },
+      "count": 64
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:chain"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:chainsaw",
+    "level": 1
+  },
+  "cost": 8
+}

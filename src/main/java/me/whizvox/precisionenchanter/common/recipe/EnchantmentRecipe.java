@@ -3,6 +3,7 @@ package me.whizvox.precisionenchanter.common.recipe;
 import com.google.gson.*;
 import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
+import me.whizvox.precisionenchanter.common.api.NoSuchEnchantmentException;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -41,6 +42,10 @@ public class EnchantmentRecipe {
     this.enchantment = enchantment;
     this.level = level;
     this.cost = cost;
+  }
+
+  public EnchantmentRecipe(EnchantmentRecipe other) {
+    this(other.id, other.ingredients, other.enchantment, other.level, other.cost);
   }
 
   /**
@@ -151,6 +156,7 @@ public class EnchantmentRecipe {
       buf.writeBoolean(false);
     } else {
       buf.writeBoolean(true);
+      buf.writeShort(cost);
       buf.writeByte(ingredients.size());
       ingredients.forEach(pair -> {
         pair.getLeft().toNetwork(buf);
@@ -183,6 +189,7 @@ public class EnchantmentRecipe {
     ResourceLocation id = buf.readResourceLocation();
     Builder builder = builder().id(id);
     if (buf.readBoolean()) {
+      builder.cost(buf.readShort());
       int numIngredients = buf.readByte();
       for (int j = 0; j < numIngredients; j++) {
         builder.ingredient(Ingredient.fromNetwork(buf), buf.readByte());
@@ -306,7 +313,7 @@ public class EnchantmentRecipe {
     }
   }
 
-  public static class Serializer implements JsonSerializer<EnchantmentRecipe>, JsonDeserializer<EnchantmentRecipe> {
+  public static final class Serializer implements JsonSerializer<EnchantmentRecipe>, JsonDeserializer<EnchantmentRecipe> {
 
     @Override
     public JsonElement serialize(EnchantmentRecipe recipe, Type type, JsonSerializationContext ctx) {
@@ -348,7 +355,7 @@ public class EnchantmentRecipe {
         }
         Enchantment result = ForgeRegistries.ENCHANTMENTS.getValue(enchId);
         if (result == null) {
-          PELog.LOGGER.warn(PELog.M_SERVER, "Unknown enchantment while parsing recipe: {}", enchId);
+          throw new NoSuchEnchantmentException(enchId);
         } else {
           int level = resultJson.get("level").getAsInt();
           builder.result(result, level);

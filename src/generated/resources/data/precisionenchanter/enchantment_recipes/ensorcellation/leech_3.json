@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:leech"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:glistering_melon_slice"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:heads"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:leech",
+    "level": 3
+  },
+  "cost": 6
+}

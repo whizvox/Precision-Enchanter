@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:exp_boost"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:golden_hoe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:heads"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:exp_boost",
+    "level": 1
+  },
+  "cost": 2
+}

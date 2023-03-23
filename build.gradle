@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.18.2-1.0.0-rc1'
+version = '1.18.2-dev-20230322'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -19,7 +19,9 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
-
+      // apparently these 2 lines are required for some mod mixins to work
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -32,6 +34,8 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -44,6 +48,8 @@ minecraft {
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -55,6 +61,8 @@ minecraft {
       workingDirectory project.file('run')
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
+      property 'mixin.env.remapRefMap', 'true'
+      property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
       args '--mod', 'precisionenchanter', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
       mods {
         precisionenchanter {
@@ -78,12 +86,26 @@ sourceSets.main.resources {
 }
 
 repositories {
-}
-
-sourceSets {
-  checkVersion {
-    java {
-      srcDirs('src/checkversion')
+  // CoFH Core, Twilight Forest
+  maven {
+    url = "https://modmaven.dev/"
+  }
+  // JEI
+  maven {
+    name = "Progwml6 maven"
+    url = "https://dvs1.progwml6.com/files/maven/"
+  }
+  // Patchouli
+  maven {
+    name = "Jared's maven"
+    url = "https://maven.blamejared.com/"
+  }
+  // everything else
+  maven {
+    name 'CurseMaven'
+    url "https://www.cursemaven.com"
+    content {
+      includeGroup "curse.maven"
     }
   }
 }
@@ -91,7 +113,16 @@ sourceSets {
 dependencies {
   minecraft 'net.minecraftforge:forge:1.18.2-40.2.0'
 
-  checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
+  // only version of Ensorcellation on modmaven depends on an old version of CoFH Core
+  implementation fg.deobf('curse.maven:cofh_core-69162:4385215')
+  implementation fg.deobf('curse.maven:ensorcellation-349447:4382349')
+  implementation fg.deobf('teamtwilight:twilightforest:4.1.1494:universal')
+  implementation fg.deobf('curse.maven:placebo-283644:4035110')
+  implementation fg.deobf('curse.maven:apotheosis-313970:4132196')
+  implementation fg.deobf('curse.maven:vanillatweaks-272637:3749933')
+
+  runtimeOnly fg.deobf('mezz.jei:jei-1.18.2-forge:10.2.1.283')
+  runtimeOnly fg.deobf('vazkii.patchouli:Patchouli:1.18.2-71.1')
 }
 
 jar {
@@ -112,11 +143,4 @@ jar.finalizedBy('reobfJar')
 
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-
-tasks.register('checkRemoteVersion', JavaExec) {
-  group = 'other'
-  description = 'Compare remote project version with local'
-  classpath = sourceSets.checkVersion.runtimeClasspath
-  mainClass.set('me.whizvox.precisionenchanting.CheckRemoteVersion')
 }

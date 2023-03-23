@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:fishing_rod"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "minecraft:fishes"
+      },
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/prismarine"
+      },
+      "count": 32
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:spearfishing",
+    "level": 6
+  },
+  "cost": 6
+}

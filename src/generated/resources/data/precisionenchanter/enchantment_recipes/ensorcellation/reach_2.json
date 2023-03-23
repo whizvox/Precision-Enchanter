@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:reach"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:leather_chestplate"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:piston"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 32
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:reach",
+    "level": 2
+  },
+  "cost": 6
+}

@@ -27,3 +27,17 @@ mandatory = true
 versionRange = "[1.18.2,1.19)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.precisionenchanter]]
+modId = "cofh_core"
+mandatory = false
+versionRange = "[9,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.precisionenchanter]]
+modId = "ensorcellation"
+mandatory = false
+versionRange = "[3,)"
+ordering = "NONE"
+side = "BOTH"

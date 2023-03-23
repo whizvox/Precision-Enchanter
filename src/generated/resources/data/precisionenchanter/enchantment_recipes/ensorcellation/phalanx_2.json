@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "ensorcellation"
+    },
+    {
+      "condition": "cofh_enabled",
+      "enchantment": "ensorcellation:phalanx"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:shield"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:leather_boots"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:sugar"
+      },
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "tag": "forge:feathers"
+      },
+      "count": 16
+    }
+  ],
+  "result": {
+    "enchantment": "ensorcellation:phalanx",
+    "level": 2
+  },
+  "cost": 4
+}

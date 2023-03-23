@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "condition": "mod_loaded",
+      "mod_id": "apotheosis"
+    },
+    {
+      "condition": "apotheosis_module",
+      "module": "enchanting"
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_sword"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:storage_blocks/lapis"
+      },
+      "count": 8
+    }
+  ],
+  "result": {
+    "enchantment": "apotheosis:scavenger",
+    "level": 1
+  },
+  "cost": 3
+}

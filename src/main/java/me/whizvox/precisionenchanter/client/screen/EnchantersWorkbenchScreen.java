@@ -2,14 +2,14 @@ package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -30,12 +30,14 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   @Nullable
   private Component selectedEnchantmentText;
   private EnchantmentInstance currentEnchantment;
+  private boolean renderTabletButtonTooltip;
 
   private ChangeSelectionButton selectUpButton, selectDownButton;
   private final EnchantmentRecipeTabletComponent tablet;
 
   public EnchantersWorkbenchScreen(EnchantersWorkbenchMenu menu, Inventory playerInv, Component title) {
     super(menu, playerInv, title);
+    renderTabletButtonTooltip = false;
     selectedEnchantmentText = null;
     currentEnchantment = null;
     tablet = new EnchantmentRecipeTabletComponent();
@@ -76,7 +78,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_SELECT_NEXT, -1);
     addRenderableWidget(selectUpButton);
     addRenderableWidget(selectDownButton);
-    addRenderableWidget(new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, TEXTURE_LOCATION, button -> {
+
+    addRenderableWidget(new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, 20, TEXTURE_LOCATION, 256, 256, button -> {
       tablet.toggleVisibility();
       if (tablet.isVisible()) {
         leftPos = (width - 148) / 2 - 86 + 148;
@@ -91,7 +94,11 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       selectDownButton.x = selectUpButton.x;
       selectDownButton.y = topPos + 47;
       updateTabletFocus();
-    }));
+    }, (button, pose, mouseX, mouseY) -> {
+      // attempting to render tooltip here creates clashing with recipe tablet component. defer rendering.
+      renderTabletButtonTooltip = true;
+    }, PELang.WORKBENCH_SHOW_RECIPES));
+
     selectUpButton.visible = false;
     selectDownButton.visible = false;
     tablet.init(width, height, false, minecraft, menu);
@@ -105,7 +112,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       if (currentEnchantment == null) {
         selectedEnchantmentText = null;
       } else {
-        selectedEnchantmentText = ChatUtil.mut(currentEnchantment.enchantment.getFullname(currentEnchantment.level)).withStyle(ChatFormatting.RESET);
+        selectedEnchantmentText = ChatUtil.mut(PEClientUtil.getEnchantmentFullName(currentEnchantment));
       }
       boolean flag = menu.multipleRecipesMatched();
       selectUpButton.visible = flag;
@@ -135,6 +142,15 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       renderCost(pose, menu.getCost(), true);
     } else if (tablet.isVisible() && tablet.getPlaceholderRecipe().hasRecipe()) {
       renderCost(pose, tablet.getPlaceholderRecipe().getRecipe().getCost(), false);
+    }
+  }
+
+  @Override
+  protected void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
+    super.renderTooltip(pose, mouseX, mouseY);
+    if (renderTabletButtonTooltip) {
+      renderTooltip(pose, tablet.isVisible() ? PELang.WORKBENCH_HIDE_RECIPES : PELang.WORKBENCH_SHOW_RECIPES, mouseX, mouseY);
+      renderTabletButtonTooltip = false;
     }
   }
 

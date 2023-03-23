@@ -2,8 +2,9 @@ package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
+import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.client.util.PlaceholderEnchantmentRecipe;
-import me.whizvox.precisionenchanter.common.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
@@ -137,12 +138,22 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
       lastSearch = search;
       filteredRecipes.clear();
       String filter = search.toLowerCase(Locale.getDefault());
-      Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.stream()
-          .map(entry -> new EnchantmentRecipeInfo(entry.getKey(), entry.getValue(), entry.getValue().getEnchantment().getFullname(entry.getValue().getLevel()).getString()));
+      Stream<EnchantmentRecipeInfo> stream = EnchantmentRecipeManager.INSTANCE.entryStream()
+          .map(entry -> new EnchantmentRecipeInfo(
+              entry.getKey(),
+              entry.getValue(),
+              new TranslatableComponent(entry.getValue().getEnchantment().getDescriptionId()).getString(),
+              PEClientUtil.getEnchantmentFullName(entry.getValue().getEnchantment(), entry.getValue().getLevel())
+          ));
       if (!filter.isEmpty()) {
-        stream = stream.filter(info -> info.translatedString.toLowerCase(Locale.getDefault()).contains(filter));
+        stream = stream.filter(info -> info.fullName.getString().toLowerCase(Locale.getDefault()).contains(filter));
       }
-      stream.sorted(Comparator.comparing(o -> o.translatedString))
+      stream
+          .sorted((o1, o2) ->
+              Comparator.comparing(EnchantmentRecipeInfo::baseTranslatedName)
+                  .thenComparing(info -> info.recipe.getLevel())
+                  .compare(o1, o2)
+          )
           .forEach(filteredRecipes::add);
     }
     if (isShowingOnlyCraftable()) {
@@ -223,6 +234,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
       if (!recipesLoaded) {
         if (EnchantmentRecipeManager.INSTANCE.isInitialized()) {
           recipesLoaded = true;
+          lastSearch = null;
           refreshCraftableRecipes();
           updateEnchantmentEntries();
         } else if (!syncFailed) {
@@ -349,7 +361,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     }
   }
 
-  private record EnchantmentRecipeInfo(ResourceLocation id, EnchantmentRecipe recipe, String translatedString) {}
+  private record EnchantmentRecipeInfo(ResourceLocation id, EnchantmentRecipe recipe, String baseTranslatedName, Component fullName) {}
 
   private class EnchantmentEntry extends AbstractButton {
 
@@ -357,7 +369,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Wi
     boolean craftable;
 
     public EnchantmentEntry(int y, EnchantmentRecipeInfo info) {
-      super(leftPos + 3, topPos + y, 142, 19, new TextComponent(info.translatedString));
+      super(leftPos + 3, topPos + y, 142, 19, info.fullName);
       this.info = info;
       craftable = false;
     }

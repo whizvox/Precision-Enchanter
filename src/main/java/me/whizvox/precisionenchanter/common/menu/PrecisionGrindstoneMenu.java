@@ -201,7 +201,7 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       if (enchantment != null) {
         return new EnchantmentInstance(enchantment, enchantmentLevel.get());
       } else {
-        PELog.LOGGER.warn(PELog.side(), "Could not determine enchantment from ID: {}", id);
+        PELog.LOGGER.warn("Could not determine enchantment from ID: {}", id);
       }
     }
     return null;
