@@ -264,18 +264,27 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   }
 
   @Override
+  public void setFocused(boolean focused) {
+  }
+
+  @Override
+  public boolean isFocused() {
+    return false;
+  }
+
+  @Override
   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
     if (visible) {
       if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
         if (searchBar.isFocused()) {
-          searchBar.setFocus(false);
+          searchBar.setFocused(false);
         } else {
           setVisible(false);
         }
         return true;
       }
       if (mc.options.keyChat.matches(keyCode, scanCode) && !searchBar.isFocused()) {
-        searchBar.setFocus(true);
+        searchBar.setFocused(true);
         return true;
       }
       if (searchBar.isFocused()) {
@@ -370,7 +379,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -419,7 +428,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       RenderSystem.setShaderColor(1, 1, 1, 1);

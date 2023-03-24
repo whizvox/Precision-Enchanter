@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "precisionenchanter:precision_grindstone"
-  }
+  },
+  "show_notification": true
 }

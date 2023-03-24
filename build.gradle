@@ -1,10 +1,9 @@
 plugins {
   id 'net.minecraftforge.gradle' version '5.1.+'
-  id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
 group = 'me.whizvox.precisionenchanter'
-version = '1.19.3-1.0.0'
+version = '1.19.4-dev-20230323'
 
 java {
   archivesBaseName = 'precisionenchanter'
@@ -12,17 +11,13 @@ java {
 }
 
 minecraft {
-  mappings channel: 'parchment', version: '2022.12.18-1.19.3'
-  // fallback mappings
-  //mappings channel: 'official', version: '1.19.3'
-  //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+  mappings channel: 'official', version: '1.19.4'
   runs {
     client {
-      workingDirectory project.file('run')
+      workingDirectory project.file('run/client')
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
-
       mods {
         precisionenchanter {
           source sourceSets.main
@@ -31,7 +26,7 @@ minecraft {
     }
 
     server {
-      workingDirectory project.file('runserver')
+      workingDirectory project.file('run/server')
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
@@ -43,7 +38,7 @@ minecraft {
     }
 
     gameTestServer {
-      workingDirectory project.file('run')
+      workingDirectory project.file('run/gameTestServer')
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       property 'forge.enabledGameTestNamespaces', 'precisionenchanter'
@@ -55,7 +50,7 @@ minecraft {
     }
 
     data {
-      workingDirectory project.file('run')
+      workingDirectory project.file('run/data')
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       args '--mod', 'precisionenchanter', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
@@ -81,39 +76,10 @@ sourceSets.main.resources {
 }
 
 repositories {
-  maven {
-    url = "https://modmaven.dev/"
-  }
-  maven {
-    name = "Jared's maven"
-    url = "https://maven.blamejared.com/"
-  }
-  maven {
-    name 'CurseMaven'
-    url "https://www.cursemaven.com"
-    content {
-      includeGroup "curse.maven"
-    }
-  }
-}
-
-sourceSets {
-  checkVersion {
-    java {
-      srcDirs('src/checkversion')
-    }
-  }
 }
 
 dependencies {
-  minecraft 'net.minecraftforge:forge:1.19.3-44.1.1'
-
-  implementation fg.deobf('teamtwilight:twilightforest:4.2.1549:universal')
-  implementation fg.deobf('curse.maven:vanillatweaks-272637:4166442')
-
-  runtimeOnly fg.deobf('mezz.jei:jei-1.19.3-forge:12.2.0.16')
-
-  checkVersionImplementation 'commons-cli:commons-cli:1.5.0'
+  minecraft 'net.minecraftforge:forge:1.19.4-45.0.24'
 }
 
 jar {
@@ -139,11 +105,4 @@ jar {
 
 tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-
-tasks.register('checkRemoteVersion', JavaExec) {
-  group = 'other'
-  description = 'Compare remote project version with local'
-  classpath = sourceSets.checkVersion.runtimeClasspath
-  mainClass.set('me.whizvox.precisionenchanting.CheckRemoteVersion')
 }

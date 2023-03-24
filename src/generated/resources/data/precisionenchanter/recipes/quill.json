@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "precisionenchanter:quill"
-  }
+  },
+  "show_notification": true
 }

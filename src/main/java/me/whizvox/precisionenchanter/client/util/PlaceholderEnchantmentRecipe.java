@@ -107,11 +107,11 @@ public class PlaceholderEnchantmentRecipe {
 
     public void render(Minecraft mc, PoseStack pose, float time) {
       ItemStack stack = getItem(time);
-      mc.getItemRenderer().renderAndDecorateFakeItem(stack, x, y);
+      mc.getItemRenderer().renderAndDecorateFakeItem(pose, stack, x, y);
       RenderSystem.depthFunc(GL11.GL_GREATER);
       GuiComponent.fill(pose, x, y, x + 16, y + 16, 0x30FFFFFF);
       RenderSystem.depthFunc(GL11.GL_LEQUAL);
-      mc.getItemRenderer().renderGuiItemDecorations(mc.font, stack, x, y);
+      mc.getItemRenderer().renderGuiItemDecorations(pose, mc.font, stack, x, y);
     }
 
   }

@@ -34,7 +34,7 @@ public class PEItems {
     event.registerCreativeModeTab(modLoc("main"), builder -> builder
         .title(PELang.CREATIVE_MODE_TAB)
         .icon(() -> new ItemStack(PEItems.ENCHANTERS_WORKBENCH.get()))
-        .displayItems((featureFlags, out, isOp) -> itemsForTab.forEach(item -> out.accept(item.get()))));
+        .displayItems((params, out) -> itemsForTab.forEach(item -> out.accept(item.get()))));
   }
 
   private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> supplier) {

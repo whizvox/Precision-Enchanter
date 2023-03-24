@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "precisionenchanter:enchanters_workbench"
-  }
+  },
+  "show_notification": true
 }

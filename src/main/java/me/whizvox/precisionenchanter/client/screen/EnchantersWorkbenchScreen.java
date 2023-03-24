@@ -179,7 +179,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     }
 
     @Override
-    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       int xOff = isHovered ? getWidth() : 0;
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       blit(pose, getX(), getY(), srcX + xOff, srcY, getWidth(), getHeight());
