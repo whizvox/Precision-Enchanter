@@ -5,24 +5,18 @@
       "mod_id": "twilightforest"
     }
   ],
-  "cost": 1,
+  "cost": 3,
   "ingredients": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:iron_block"
+        "item": "twilightforest:knightmetal_block"
       }
     },
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:wooden_pickaxe"
-      }
-    },
-    {
-      "count": 5,
-      "ingredient": {
-        "item": "twilightforest:knightmetal_ingot"
+        "item": "minecraft:iron_shovel"
       }
     }
   ],

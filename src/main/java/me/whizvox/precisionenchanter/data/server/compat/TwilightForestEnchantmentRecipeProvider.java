@@ -5,9 +5,12 @@ import me.whizvox.precisionenchanter.common.recipe.ConditionalEnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.data.server.EnchantmentRecipeProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraftforge.registries.ForgeRegistries;
 import twilightforest.TwilightForestMod;
+import twilightforest.init.TFBlocks;
 import twilightforest.init.TFEnchantments;
 import twilightforest.init.TFItems;
 
@@ -79,25 +82,23 @@ public class TwilightForestEnchantmentRecipeProvider extends EnchantmentRecipePr
         .build());
 
     // Destruction
+    final Item KNIGHTMETAL_BLOCK = ForgeRegistries.ITEMS.getValue(TFBlocks.KNIGHTMETAL_BLOCK.getId());
     output.accept(builder(TFEnchantments.DESTRUCTION.get(), 1)
-        .ingredient(Items.IRON_BLOCK)
-        .ingredient(Items.WOODEN_PICKAXE)
-        .ingredient(TFItems.KNIGHTMETAL_INGOT.get(), 5)
-        .cost(1)
-        .build());
-
-    output.accept(builder(TFEnchantments.DESTRUCTION.get(), 2)
-        .ingredient(Items.IRON_BLOCK)
-        .ingredient(Items.STONE_PICKAXE)
-        .ingredient(TFItems.KNIGHTMETAL_INGOT.get(), 10)
+        .ingredient(KNIGHTMETAL_BLOCK)
+        .ingredient(Items.IRON_SHOVEL)
         .cost(3)
         .build());
 
+    output.accept(builder(TFEnchantments.DESTRUCTION.get(), 2)
+        .ingredient(KNIGHTMETAL_BLOCK)
+        .ingredient(Items.DIAMOND_SHOVEL)
+        .cost(6)
+        .build());
+
     output.accept(builder(TFEnchantments.DESTRUCTION.get(), 3)
-        .ingredient(Items.IRON_BLOCK)
-        .ingredient(Items.IRON_PICKAXE)
-        .ingredient(TFItems.KNIGHTMETAL_INGOT.get(), 20)
-        .cost(5)
+        .ingredient(KNIGHTMETAL_BLOCK)
+        .ingredient(Items.NETHERITE_SHOVEL)
+        .cost(10)
         .build());
 
   }
