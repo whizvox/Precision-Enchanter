@@ -8,26 +8,20 @@
   "ingredients": [
     {
       "ingredient": {
-        "item": "minecraft:iron_block"
+        "item": "twilightforest:knightmetal_block"
       },
       "count": 1
     },
     {
       "ingredient": {
-        "item": "minecraft:iron_pickaxe"
+        "item": "minecraft:netherite_shovel"
       },
       "count": 1
-    },
-    {
-      "ingredient": {
-        "item": "twilightforest:knightmetal_ingot"
-      },
-      "count": 20
     }
   ],
   "result": {
     "enchantment": "twilightforest:destruction",
     "level": 3
   },
-  "cost": 5
+  "cost": 10
 }

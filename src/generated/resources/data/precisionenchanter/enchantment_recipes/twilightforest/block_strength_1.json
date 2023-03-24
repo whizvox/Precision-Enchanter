@@ -14,14 +14,20 @@
     },
     {
       "ingredient": {
-        "item": "minecraft:diamond_shovel"
+        "item": "twilightforest:knightmetal_pickaxe"
       },
       "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 3
     }
   ],
   "result": {
-    "enchantment": "twilightforest:destruction",
-    "level": 2
+    "enchantment": "twilightforest:block_strength",
+    "level": 1
   },
-  "cost": 6
+  "cost": 2
 }

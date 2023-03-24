@@ -14,14 +14,20 @@
     },
     {
       "ingredient": {
-        "item": "minecraft:diamond_shovel"
+        "tag": "minecraft:wool"
       },
-      "count": 1
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:slime_block"
+      },
+      "count": 12
     }
   ],
   "result": {
-    "enchantment": "twilightforest:destruction",
-    "level": 2
+    "enchantment": "twilightforest:preservation",
+    "level": 1
   },
-  "cost": 6
+  "cost": 4
 }

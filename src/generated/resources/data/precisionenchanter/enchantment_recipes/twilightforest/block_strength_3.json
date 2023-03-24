@@ -14,14 +14,20 @@
     },
     {
       "ingredient": {
-        "item": "minecraft:diamond_shovel"
+        "item": "twilightforest:knightmetal_pickaxe"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/netherite"
       },
       "count": 1
     }
   ],
   "result": {
-    "enchantment": "twilightforest:destruction",
-    "level": 2
+    "enchantment": "twilightforest:block_strength",
+    "level": 3
   },
-  "cost": 6
+  "cost": 7
 }
