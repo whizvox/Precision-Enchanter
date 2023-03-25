@@ -32,6 +32,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   private Component selectedEnchantmentText;
   private EnchantmentInstance currentEnchantment;
 
+  private ToggleTabletButton toggleRecipeTabletButton;
   private ChangeSelectionButton selectUpButton, selectDownButton;
   private final EnchantmentRecipeTabletComponent tablet;
 
@@ -77,23 +78,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_SELECT_NEXT, -1);
     addRenderableWidget(selectUpButton);
     addRenderableWidget(selectDownButton);
-    ImageButton showRecipesButton = new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, TEXTURE_LOCATION, button -> {
-      tablet.toggleVisibility();
-      if (tablet.isVisible()) {
-        leftPos = (width - 148) / 2 - 86 + 148;
-        button.setPosition(leftPos - 168, topPos + 20);
-        button.setTooltip(Tooltip.create(PELang.WORKBENCH_HIDE_RECIPES));
-      } else {
-        leftPos = (width - imageWidth) / 2;
-        button.setPosition(leftPos - 20, topPos + 20);
-        button.setTooltip(Tooltip.create(PELang.WORKBENCH_SHOW_RECIPES));
-      }
-      selectUpButton.setPosition(leftPos + 157, topPos + 34);
-      selectDownButton.setPosition(leftPos + 157, topPos + 47);
-      updateTabletFocus();
-    });
-    showRecipesButton.setTooltip(Tooltip.create(PELang.WORKBENCH_SHOW_RECIPES));
-    addRenderableWidget(showRecipesButton);
+    toggleRecipeTabletButton = new ToggleTabletButton(leftPos - 20, topPos + 20, 176, 53, 20, 20);
+    addRenderableWidget(toggleRecipeTabletButton);
     selectUpButton.visible = false;
     selectDownButton.visible = false;
     tablet.init(width, height, false, minecraft, menu);
@@ -141,6 +127,14 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   }
 
   @Override
+  protected void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
+    super.renderTooltip(pose, mouseX, mouseY);
+    if (toggleRecipeTabletButton.isHovered()) {
+      renderTooltip(pose, toggleRecipeTabletButton.getMessage(), mouseX, mouseY);
+    }
+  }
+
+  @Override
   protected void containerTick() {
     super.containerTick();
     tablet.tick();
@@ -165,6 +159,49 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     super.slotClicked(slot, slotId, button, clickType);
   }
 
+  private class ToggleTabletButton extends AbstractButton {
+
+    final int srcX, srcY;
+
+    ToggleTabletButton(int x, int y, int srcX, int srcY, int width, int height) {
+      super(x, y, width, height, Component.empty());
+      this.srcX = srcX;
+      this.srcY = srcY;
+    }
+
+    @Override
+    public Component getMessage() {
+      return tablet.isVisible() ? PELang.WORKBENCH_HIDE_RECIPES : PELang.WORKBENCH_SHOW_RECIPES;
+    }
+
+    @Override
+    public void renderWidget(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
+      blit(pose, getX(), getY(), srcX, isHovered ? srcY + 20 : srcY, getWidth(), getHeight());
+    }
+
+    @Override
+    public void onPress() {
+      tablet.toggleVisibility();
+      if (tablet.isVisible()) {
+        leftPos = (EnchantersWorkbenchScreen.this.width - 148) / 2 - 86 + 148;
+        setPosition(leftPos - 168, topPos + 20);
+      } else {
+        leftPos = (EnchantersWorkbenchScreen.this.width - imageWidth) / 2;
+        setPosition(leftPos - 20, topPos + 20);
+      }
+      selectUpButton.setPosition(leftPos + 157, topPos + 34);
+      selectDownButton.setPosition(leftPos + 157, topPos + 47);
+      updateTabletFocus();
+    }
+
+    @Override
+    protected void updateWidgetNarration(NarrationElementOutput output) {
+      defaultButtonNarrationText(output);
+    }
+
+  }
+
   private class ChangeSelectionButton extends AbstractButton {
 
     final int srcX;
@@ -179,7 +216,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     }
 
     @Override
-    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       int xOff = isHovered ? getWidth() : 0;
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       blit(pose, getX(), getY(), srcX + xOff, srcY, getWidth(), getHeight());

@@ -379,7 +379,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -428,7 +428,7 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       RenderSystem.setShaderColor(1, 1, 1, 1);

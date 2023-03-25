@@ -113,7 +113,7 @@ public class PrecisionGrindstoneScreen extends AbstractContainerScreen<Precision
     }
 
     @Override
-    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(PoseStack pose, int mouseX, int mouseY, float partialTick) {
       int srcXOff = isHovered ? getWidth() : 0;
       RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       blit(pose, getX(), getY(), srcX + srcXOff, srcY, getWidth(), getHeight());
