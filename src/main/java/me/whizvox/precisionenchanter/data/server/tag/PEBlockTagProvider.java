@@ -5,9 +5,9 @@ import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -21,7 +21,9 @@ public class PEBlockTagProvider extends BlockTagsProvider {
   @Override
   protected void addTags(HolderLookup.Provider provider) {
     var workbenchTag = tag(PEBlocks.ENCHANTERS_WORKBENCH_TAG);
-    PEBlocks.ENCHANTERS_WORKBENCHES.values().stream().map(RegistryObject::get).forEach(workbenchTag::add);
+    for (DyeColor dye : DyeColor.values()) {
+      workbenchTag.add(PEBlocks.ENCHANTERS_WORKBENCHES.get(dye).get());
+    }
 
     tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
         PEBlocks.PRECISION_GRINDSTONE.get()

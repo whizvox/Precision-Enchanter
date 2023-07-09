@@ -1,20 +1,20 @@
 {
   "values": [
-    "precisionenchanter:pink_enchanters_workbench",
-    "precisionenchanter:purple_enchanters_workbench",
-    "precisionenchanter:gray_enchanters_workbench",
-    "precisionenchanter:cyan_enchanters_workbench",
+    "precisionenchanter:white_enchanters_workbench",
+    "precisionenchanter:orange_enchanters_workbench",
     "precisionenchanter:magenta_enchanters_workbench",
     "precisionenchanter:light_blue_enchanters_workbench",
-    "precisionenchanter:lime_enchanters_workbench",
-    "precisionenchanter:orange_enchanters_workbench",
     "precisionenchanter:yellow_enchanters_workbench",
-    "precisionenchanter:green_enchanters_workbench",
-    "precisionenchanter:blue_enchanters_workbench",
-    "precisionenchanter:black_enchanters_workbench",
+    "precisionenchanter:lime_enchanters_workbench",
+    "precisionenchanter:pink_enchanters_workbench",
+    "precisionenchanter:gray_enchanters_workbench",
     "precisionenchanter:light_gray_enchanters_workbench",
+    "precisionenchanter:cyan_enchanters_workbench",
+    "precisionenchanter:purple_enchanters_workbench",
+    "precisionenchanter:blue_enchanters_workbench",
     "precisionenchanter:brown_enchanters_workbench",
-    "precisionenchanter:white_enchanters_workbench",
-    "precisionenchanter:red_enchanters_workbench"
+    "precisionenchanter:green_enchanters_workbench",
+    "precisionenchanter:red_enchanters_workbench",
+    "precisionenchanter:black_enchanters_workbench"
   ]
 }
