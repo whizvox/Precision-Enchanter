@@ -31,6 +31,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   @Nullable
   private Component selectedEnchantmentText;
   private EnchantmentInstance currentEnchantment;
+  private boolean matchesMultiple;
 
   private ToggleTabletButton toggleRecipeTabletButton;
   private ChangeSelectionButton selectUpButton, selectDownButton;
@@ -39,6 +40,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   public EnchantersWorkbenchScreen(EnchantersWorkbenchMenu menu, Inventory playerInv, Component title) {
     super(menu, playerInv, title);
     selectedEnchantmentText = null;
+    matchesMultiple = false;
     currentEnchantment = null;
     tablet = new EnchantmentRecipeTabletComponent();
   }
@@ -88,16 +90,16 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
 
   @Override
   public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
-    if (!menu.enchantmentsEquals(currentEnchantment)) {
+    if (!menu.enchantmentsEquals(currentEnchantment) || (matchesMultiple != menu.multipleRecipesMatched())) {
       currentEnchantment = menu.getSelectedEnchantment();
+      matchesMultiple = menu.multipleRecipesMatched();
       if (currentEnchantment == null) {
         selectedEnchantmentText = null;
       } else {
         selectedEnchantmentText = ChatUtil.mut(PEClientUtil.getEnchantmentFullName(currentEnchantment));
       }
-      boolean flag = menu.multipleRecipesMatched();
-      selectUpButton.visible = flag;
-      selectDownButton.visible = flag;
+      selectUpButton.visible = matchesMultiple;
+      selectDownButton.visible = matchesMultiple;
     }
 
     renderBackground(pose);
