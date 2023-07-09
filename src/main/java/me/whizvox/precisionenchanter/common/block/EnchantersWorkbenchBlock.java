@@ -2,6 +2,7 @@ package me.whizvox.precisionenchanter.common.block;
 
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
+import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -65,15 +66,13 @@ public class EnchantersWorkbenchBlock extends Block {
   @Override
   public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-      if (player.isShiftKeyDown()) {
-        ItemStack stack = player.getItemInHand(hand);
-        DyeColor heldColor = DyeColor.getColor(stack);
-        if (heldColor != null && heldColor != color) {
+      ItemStack stack = player.getItemInHand(hand);
+      DyeColor heldColor = DyeColor.getColor(stack);
+      if (heldColor != null && heldColor != color) {
+        if (!serverPlayer.getAbilities().instabuild) {
           stack.shrink(1);
-          //level.setBlock(pos, state.setValue(COLOR, heldColor), Block.UPDATE_ALL);
-        } else {
-          return InteractionResult.FAIL;
         }
+        level.setBlock(pos, PEBlocks.ENCHANTERS_WORKBENCHES.get(heldColor).get().defaultBlockState(), Block.UPDATE_ALL);
       } else {
         NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, pos), pos);
       }
