@@ -1,6 +1,6 @@
 {
   "values": [
-    "precisionenchanter:enchanters_workbench",
-    "precisionenchanter:precision_grindstone"
+    "precisionenchanter:precision_grindstone",
+    "#precisionenchanter:enchanters_workbench"
   ]
 }

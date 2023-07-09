@@ -2,9 +2,9 @@ package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.client.util.PlaceholderEnchantmentRecipe;
-import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;

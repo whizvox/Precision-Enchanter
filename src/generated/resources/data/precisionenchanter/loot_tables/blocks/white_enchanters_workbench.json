@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "precisionenchanter:enchanters_workbench"
+          "name": "precisionenchanter:white_enchanters_workbench"
         }
       ],
       "rolls": 1.0

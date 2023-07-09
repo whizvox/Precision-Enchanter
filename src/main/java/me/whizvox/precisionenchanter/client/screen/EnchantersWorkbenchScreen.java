@@ -11,8 +11,6 @@ import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMes
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
 import net.minecraft.client.gui.components.AbstractButton;
-import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;

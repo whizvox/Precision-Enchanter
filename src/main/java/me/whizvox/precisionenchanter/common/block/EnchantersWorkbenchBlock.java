@@ -10,6 +10,8 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -38,8 +40,11 @@ public class EnchantersWorkbenchBlock extends Block {
       Block.box(15.9, 8, 3, 16, 12, 13)
   );
 
-  public EnchantersWorkbenchBlock() {
+  public final DyeColor color;
+
+  public EnchantersWorkbenchBlock(DyeColor color) {
     super(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F, 7.0F));
+    this.color = color;
   }
 
   @Override
@@ -60,7 +65,18 @@ public class EnchantersWorkbenchBlock extends Block {
   @Override
   public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-      NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, pos), pos);
+      if (player.isShiftKeyDown()) {
+        ItemStack stack = player.getItemInHand(hand);
+        DyeColor heldColor = DyeColor.getColor(stack);
+        if (heldColor != null && heldColor != color) {
+          stack.shrink(1);
+          //level.setBlock(pos, state.setValue(COLOR, heldColor), Block.UPDATE_ALL);
+        } else {
+          return InteractionResult.FAIL;
+        }
+      } else {
+        NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, pos), pos);
+      }
     }
     return InteractionResult.sidedSuccess(level.isClientSide);
   }

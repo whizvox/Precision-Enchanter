@@ -7,6 +7,7 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class PEBlockLoot extends BlockLootSubProvider {
 
   @Override
   protected void generate() {
-    dropSelf(PEBlocks.ENCHANTERS_WORKBENCH.get());
+    PEBlocks.ENCHANTERS_WORKBENCHES.values().stream().map(RegistryObject::get).forEach(this::dropSelf);
     dropSelf(PEBlocks.PRECISION_GRINDSTONE.get());
   }
 

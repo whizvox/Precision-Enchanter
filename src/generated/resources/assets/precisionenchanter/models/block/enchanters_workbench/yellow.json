@@ -1,0 +1,6 @@
+{
+  "parent": "precisionenchanter:block/enchanters_workbench/generic",
+  "textures": {
+    "cloth": "precisionenchanter:block/enchanters_workbench/yellow_cloth"
+  }
+}

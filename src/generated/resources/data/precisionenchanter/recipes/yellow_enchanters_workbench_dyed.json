@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "precisionenchanter:enchanters_workbench"
+    },
+    "D": {
+      "tag": "forge:dyes/yellow"
+    }
+  },
+  "pattern": [
+    "D",
+    "B"
+  ],
+  "result": {
+    "item": "precisionenchanter:yellow_enchanters_workbench"
+  },
+  "show_notification": true
+}
