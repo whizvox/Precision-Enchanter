@@ -67,7 +67,8 @@ public class EnchantmentRecipeProvider implements DataProvider {
   public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level, String path) {
     return ConditionalEnchantmentRecipe.builder()
         .id(new ResourceLocation(modId, path))
-        .result(result, level);
+        .result(result, level)
+        .standardGrindstoneCost();
   }
 
   public ConditionalEnchantmentRecipe.Builder builder(Enchantment result, int level) {

@@ -4,6 +4,7 @@ import me.whizvox.precisionenchanter.common.api.EnchantmentStorageManager;
 import me.whizvox.precisionenchanter.common.api.IEnchantmentStorage;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
+import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.MenuUtil;
@@ -217,12 +218,18 @@ public class PrecisionGrindstoneMenu extends AbstractContainerMenu {
       enchantmentId.set(PEEnchantmentHelper.INSTANCE.getId(selected.enchantment));
       enchantmentLevel.set(selected.level);
       resultSlots.setStackInSlot(0, appliedStorage.applyEnchantment(applyOntoSlots.getStackInSlot(0), getSelectedEnchantment()));
-      int costAmount = switch (selected.enchantment.getRarity()) {
-        case COMMON -> 1;
-        case UNCOMMON -> 2;
-        case RARE -> 3;
-        case VERY_RARE -> 4;
-      };
+      EnchantmentRecipe recipe = EnchantmentRecipeManager.INSTANCE.get(selected.enchantment, selected.level);
+      int costAmount;
+      if (recipe == null) {
+        costAmount = switch (selected.enchantment.getRarity()) {
+          case COMMON -> 1;
+          case UNCOMMON -> 2;
+          case RARE -> 3;
+          case VERY_RARE -> 4;
+        };
+      } else {
+        costAmount = recipe.getGrindstoneCost();
+      }
       cost.set(costAmount);
       broadcastChanges();
     });

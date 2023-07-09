@@ -1,5 +1,6 @@
 {
   "cost": 1,
+  "grindstoneCost": 1,
   "ingredients": [
     {
       "count": 1,

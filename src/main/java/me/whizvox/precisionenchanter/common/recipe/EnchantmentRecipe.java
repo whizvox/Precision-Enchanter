@@ -34,18 +34,22 @@ public class EnchantmentRecipe {
   private final List<Pair<Ingredient, Integer>> ingredients;
   private final Enchantment enchantment;
   private final int level;
+  // cost to craft the enchantment
   private final int cost;
+  // cost to apply the enchantment in a grindstone
+  private final int grindstoneCost;
 
-  EnchantmentRecipe(ResourceLocation id, List<Pair<Ingredient, Integer>> ingredients, Enchantment enchantment, int level, int cost) {
+  EnchantmentRecipe(ResourceLocation id, List<Pair<Ingredient, Integer>> ingredients, Enchantment enchantment, int level, int cost, int grindstoneCost) {
     this.id = id;
     this.ingredients = ingredients.stream().filter(pair -> !pair.getLeft().isEmpty()).toList();
     this.enchantment = enchantment;
     this.level = level;
     this.cost = cost;
+    this.grindstoneCost = grindstoneCost;
   }
 
   public EnchantmentRecipe(EnchantmentRecipe other) {
-    this(other.id, other.ingredients, other.enchantment, other.level, other.cost);
+    this(other.id, other.ingredients, other.enchantment, other.level, other.cost, other.grindstoneCost);
   }
 
   /**
@@ -77,6 +81,10 @@ public class EnchantmentRecipe {
 
   public int getCost() {
     return cost;
+  }
+
+  public int getGrindstoneCost() {
+    return grindstoneCost;
   }
 
   private boolean match(IItemHandler invCopy) {
@@ -157,6 +165,7 @@ public class EnchantmentRecipe {
     } else {
       buf.writeBoolean(true);
       buf.writeShort(cost);
+      buf.writeShort(grindstoneCost);
       buf.writeByte(ingredients.size());
       ingredients.forEach(pair -> {
         pair.getLeft().toNetwork(buf);
@@ -190,6 +199,7 @@ public class EnchantmentRecipe {
     Builder builder = builder().id(id);
     if (buf.readBoolean()) {
       builder.cost(buf.readShort());
+      builder.grindstoneCost(buf.readShort());
       int numIngredients = buf.readByte();
       for (int j = 0; j < numIngredients; j++) {
         builder.ingredient(Ingredient.fromNetwork(buf), buf.readByte());
@@ -207,7 +217,7 @@ public class EnchantmentRecipe {
   public class Immutable extends EnchantmentRecipe {
 
     public Immutable(EnchantmentRecipe recipe) {
-      super(recipe.id, recipe.ingredients, recipe.enchantment, recipe.level, recipe.cost);
+      super(recipe.id, recipe.ingredients, recipe.enchantment, recipe.level, recipe.cost, recipe.grindstoneCost);
 
       if (isInvalid() && id != null) {
         List<String> problems = new ArrayList<>(2);
@@ -232,7 +242,7 @@ public class EnchantmentRecipe {
 
   }
 
-  public static final EnchantmentRecipe INVALID = new EnchantmentRecipe(null, List.of(), null, 0, 0);
+  public static final EnchantmentRecipe INVALID = new EnchantmentRecipe(null, List.of(), null, 0, 0, 0);
 
   public record MatchResult(boolean matches, List<ItemStack> leftoverIngredients, ItemStack result, int cost) {
 
@@ -254,12 +264,14 @@ public class EnchantmentRecipe {
     private Enchantment result;
     private int level;
     private int cost;
+    private int grindstoneCost;
     public Builder() {
       this.id = null;
       ingredients = new ArrayList<>();
       result = null;
       level = 1;
       cost = 0;
+      grindstoneCost = 0;
     }
     public Builder id(ResourceLocation id) {
       this.id = id;
@@ -300,13 +312,28 @@ public class EnchantmentRecipe {
       };
       return cost(rarity * level);
     }
+    public Builder grindstoneCost(int grindstoneCost) {
+      this.grindstoneCost = grindstoneCost;
+      return this;
+    }
+    public Builder standardGrindstoneCost() {
+      if (result != null) {
+        grindstoneCost = switch (result.getRarity()) {
+          case COMMON -> 1;
+          case UNCOMMON -> 2;
+          case RARE -> 3;
+          case VERY_RARE -> 4;
+        };
+      }
+      return this;
+    }
     public Builder result(Enchantment result, int level) {
       this.result = result;
       this.level = level;
       return this;
     }
     public EnchantmentRecipe buildMutable() {
-      return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 1, Short.MAX_VALUE), Mth.clamp(cost, 0, Short.MAX_VALUE));
+      return new EnchantmentRecipe(id, ingredients, result, Mth.clamp(level, 1, Short.MAX_VALUE), Mth.clamp(cost, 0, Short.MAX_VALUE), Mth.clamp(grindstoneCost, 0, Short.MAX_VALUE));
     }
     public EnchantmentRecipe build() {
       return buildMutable().immutable();
@@ -331,6 +358,7 @@ public class EnchantmentRecipe {
       resultJson.addProperty("level", recipe.level);
       json.add("result", resultJson);
       json.addProperty("cost", recipe.cost);
+      json.addProperty("grindstoneCost", recipe.grindstoneCost);
       return json;
     }
 
@@ -363,6 +391,9 @@ public class EnchantmentRecipe {
       }
       if (json.has("cost")) {
         builder.cost(json.get("cost").getAsInt());
+      }
+      if (json.has("grindstoneCost")) {
+        builder.grindstoneCost(json.get("grindstoneCost").getAsInt());
       }
       return builder.buildMutable();
     }

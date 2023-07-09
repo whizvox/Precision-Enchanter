@@ -131,6 +131,16 @@ public class ConditionalEnchantmentRecipe extends EnchantmentRecipe {
       return this;
     }
     @Override
+    public Builder grindstoneCost(int grindstoneCost) {
+      super.grindstoneCost(grindstoneCost);
+      return this;
+    }
+    @Override
+    public Builder standardGrindstoneCost() {
+      super.standardGrindstoneCost();
+      return this;
+    }
+    @Override
     public Builder result(Enchantment result, int level) {
       super.result(result, level);
       return this;
