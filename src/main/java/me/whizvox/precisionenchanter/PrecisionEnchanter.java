@@ -9,6 +9,7 @@ import me.whizvox.precisionenchanter.common.config.PEConfig;
 import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
+import me.whizvox.precisionenchanter.common.registry.PECreativeModeTab;
 import me.whizvox.precisionenchanter.common.registry.PEItems;
 import me.whizvox.precisionenchanter.common.registry.PEMenus;
 import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
@@ -44,6 +45,7 @@ public class PrecisionEnchanter {
     PEBlocks.register(modBus);
     PEItems.register(modBus);
     PEMenus.register(modBus);
+    PECreativeModeTab.register(modBus);
     PENetwork.register();
     EnchantmentStorageManager.register(modBus);
     modBus.addListener(this::onClientSetup);

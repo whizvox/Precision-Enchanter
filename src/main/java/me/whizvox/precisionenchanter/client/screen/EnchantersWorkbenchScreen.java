@@ -10,6 +10,7 @@ import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Tooltip;
@@ -50,23 +51,21 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     }
   }
 
-  private void renderCost(PoseStack pose, int cost, boolean includeCross) {
+  private void renderCost(GuiGraphics g, int cost, boolean includeCross) {
     if (cost > 0) {
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
       int color;
       if (EnchantmentRecipe.canCraftEnchantment(minecraft.player, cost)) {
         color = 0x38D600;
       } else {
         color = 0xFF3C3F;
         if (includeCross) {
-          blit(pose, 104, 38, 176, 0, 17, 17);
+          g.blit(TEXTURE_LOCATION, 104, 38, 176, 0, 17, 17);
         }
       }
       Component comp = ChatUtil.mut(cost);
       int xPos = 144 - (font.width(comp) / 2);
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      blit(pose, xPos - 7, 63, 176, 17, 10, 10);
-      drawString(pose, font, comp, xPos + 7, 64, color);
+      g.blit(TEXTURE_LOCATION, xPos - 7, 63, 176, 17, 10, 10);
+      g.drawString(font, comp, xPos + 7, 64, color);
     }
   }
 
@@ -101,7 +100,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   }
 
   @Override
-  public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+  public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
     if (!menu.enchantmentsEquals(currentEnchantment)) {
       currentEnchantment = menu.getSelectedEnchantment();
       if (currentEnchantment == null) {
@@ -114,29 +113,26 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       selectDownButton.visible = flag;
     }
 
-    renderBackground(pose);
-    super.render(pose, mouseX, mouseY, partialTick);
-    tablet.render(pose, mouseX, mouseY, partialTick);
-    renderTooltip(pose, mouseX, mouseY);
-    tablet.renderTooltips(pose, mouseX, mouseY);
+    renderBackground(g);
+    super.render(g, mouseX, mouseY, partialTick);
+    tablet.render(g, mouseX, mouseY, partialTick);
+    renderTooltip(g, mouseX, mouseY);
+    tablet.renderTooltips(g, mouseX, mouseY);
   }
 
   @Override
-  protected void renderBg(PoseStack pose, float partialTick, int mouseX, int mouseY) {
-    RenderSystem.setShader(GameRenderer::getPositionTexShader);
-    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-    RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-    blit(pose, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+  protected void renderBg(GuiGraphics g, float partialTick, int mouseX, int mouseY) {
+    g.blit(TEXTURE_LOCATION, leftPos, topPos, 0, 0, imageWidth, imageHeight);
   }
 
   @Override
-  protected void renderLabels(PoseStack pose, int mouseX, int mouseY) {
-    super.renderLabels(pose, mouseX, mouseY);
+  protected void renderLabels(GuiGraphics g, int mouseX, int mouseY) {
+    super.renderLabels(g, mouseX, mouseY);
     if (selectedEnchantmentText != null) {
-      drawCenteredString(pose, font, selectedEnchantmentText, 88, 17, 0x38D600);
-      renderCost(pose, menu.getCost(), true);
+      g.drawCenteredString(font, selectedEnchantmentText, 88, 17, 0x38D600);
+      renderCost(g, menu.getCost(), true);
     } else if (tablet.isVisible() && tablet.getPlaceholderRecipe().hasRecipe()) {
-      renderCost(pose, tablet.getPlaceholderRecipe().getRecipe().getCost(), false);
+      renderCost(g, tablet.getPlaceholderRecipe().getRecipe().getCost(), false);
     }
   }
 
@@ -179,10 +175,9 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     }
 
     @Override
-    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
       int xOff = isHovered ? getWidth() : 0;
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      blit(pose, getX(), getY(), srcX + xOff, srcY, getWidth(), getHeight());
+      g.blit(TEXTURE_LOCATION, getX(), getY(), srcX + xOff, srcY, getWidth(), getHeight());
     }
 
     @Override

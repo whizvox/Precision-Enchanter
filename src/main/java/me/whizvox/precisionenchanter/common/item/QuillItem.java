@@ -27,7 +27,8 @@ public class QuillItem extends Item {
     if ((!isDamageable(stack) || getDamage(stack) < getMaxDamage(stack)) && level.getBlockEntity(ctx.getClickedPos()) instanceof SignBlockEntity sign) {
       if (!level.isClientSide) {
         stack.hurt(1, player.getRandom(), (ServerPlayer) player);
-        player.openTextEdit(sign);
+        // TODO Allow editing of either side of sign
+        player.openTextEdit(sign, true);
       }
       return InteractionResult.sidedSuccess(level.isClientSide);
     }

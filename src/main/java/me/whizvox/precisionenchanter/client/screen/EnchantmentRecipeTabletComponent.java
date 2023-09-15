@@ -2,9 +2,9 @@ package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.client.util.PlaceholderEnchantmentRecipe;
-import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.lib.PELog;
 import me.whizvox.precisionenchanter.common.menu.EnchantersWorkbenchMenu;
@@ -14,16 +14,13 @@ import me.whizvox.precisionenchanter.common.network.message.SimpleServerBoundMes
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.gui.components.AbstractButton;
-import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.Renderable;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -34,7 +31,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class EnchantmentRecipeTabletComponent extends GuiComponent implements Renderable, GuiEventListener, NarratableEntry {
+public class EnchantmentRecipeTabletComponent implements Renderable, GuiEventListener, NarratableEntry {
 
   private static final ResourceLocation TEXTURE_LOCATION = PrecisionEnchanter.modLoc("textures/gui/enchantment_recipe_tablet.png");
   private static final int
@@ -264,18 +261,27 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   }
 
   @Override
+  public void setFocused(boolean focused) {
+  }
+
+  @Override
+  public boolean isFocused() {
+    return false;
+  }
+
+  @Override
   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
     if (visible) {
       if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
         if (searchBar.isFocused()) {
-          searchBar.setFocus(false);
+          searchBar.setFocused(false);
         } else {
           setVisible(false);
         }
         return true;
       }
       if (mc.options.keyChat.matches(keyCode, scanCode) && !searchBar.isFocused()) {
-        searchBar.setFocus(true);
+        searchBar.setFocused(true);
         return true;
       }
       if (searchBar.isFocused()) {
@@ -312,31 +318,28 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
   }
 
   @Override
-  public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+  public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
     if (visible) {
       time += partialTick;
-      RenderSystem.setShader(GameRenderer::getPositionTexShader);
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      RenderSystem.setShaderColor(1, 1, 1, 1);
-      blit(pose, leftPos, topPos, 0, 0, 148, 167);
-      blit(pose, leftPos + 4, topPos + 4, 148, 0, 12, 12);
+      g.blit(TEXTURE_LOCATION, leftPos, topPos, 0, 0, 148, 167);
+      g.blit(TEXTURE_LOCATION, leftPos + 4, topPos + 4, 148, 0, 12, 12);
       if (!recipesLoaded) {
-        drawCenteredString(pose, mc.font, PELang.SCREEN_LOADING, leftPos + 74, topPos + 90, 0xFFFFFF);
+        g.drawCenteredString(mc.font, PELang.SCREEN_LOADING, leftPos + 74, topPos + 90, 0xFFFFFF);
       }
-      drawCenteredString(pose, mc.font, pageNumberComponent, leftPos + 74, topPos + 153, 0xFFFFFF);
-      searchBar.render(pose, mouseX, mouseY, partialTick);
-      prevPageButton.render(pose, mouseX, mouseY, partialTick);
-      nextPageButton.render(pose, mouseX, mouseY, partialTick);
-      displayedEntries.forEach(entry -> entry.render(pose, mouseX, mouseY, partialTick));
-      showCraftableButton.render(pose, mouseX, mouseY, partialTick);
-      placeholderRecipe.render(pose, mouseX, mouseY, partialTick);
+      g.drawCenteredString(mc.font, pageNumberComponent, leftPos + 74, topPos + 153, 0xFFFFFF);
+      searchBar.render(g, mouseX, mouseY, partialTick);
+      prevPageButton.render(g, mouseX, mouseY, partialTick);
+      nextPageButton.render(g, mouseX, mouseY, partialTick);
+      displayedEntries.forEach(entry -> entry.render(g, mouseX, mouseY, partialTick));
+      showCraftableButton.render(g, mouseX, mouseY, partialTick);
+      placeholderRecipe.render(g, mouseX, mouseY, partialTick);
     }
   }
 
-  public void renderTooltips(PoseStack pose, int mouseX, int mouseY) {
+  public void renderTooltips(GuiGraphics g, int mouseX, int mouseY) {
     if (visible) {
-      placeholderRecipe.renderTooltip(pose, mouseX, mouseY);
-      showCraftableButton.renderTooltip(pose, mouseX, mouseY);
+      placeholderRecipe.renderTooltip(g, mouseX, mouseY);
+      showCraftableButton.renderTooltip(g, mouseX, mouseY);
     }
   }
 
@@ -370,20 +373,17 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
-      RenderSystem.setShader(GameRenderer::getPositionTexShader);
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      RenderSystem.setShaderColor(1, 1, 1, 1);
+    public void renderWidget(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
       int srcY = isHovered ? 186 : 167;
-      blit(pose, getX(), getY(), 0, srcY, width, height);
+      g.blit(TEXTURE_LOCATION, getX(), getY(), 0, srcY, width, height);
       if (craftable && !isShowingOnlyCraftable()) {
         RenderSystem.enableBlend();
         // sine oscillation between 50% and 100% opacity with a period of 30 ticks
         RenderSystem.setShaderColor(1, 1, 1, 0.25F * Mth.sin(Mth.PI * time / 15) + 0.75F);
-        blit(pose, getX(), getY(), 0, 205, width, height);
+        g.blit(TEXTURE_LOCATION, getX(), getY(), 0, 205, width, height);
         RenderSystem.disableBlend();
       }
-      mc.font.draw(pose, getMessage(), getX() + 5, getY() + 6, 0x000000);
+      g.drawString(mc.font, getMessage(), getX() + 5, getY() + 6, 0x000000, false);
     }
 
     @Override
@@ -419,18 +419,15 @@ public class EnchantmentRecipeTabletComponent extends GuiComponent implements Re
     }
 
     @Override
-    public void renderButton(PoseStack pose, int mouseX, int mouseY, float partialTick) {
-      RenderSystem.setShader(GameRenderer::getPositionTexShader);
-      RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-      RenderSystem.setShaderColor(1, 1, 1, 1);
+    public void renderWidget(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
       int srcX = showOnlyCraftable ? 168 : 148;
       int srcY = isHovered ? 44 : 24;
-      blit(pose, getX(), getY(), srcX, srcY, getWidth(), getHeight());
+      g.blit(TEXTURE_LOCATION, getX(), getY(), srcX, srcY, getWidth(), getHeight());
     }
 
-    public void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
+    public void renderTooltip(GuiGraphics g, int mouseX, int mouseY) {
       if (isHovered) {
-        mc.screen.renderComponentTooltip(pose, List.of(getMessage()), mouseX, mouseY);
+        g.renderComponentTooltip(mc.font, List.of(getMessage()), mouseX, mouseY);
       }
     }
 

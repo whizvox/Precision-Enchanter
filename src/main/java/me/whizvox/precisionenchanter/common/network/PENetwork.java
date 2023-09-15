@@ -51,7 +51,7 @@ public class PENetwork {
   }
 
   public static void sendToClient(Object msg, ServerPlayer player) {
-    CHANNEL.sendTo(msg, player.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+    CHANNEL.sendTo(msg, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
   }
 
   public static void broadcast(Object msg) {

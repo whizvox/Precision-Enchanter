@@ -1,14 +1,12 @@
 package me.whizvox.precisionenchanter.client.util;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -72,19 +70,19 @@ public class PlaceholderEnchantmentRecipe {
     }
   }
 
-  public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+  public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
     if (hasRecipe()) {
       if (!Screen.hasControlDown()) {
         time += partialTick;
       }
       ingredients.forEach(ingredient -> {
-        GuiComponent.fill(pose, ingredient.x, ingredient.y, ingredient.x + 16, ingredient.y + 16, 0x30FF0000);
-        ingredient.render(mc, pose, time);
+        g.fill(ingredient.x, ingredient.y, ingredient.x + 16, ingredient.y + 16, 0x30FF0000);
+        ingredient.render(mc, g, time);
       });
     }
   }
 
-  public void renderTooltip(PoseStack pose, int mouseX, int mouseY) {
+  public void renderTooltip(GuiGraphics g, int mouseX, int mouseY) {
     if (hasRecipe()) {
       ItemStack stack = null;
       for (PlaceholderIngredient ingredient : ingredients) {
@@ -94,7 +92,7 @@ public class PlaceholderEnchantmentRecipe {
         }
       }
       if (stack != null) {
-        mc.screen.renderComponentTooltip(pose, mc.screen.getTooltipFromItem(stack), mouseX, mouseY, stack);
+        g.renderComponentTooltip(mc.font, Screen.getTooltipFromItem(mc, stack), mouseX, mouseY, stack);
       }
     }
   }
@@ -105,13 +103,11 @@ public class PlaceholderEnchantmentRecipe {
       return items[Mth.floor(time / 20) % items.length];
     }
 
-    public void render(Minecraft mc, PoseStack pose, float time) {
+    public void render(Minecraft mc, GuiGraphics g, float time) {
       ItemStack stack = getItem(time);
-      mc.getItemRenderer().renderAndDecorateFakeItem(stack, x, y);
-      RenderSystem.depthFunc(GL11.GL_GREATER);
-      GuiComponent.fill(pose, x, y, x + 16, y + 16, 0x30FFFFFF);
-      RenderSystem.depthFunc(GL11.GL_LEQUAL);
-      mc.getItemRenderer().renderGuiItemDecorations(mc.font, stack, x, y);
+      g.renderFakeItem(stack, x, y);
+      g.fill(RenderType.guiGhostRecipeOverlay(), x, y, x + 16, y + 16, 0x30FFFFFF);
+      g.renderItemDecorations(mc.font, stack, x, y);
     }
 
   }
