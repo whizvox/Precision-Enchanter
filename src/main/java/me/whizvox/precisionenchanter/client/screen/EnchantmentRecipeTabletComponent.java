@@ -1,7 +1,6 @@
 package me.whizvox.precisionenchanter.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.client.util.PlaceholderEnchantmentRecipe;
@@ -15,12 +14,14 @@ import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipeManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.components.AbstractButton;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -297,6 +298,7 @@ public class EnchantmentRecipeTabletComponent implements Renderable, GuiEventLis
   public boolean mouseClicked(double mouseX, double mouseY, int button) {
     if (visible) {
       if (searchBar.mouseClicked(mouseX, mouseY, button)) {
+        searchBar.setFocused(true);
         return true;
       }
       if (prevPageButton.mouseClicked(mouseX, mouseY, button)) {
