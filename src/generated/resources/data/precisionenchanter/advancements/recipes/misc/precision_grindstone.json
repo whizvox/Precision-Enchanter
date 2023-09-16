@@ -30,5 +30,6 @@
     "recipes": [
       "precisionenchanter:precision_grindstone"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

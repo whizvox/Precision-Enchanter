@@ -30,5 +30,6 @@
     "recipes": [
       "precisionenchanter:quill_repair_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
