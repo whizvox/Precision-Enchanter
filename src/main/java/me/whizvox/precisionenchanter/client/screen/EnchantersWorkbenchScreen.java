@@ -1,7 +1,5 @@
 package me.whizvox.precisionenchanter.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import me.whizvox.precisionenchanter.PrecisionEnchanter;
 import me.whizvox.precisionenchanter.client.util.PEClientUtil;
 import me.whizvox.precisionenchanter.common.lib.PELang;
@@ -16,7 +14,6 @@ import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -32,6 +29,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   @Nullable
   private Component selectedEnchantmentText;
   private EnchantmentInstance currentEnchantment;
+  private boolean matchesMultiple;
 
   private ChangeSelectionButton selectUpButton, selectDownButton;
   private final EnchantmentRecipeTabletComponent tablet;
@@ -39,6 +37,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   public EnchantersWorkbenchScreen(EnchantersWorkbenchMenu menu, Inventory playerInv, Component title) {
     super(menu, playerInv, title);
     selectedEnchantmentText = null;
+    matchesMultiple = false;
     currentEnchantment = null;
     tablet = new EnchantmentRecipeTabletComponent();
   }
@@ -101,16 +100,16 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
 
   @Override
   public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-    if (!menu.enchantmentsEquals(currentEnchantment)) {
+    if (!menu.enchantmentsEquals(currentEnchantment) || (matchesMultiple != menu.multipleRecipesMatched())) {
       currentEnchantment = menu.getSelectedEnchantment();
+      matchesMultiple = menu.multipleRecipesMatched();
       if (currentEnchantment == null) {
         selectedEnchantmentText = null;
       } else {
         selectedEnchantmentText = ChatUtil.mut(PEClientUtil.getEnchantmentFullName(currentEnchantment));
       }
-      boolean flag = menu.multipleRecipesMatched();
-      selectUpButton.visible = flag;
-      selectDownButton.visible = flag;
+      selectUpButton.visible = matchesMultiple;
+      selectDownButton.visible = matchesMultiple;
     }
 
     renderBackground(g);
