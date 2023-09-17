@@ -5,6 +5,8 @@ import me.whizvox.precisionenchanter.common.block.PrecisionGrindstoneBlock;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -16,11 +18,16 @@ public class PEBlockStateProvider extends BlockStateProvider {
     super(output, PrecisionEnchanter.MOD_ID, existingFileHelper);
   }
 
-  void registerEnchantersWorkbench() {
-    ModelFile model = models().getExistingFile(modLoc("block/enchanters_workbench"));
-    getVariantBuilder(PEBlocks.ENCHANTERS_WORKBENCH.get())
-        .partialState().setModels(new ConfiguredModel(model));
-    simpleBlockItem(PEBlocks.ENCHANTERS_WORKBENCH.get(), model);
+  void registerEnchantersWorkbenches() {
+    ResourceLocation parent = modLoc("block/enchanters_workbench/generic");
+    PEBlocks.ENCHANTERS_WORKBENCHES.forEach((color, blockSup) -> {
+      Block block = blockSup.get();
+      ResourceLocation clothTexture = modLoc("block/enchanters_workbench/" + color.getName() + "_cloth");
+      ModelFile file = models().withExistingParent("block/enchanters_workbench/" + color.getName(), parent)
+          .texture("cloth", clothTexture);
+      simpleBlock(block, file);
+      simpleBlockItem(block, file);
+    });
   }
 
   void registerPrecisionGrindstone() {
@@ -35,7 +42,7 @@ public class PEBlockStateProvider extends BlockStateProvider {
 
   @Override
   protected void registerStatesAndModels() {
-    registerEnchantersWorkbench();
+    registerEnchantersWorkbenches();
     registerPrecisionGrindstone();
   }
 

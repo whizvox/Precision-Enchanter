@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:purple_carpet"
+    },
+    "D": {
+      "item": "minecraft:deepslate"
+    },
+    "Q": {
+      "item": "precisionenchanter:enchanted_quill"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "pattern": [
+    " Q ",
+    "CCC",
+    "DSD"
+  ],
+  "result": {
+    "item": "precisionenchanter:purple_enchanters_workbench"
+  },
+  "show_notification": true
+}

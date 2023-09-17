@@ -5,7 +5,10 @@ import me.whizvox.precisionenchanter.common.lib.PELang;
 import me.whizvox.precisionenchanter.common.registry.PEBlocks;
 import me.whizvox.precisionenchanter.common.registry.PEItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.common.data.LanguageProvider;
+
+import java.util.Map;
 
 public class PELanguageProvider extends LanguageProvider {
 
@@ -13,9 +16,34 @@ public class PELanguageProvider extends LanguageProvider {
     super(output, PrecisionEnchanter.MOD_ID, locale);
   }
 
+  private static final Map<DyeColor, String> COLORS = Map.ofEntries(
+      Map.entry(DyeColor.WHITE, "White"),
+      Map.entry(DyeColor.ORANGE, "Orange"),
+      Map.entry(DyeColor.MAGENTA, "Magenta"),
+      Map.entry(DyeColor.LIGHT_BLUE, "Light Blue"),
+      Map.entry(DyeColor.YELLOW, "Yellow"),
+      Map.entry(DyeColor.LIME, "Lime"),
+      Map.entry(DyeColor.PINK, "Pink"),
+      Map.entry(DyeColor.GRAY, "Gray"),
+      Map.entry(DyeColor.LIGHT_GRAY, "Light Gray"),
+      Map.entry(DyeColor.CYAN, "Cyan"),
+      Map.entry(DyeColor.PURPLE, "Purple"),
+      Map.entry(DyeColor.BLUE, "Blue"),
+      Map.entry(DyeColor.BROWN, "Brown"),
+      Map.entry(DyeColor.GREEN, "Green"),
+      Map.entry(DyeColor.RED, "Red"),
+      Map.entry(DyeColor.BLACK, "Black")
+  );
+
+  private void addEnchantersWorkbenches() {
+    COLORS.forEach((color, translatedString) ->
+        addBlock(PEBlocks.ENCHANTERS_WORKBENCHES.get(color), translatedString + " Enchanter's Workbench")
+    );
+  }
+
   @Override
   protected void addTranslations() {
-    addBlock(PEBlocks.ENCHANTERS_WORKBENCH, "Enchanter's Workbench");
+    addEnchantersWorkbenches();
     addBlock(PEBlocks.PRECISION_GRINDSTONE, "Precision Grindstone");
     addItem(PEItems.QUILL, "Quill");
     addItem(PEItems.ENCHANTED_QUILL, "Enchanted Quill");

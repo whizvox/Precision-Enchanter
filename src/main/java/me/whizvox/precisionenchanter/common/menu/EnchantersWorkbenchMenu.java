@@ -299,7 +299,11 @@ public class EnchantersWorkbenchMenu extends AbstractContainerMenu {
 
   @Override
   public boolean stillValid(Player player) {
-    return stillValid(access, player, PEBlocks.ENCHANTERS_WORKBENCH.get());
+    return access.evaluate(
+        (level, pos) -> level.getBlockState(pos).is(PEBlocks.ENCHANTERS_WORKBENCH_TAG) &&
+            pos.distToCenterSqr(player.position()) <= 64.0,
+        true
+    );
   }
 
   @Override

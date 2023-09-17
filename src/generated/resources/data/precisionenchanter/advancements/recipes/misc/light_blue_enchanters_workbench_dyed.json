@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_enchanters_workbench": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "precisionenchanter:enchanters_workbench"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "precisionenchanter:light_blue_enchanters_workbench_dyed"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_enchanters_workbench",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "precisionenchanter:light_blue_enchanters_workbench_dyed"
+    ]
+  },
+  "sends_telemetry_event": false
+}

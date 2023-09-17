@@ -5,10 +5,14 @@ import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -55,16 +59,30 @@ public class PERecipeProvider extends RecipeProvider {
         .unlockedBy("has_dragon_breath", hasItems(Items.DRAGON_BREATH))
         .save(writer);
 
-    ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PEItems.ENCHANTERS_WORKBENCH.get())
-        .pattern(" Q ")
-        .pattern("RRR")
-        .pattern("DSD")
-        .define('Q', PEItems.ENCHANTED_QUILL.get())
-        .define('R', Items.RED_CARPET)
-        .define('D', Items.DEEPSLATE)
-        .define('S', Items.SMOOTH_STONE_SLAB)
-        .unlockedBy("has_enchanted_quill", hasItems(PEItems.ENCHANTED_QUILL.get()))
-        .save(writer);
+    PEItems.ENCHANTERS_WORKBENCHES.forEach((color, itemSup) -> {
+      BlockItem item = itemSup.get();
+      ResourceLocation carpetLoc = new ResourceLocation(color.getName() + "_carpet");
+      Item carpet = ForgeRegistries.ITEMS.getValue(carpetLoc);
+      // normal crafting recipe with colored carpets
+      ShapedRecipeBuilder.shaped(RecipeCategory.MISC, item)
+          .pattern(" Q ")
+          .pattern("CCC")
+          .pattern("DSD")
+          .define('Q', PEItems.ENCHANTED_QUILL.get())
+          .define('C', carpet)
+          .define('D', Items.DEEPSLATE)
+          .define('S', Items.SMOOTH_STONE_SLAB)
+          .unlockedBy("has_enchanted_quill", hasItems(PEItems.ENCHANTED_QUILL.get()))
+          .save(writer);
+      // dyeing recipe
+      ShapedRecipeBuilder.shaped(RecipeCategory.MISC, item)
+          .pattern("D")
+          .pattern("B")
+          .define('D', ItemTags.create(new ResourceLocation("forge", "dyes/" + color.getName())))
+          .define('B', PEItems.ENCHANTERS_WORKBENCH_TAG)
+          .unlockedBy("has_enchanters_workbench", has(PEItems.ENCHANTERS_WORKBENCH_TAG))
+          .save(writer, modLoc(color + "_enchanters_workbench_dyed"));
+    });
 
     ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PEItems.PRECISION_GRINDSTONE.get())
         .pattern(" Q ")

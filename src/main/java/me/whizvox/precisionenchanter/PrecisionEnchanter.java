@@ -16,6 +16,7 @@ import me.whizvox.precisionenchanter.common.util.PEEnchantmentHelper;
 import me.whizvox.precisionenchanter.server.PECommand;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -24,6 +25,8 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.MissingMappingsEvent;
 
 @Mod(PrecisionEnchanter.MOD_ID)
 public class PrecisionEnchanter {
@@ -55,6 +58,7 @@ public class PrecisionEnchanter {
     PEEnchantmentHelper.register(forgeBus);
     forgeBus.addListener(this::onRegisterCommands);
     forgeBus.addListener(this::onAddReloadListener);
+    forgeBus.addListener(this::onMissingMappings);
   }
 
   private void onClientSetup(final FMLClientSetupEvent event) {
@@ -70,6 +74,12 @@ public class PrecisionEnchanter {
 
   private void onAddReloadListener(final AddReloadListenerEvent event) {
     event.addListener(EnchantmentRecipeManager.INSTANCE);
+  }
+
+  private void onMissingMappings(final MissingMappingsEvent event) {
+    event.getMappings(ForgeRegistries.Keys.BLOCKS, PrecisionEnchanter.MOD_ID).stream()
+        .filter(m -> m.getKey().getPath().equals("enchanters_workbench"))
+        .forEach(m -> m.remap(PEBlocks.ENCHANTERS_WORKBENCHES.get(DyeColor.RED).get()));
   }
 
 }
