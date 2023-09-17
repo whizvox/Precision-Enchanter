@@ -8,10 +8,9 @@ import me.whizvox.precisionenchanter.common.network.PENetwork;
 import me.whizvox.precisionenchanter.common.network.message.PEChangeSelectionMessage;
 import me.whizvox.precisionenchanter.common.recipe.EnchantmentRecipe;
 import me.whizvox.precisionenchanter.common.util.ChatUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
-import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -31,6 +30,7 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   private EnchantmentInstance currentEnchantment;
   private boolean matchesMultiple;
 
+  private ToggleTabletButton toggleTabletButton;
   private ChangeSelectionButton selectUpButton, selectDownButton;
   private final EnchantmentRecipeTabletComponent tablet;
 
@@ -75,23 +75,8 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
     selectDownButton = new ChangeSelectionButton(leftPos + 157, topPos + 47, 176, 40, 13, 13, PELang.SCREEN_SELECT_NEXT, -1);
     addRenderableWidget(selectUpButton);
     addRenderableWidget(selectDownButton);
-    ImageButton showRecipesButton = new ImageButton(leftPos - 20, topPos + 20, 20, 20, 176, 53, TEXTURE_LOCATION, button -> {
-      tablet.toggleVisibility();
-      if (tablet.isVisible()) {
-        leftPos = (width - 148) / 2 - 86 + 148;
-        button.setPosition(leftPos - 168, topPos + 20);
-        button.setTooltip(Tooltip.create(PELang.WORKBENCH_HIDE_RECIPES));
-      } else {
-        leftPos = (width - imageWidth) / 2;
-        button.setPosition(leftPos - 20, topPos + 20);
-        button.setTooltip(Tooltip.create(PELang.WORKBENCH_SHOW_RECIPES));
-      }
-      selectUpButton.setPosition(leftPos + 157, topPos + 34);
-      selectDownButton.setPosition(leftPos + 157, topPos + 47);
-      updateTabletFocus();
-    });
-    showRecipesButton.setTooltip(Tooltip.create(PELang.WORKBENCH_SHOW_RECIPES));
-    addRenderableWidget(showRecipesButton);
+    toggleTabletButton = new ToggleTabletButton(leftPos - 19, topPos + 20, 176, 53, 20, 20);
+    addRenderableWidget(toggleTabletButton);
     selectUpButton.visible = false;
     selectDownButton.visible = false;
     tablet.init(width, height, false, minecraft, menu);
@@ -136,6 +121,14 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
   }
 
   @Override
+  protected void renderTooltip(GuiGraphics g, int mouseX, int mouseY) {
+    super.renderTooltip(g, mouseX, mouseY);
+    if (toggleTabletButton.isHovered()) {
+      g.renderTooltip(Minecraft.getInstance().font, toggleTabletButton.getMessage(), mouseX, mouseY);
+    }
+  }
+
+  @Override
   protected void containerTick() {
     super.containerTick();
     tablet.tick();
@@ -158,6 +151,48 @@ public class EnchantersWorkbenchScreen extends AbstractContainerScreen<Enchanter
       }
     }
     super.slotClicked(slot, slotId, button, clickType);
+  }
+
+  private class ToggleTabletButton extends AbstractButton {
+
+    final int srcX, srcY;
+
+    ToggleTabletButton(int x, int y, int srcX, int srcY, int width, int height) {
+      super(x, y, width, height, Component.empty());
+      this.srcX = srcX;
+      this.srcY = srcY;
+    }
+
+    @Override
+    public Component getMessage() {
+      return tablet.isVisible() ? PELang.WORKBENCH_HIDE_RECIPES : PELang.WORKBENCH_SHOW_RECIPES;
+    }
+
+    @Override
+    public void renderWidget(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
+      g.blit(TEXTURE_LOCATION, getX(), getY(), srcX, isHovered ? srcY + 20 : srcY, getWidth(), getHeight());
+    }
+
+    @Override
+    public void onPress() {
+      tablet.toggleVisibility();
+      if (tablet.isVisible()) {
+        leftPos = (EnchantersWorkbenchScreen.this.width - 148) / 2 - 86 + 148;
+        setPosition(leftPos - 168, topPos + 20);
+      } else {
+        leftPos = (EnchantersWorkbenchScreen.this.width - imageWidth) / 2;
+        setPosition(leftPos - 19, topPos + 20);
+      }
+      selectUpButton.setPosition(leftPos + 157, topPos + 34);
+      selectDownButton.setPosition(leftPos + 157, topPos + 47);
+      updateTabletFocus();
+    }
+
+    @Override
+    protected void updateWidgetNarration(NarrationElementOutput output) {
+      defaultButtonNarrationText(output);
+    }
+
   }
 
   private class ChangeSelectionButton extends AbstractButton {
