@@ -1,5 +1,8 @@
 package me.whizvox.precisionenchanter.common.util;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -60,6 +63,18 @@ public class InventoryUtil {
       items.add(src.getStackInSlot(i));
     }
     return insertAll(items, dest, copyItems);
+  }
+
+  public static void setAuthorId(ItemStack stack, Player player) {
+    stack.addTagElement("AuthorID", NbtUtils.createUUID(player.getUUID()));
+  }
+
+  public static UUID getAuthorId(ItemStack stack) {
+    CompoundTag tag = stack.getTag();
+    if (tag != null && tag.contains("AuthorID")) {
+      return tag.getUUID("AuthorID");
+    }
+    return null;
   }
 
 }
